@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian Burke</title>
+  <meta name="description" content="Ian Burke — Software Engineer, Full-Stack Developer, AI Integration Specialist">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg: #0c0a14;
+      --bg-raised: #13111d;
+      --bg-hover: #1a1728;
+      --border: #2a2540;
+      --border-hover: #3a3458;
+      --text: #e8e4f0;
+      --text-muted: #8a82a0;
+      --text-dim: #554e6e;
+      --accent: #a855f7;
+      --accent-bright: #c084fc;
+      --accent-dim: rgba(168, 85, 247, 0.1);
+      --accent-glow: rgba(168, 85, 247, 0.2);
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.1);
+      --blue: #60a5fa;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: rgba(168, 85, 247, 0.25);
+      color: var(--accent-bright);
+    }
+
+    a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    a:hover { color: var(--accent-bright); }
+
+    /* ─── MANDELBROT CANVAS ─── */
+
+    #mandelbrot {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    /* ─── LAYOUT ─── */
+
+    .wrapper {
+      display: flex;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 44%;
+      max-width: 520px;
+      height: 100vh;
+      padding: 80px 60px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      z-index: 10;
+    }
+
+    .sidebar::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--border) 15%,
+        var(--border) 85%,
+        transparent 100%
+      );
+    }
+
+    .main {
+      margin-left: 44%;
+      max-width: 720px;
+      padding: 80px 60px 120px 80px;
+      width: 100%;
+    }
+
+    /* ─── SIDEBAR CONTENT ─── */
+
+    .name {
+      font-family: var(--serif);
+      font-size: 44px;
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--accent-bright);
+    }
+
+    .role {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.01em;
+    }
+
+    .tagline {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--text-dim);
+      letter-spacing: 0.02em;
+      margin-bottom: 28px;
+    }
+
+    .tagline .cursor {
+      display: inline-block;
+      width: 7px;
+      height: 15px;
+      background: var(--accent);
+      margin-left: 3px;
+      vertical-align: text-bottom;
+      animation: blink 1.1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .bio {
+      font-size: 14.5px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 340px;
+    }
+
+    /* ─── NAV ─── */
+
+    .nav {
+      margin-top: 56px;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .nav-line {
+      width: 28px;
+      height: 1px;
+      background: var(--text-dim);
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--accent-bright);
+    }
+
+    .nav-link:hover .nav-line,
+    .nav-link.active .nav-line {
+      width: 56px;
+      background: var(--accent);
+    }
+
+    /* ─── SIDEBAR FOOTER ─── */
+
+    .sidebar-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: all 0.25s ease;
+    }
+
+    .social-link:hover {
+      border-color: var(--accent);
+      color: var(--accent-bright);
+      background: var(--accent-dim);
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.1);
+    }
+
+    .social-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .status-line {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── SECTIONS ─── */
+
+    .section {
+      margin-bottom: 100px;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 40px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ─── ABOUT ─── */
+
+    .about p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+
+    .about p:last-child { margin-bottom: 0; }
+
+    .about strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about a {
+      color: var(--accent-bright);
+      text-decoration: underline;
+      text-decoration-color: rgba(168, 85, 247, 0.3);
+      text-underline-offset: 3px;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    .about a:hover {
+      text-decoration-color: var(--accent-bright);
+    }
+
+    /* ─── EXPERIENCE ─── */
+
+    .exp-item {
+      padding: 20px 24px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .exp-item:hover {
+      background: var(--bg-hover);
+      border-color: var(--border);
+    }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 4px;
+      gap: 12px;
+    }
+
+    .exp-role {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      letter-spacing: 0.02em;
+    }
+
+    .exp-company {
+      font-size: 13.5px;
+      color: var(--accent-bright);
+      margin-bottom: 10px;
+    }
+
+    .exp-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin-bottom: 10px;
+    }
+
+    .exp-highlights {
+      list-style: none;
+      padding: 0;
+    }
+
+    .exp-highlights li {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      padding-left: 16px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .exp-highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.5;
+    }
+
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    /* ─── PROJECT CARDS ─── */
+
+    .project-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      background: var(--bg-raised);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(168, 85, 247, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.02);
+    }
+
+    .project-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      background: var(--bg);
+    }
+
+    .project-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      filter: brightness(0.9) saturate(0.9);
+    }
+
+    .project-card:hover .project-img-wrap img {
+      transform: scale(1.03);
+      filter: brightness(1) saturate(1);
+    }
+
+    .project-img-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60%;
+      background: linear-gradient(transparent, var(--bg-raised));
+      pointer-events: none;
+    }
+
+    .project-body {
+      padding: 20px 24px 24px;
+    }
+
+    .project-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .project-name {
+      font-family: var(--sans);
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .project-link {
+      color: var(--text-dim);
+      transition: color 0.2s ease;
+      display: flex;
+    }
+
+    .project-link:hover {
+      color: var(--accent-bright);
+    }
+
+    .project-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .project-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent-bright);
+      background: var(--accent-dim);
+      padding: 3px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    .tag.green {
+      color: var(--green);
+      background: var(--green-dim);
+    }
+
+    .tag.blue {
+      color: var(--blue);
+      background: rgba(96, 165, 250, 0.1);
+    }
+
+    /* ─── OTHER PROJECTS ─── */
+
+    .other-projects-list {
+      list-style: none;
+    }
+
+    .other-project {
+      padding: 18px 20px;
+      border-radius: 10px;
+      margin-bottom: 4px;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .other-project:hover {
+      background: var(--bg-hover);
+    }
+
+    .other-project-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .other-project-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .other-project:hover .other-project-name {
+      color: var(--accent-bright);
+    }
+
+    .other-project-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .other-project-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+
+    .other-project-link {
+      color: var(--text-dim);
+      flex-shrink: 0;
+      padding-top: 2px;
+      transition: color 0.2s ease;
+    }
+
+    .other-project:hover .other-project-link {
+      color: var(--accent-bright);
+    }
+
+    .other-project-link svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── CONTACT ─── */
+
+    .contact-text {
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    .contact-text a {
+      color: var(--accent-bright);
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .contact-btn {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent-bright);
+      background: var(--accent-dim);
+    }
+
+    .contact-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ─── FADE IN ─── */
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.12s; }
+    .fade-in:nth-child(3) { animation-delay: 0.19s; }
+    .fade-in:nth-child(4) { animation-delay: 0.26s; }
+    .fade-in:nth-child(5) { animation-delay: 0.33s; }
+
+    .section { opacity: 0; transform: translateY(16px); transition: all 0.5s ease; }
+    .section.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+
+    @media (max-width: 1024px) {
+      .sidebar { width: 42%; padding: 60px 40px 40px; }
+      .main { margin-left: 42%; padding: 60px 40px 100px 50px; }
+    }
+
+    @media (max-width: 768px) {
+      .wrapper { flex-direction: column; }
+      .sidebar {
+        position: relative;
+        width: 100%;
+        max-width: none;
+        height: auto;
+        padding: 48px 28px 40px;
+      }
+      .sidebar::after { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 20px 28px 80px;
+      }
+      .name { font-size: 36px; }
+      .nav { display: none; }
+      .project-body { padding: 16px 18px 20px; }
+      #mandelbrot { opacity: 0.1; }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar { padding: 36px 20px 32px; }
+      .main { padding: 16px 20px 60px; }
+      .name { font-size: 30px; }
+      .contact-links { flex-direction: column; }
+      .contact-btn { width: 100%; justify-content: center; }
+      .exp-header { flex-direction: column; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="mandelbrot"></canvas>
+
+  <div class="wrapper">
+
+    <!-- ─── LEFT PANEL ─── -->
+    <aside class="sidebar">
+      <div class="identity">
+        <h1 class="name fade-in">Ian <em>Burke</em></h1>
+        <p class="role fade-in">Software Engineer &middot; Full-Stack Developer &middot; AI Integration</p>
+        <p class="tagline fade-in">full-time vibe debugger<span class="cursor"></span></p>
+        <p class="bio fade-in">
+          Builder of tools, terminal UIs, and weird internet things.
+          From video production to full-stack engineering &mdash; I ship fast and iterate faster.
+        </p>
+
+        <nav class="nav fade-in">
+          <a href="#about" class="nav-link active" data-section="about">
+            <span class="nav-line"></span>
+            <span>About</span>
+          </a>
+          <a href="#experience" class="nav-link" data-section="experience">
+            <span class="nav-line"></span>
+            <span>Experience</span>
+          </a>
+          <a href="#projects" class="nav-link" data-section="projects">
+            <span class="nav-line"></span>
+            <span>Projects</span>
+          </a>
+          <a href="#other" class="nav-link" data-section="other">
+            <span class="nav-line"></span>
+            <span>Other Work</span>
+          </a>
+          <a href="#contact" class="nav-link" data-section="contact">
+            <span class="nav-line"></span>
+            <span>Contact</span>
+          </a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer fade-in">
+        <div class="socials">
+          <a href="https://github.com/ianjamesburke" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="mailto:ianjamesburke@gmail.com" class="social-link" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </a>
+        </div>
+        <span class="status-line">Grand Rapids, MI</span>
+      </div>
+    </aside>
+
+    <!-- ─── RIGHT PANEL ─── -->
+    <main class="main">
+
+      <!-- ABOUT -->
+      <section class="section" id="about">
+        <div class="section-label">About</div>
+        <div class="about">
+          <p>
+            I specialize in <strong>rapid-iteration full-stack web applications</strong>. I've touched every part of the software development lifecycle &mdash; scoping projects with non-technical clients, clearly communicating trade-offs and timelines, shipping and iterating MVPs, and establishing CI/CD pipelines for long-term support.
+          </p>
+          <p>
+            I gravitate toward <strong>Rust</strong> for systems work, <strong>Svelte</strong> and <strong>React</strong> for interfaces, and <strong>Python</strong> for anything that needs to move fast. I build AI-powered tools with <strong>OpenAI, Claude, and Gemini APIs</strong> &mdash; prompt engineering, RAG pipelines, and intelligent automation are part of the daily toolkit.
+          </p>
+          <p>
+            I started in <strong>social media content production</strong> &mdash; directing, editing, and producing 1000+ video ads for 7-figure DTC campaigns. That background means I think about software the way a producer thinks about a shoot: what's the deliverable, when does it need to ship, and what's the simplest path to something that works.
+          </p>
+          <p>
+            Currently building <a href="https://github.com/ianjamesburke/PLEXI">Plexi</a>, shipping <a href="https://killtonyarchive.com">Kill Tony Archive</a>, and figuring out what the terminal looks like when AI is a first-class citizen.
+          </p>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-label">Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Freelance Software Engineer</span>
+            <span class="exp-date">2022 &mdash; Present</span>
+          </div>
+          <div class="exp-company">Narrative Ads</div>
+          <p class="exp-desc">Built and maintained Narrator AI, a custom AI-powered content analysis and automation platform for social media marketing. Supported campaigns for DoorDash, Mudwater, Pretty Litter, Dollar Shave Club, Harry's, Dr. Squatch, and Native.</p>
+          <ul class="exp-highlights">
+            <li>AI-powered marketing analytics &mdash; extracting winning angles and copy from top-performing campaigns</li>
+            <li>Automated video QA pipeline via Frame API, reducing manual review time by 70%</li>
+            <li>Scalable speech-to-text transcription system for video content analysis</li>
+            <li>Workflow automation across Google Drive, Frame.io, and ClickUp</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span>
+            <span class="tag green">FastAPI</span>
+            <span class="tag blue">Next.js</span>
+            <span class="tag">Google Cloud</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Founder &amp; Developer</span>
+            <span class="exp-date">2024 &mdash; Present</span>
+          </div>
+          <div class="exp-company">DadCircles</div>
+          <p class="exp-desc">Solo-built a mobile app connecting local dads for mutual support and community. Non-algorithmic, location-first matching that prioritizes proximity and shared context over virality. Privacy-first &mdash; no feeds, no likes, just real people in your neighborhood.</p>
+          <div class="exp-tags">
+            <span class="tag blue">React Native</span>
+            <span class="tag green">Firebase</span>
+            <span class="tag">Gemini API</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Shopify App Developer</span>
+            <span class="exp-date">2024 &mdash; Present</span>
+          </div>
+          <div class="exp-company">Parallax Variant Editor</div>
+          <p class="exp-desc">Built and published a Shopify app for TikTok Shop automation and product data management. Live on the Shopify App Store with automated product catalog sync and bulk CSV operations.</p>
+          <div class="exp-tags">
+            <span class="tag blue">Node.js</span>
+            <span class="tag">Shopify API</span>
+            <span class="tag green">PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Medtech &amp; IT Support</span>
+            <span class="exp-date">2024 &mdash; 2025</span>
+          </div>
+          <div class="exp-company">Black Rock City &middot; Rampart Medical</div>
+          <p class="exp-desc">Logistics/IT team at the on-site hospital unit at Burning Man. Onboarded doctors and EMTs to communications platforms, optimized intake documentation systems. Operated in extreme desert conditions &mdash; dust storms, heat, zero infrastructure.</p>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Video Producer &amp; Editor</span>
+            <span class="exp-date">2018 &mdash; 2022</span>
+          </div>
+          <div class="exp-company">Narrative Ads</div>
+          <p class="exp-desc">Led creative strategy and production for 50+ paid social campaigns. Produced and edited 1000+ video ads for Facebook, Instagram, and TikTok. Collaborated directly with brands like DoorDash, Harry's, and Native on creative direction. Scaled team workflows to handle 20+ simultaneous campaigns.</p>
+        </div>
+      </section>
+
+      <!-- FEATURED PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-label">Featured Projects</div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <span class="project-name">Plexi</span>
+              <div class="project-links">
+                <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">A multi-dimensional terminal multiplexer for the agentic era. Rethinks how terminals, AI agents, and workflows coexist in a single interface.</p>
+            <div class="project-tags">
+              <span class="tag green">Rust</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <span class="project-name">Kill Tony Archive</span>
+              <div class="project-links">
+                <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/ianjamesburke/kill-tony-archive" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">Transcribes, analyzes, and ranks every 1-minute set from 500+ episodes of the Kill Tony podcast. The complete record of what makes a crowd erupt &mdash; and what falls flat.</p>
+            <div class="project-tags">
+              <span class="tag">Svelte</span>
+              <span class="tag blue">Python</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="fido.png" alt="Fido — TUI social app" loading="lazy">
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <span class="project-name">Fido</span>
+              <div class="project-links">
+                <a href="https://fido-prod-ijb.web.app/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/ianjamesburke/fido" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">A TUI social app for nerds. Real-time chat, code snippet sharing, and community discussions built entirely in the terminal. Distraction-free developer communication via Rust async runtime and WebSocket protocols.</p>
+            <div class="project-tags">
+              <span class="tag green">Rust</span>
+              <span class="tag blue">WebSockets</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-img-wrap">
+            <img src="dad-circles.png" alt="Dad Circles" loading="lazy">
+          </div>
+          <div class="project-body">
+            <div class="project-header">
+              <span class="project-name">Dad Circles</span>
+              <div class="project-links">
+                <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+                <a href="https://github.com/ianjamesburke/dad-circles-v1" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                </a>
+              </div>
+            </div>
+            <p class="project-desc">Helping dads connect. Non-algorithmic, location-first matching that prioritizes proximity and shared context. Privacy-first &mdash; no feeds, no likes, just real people in your neighborhood. Submitted to Gemini API Developer Competition.</p>
+            <div class="project-tags">
+              <span class="tag blue">React Native</span>
+              <span class="tag green">Firebase</span>
+              <span class="tag">Gemini API</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OTHER PROJECTS -->
+      <section class="section" id="other">
+        <div class="section-label">Other Work</div>
+        <ul class="other-projects-list">
+          <li>
+            <a href="https://github.com/ianjamesburke/freelance-invoice-skill" target="_blank" rel="noopener" class="other-project">
+              <div class="other-project-info">
+                <div class="other-project-name">freelance-invoice-skill</div>
+                <div class="other-project-desc">Freelance time tracking and invoice PDF generation agent skill</div>
+              </div>
+              <span class="other-project-meta">JS</span>
+              <span class="other-project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ianjamesburke/telegram-bot-fly-io-starter" target="_blank" rel="noopener" class="other-project">
+              <div class="other-project-info">
+                <div class="other-project-name">telegram-bot-fly-io-starter</div>
+                <div class="other-project-desc">A starter repo for deploying a Telegram bot on Fly.io</div>
+              </div>
+              <span class="other-project-meta">Python</span>
+              <span class="other-project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/ianjamesburke/AI-context-docs" target="_blank" rel="noopener" class="other-project">
+              <div class="other-project-info">
+                <div class="other-project-name">AI-context-docs</div>
+                <div class="other-project-desc">Compressed documentation optimized for AI reference material and context windows</div>
+              </div>
+              <span class="other-project-meta">Python</span>
+              <span class="other-project-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+              </span>
+            </a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact">
+        <div class="section-label">Contact</div>
+        <p class="contact-text">
+          Always interested in new projects, collaborations, or just nerding out about terminals and Rust. Whether you need a full-stack app shipped fast or an AI integration that actually works &mdash; let's talk.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:ianjamesburke@gmail.com" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            ianjamesburke@gmail.com
+          </a>
+          <a href="https://github.com/ianjamesburke" target="_blank" rel="noopener" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+          </a>
+          <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @atfostermusic
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // ─── Mandelbrot Set — slow zoom into a complex region ───
+    const canvas = document.getElementById('mandelbrot');
+    const ctx = canvas.getContext('2d');
+    let width, height, imageData;
+    let frame = 0;
+
+    // Seahorse Valley — one of the most intricate Mandelbrot regions
+    const TARGET_X = -0.7463;
+    const TARGET_Y = 0.1102;
+    const INITIAL_SCALE = 3.0;
+    const ZOOM_SPEED = 0.00008;
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+      imageData = ctx.createImageData(width, height);
+    }
+
+    // Custom purple/green/blue palette
+    function getColor(iter, maxIter) {
+      if (iter === maxIter) return [12, 10, 20]; // bg color
+      const t = iter / maxIter;
+      const phase = t * 12 + frame * 0.0003;
+      // Purple-green-blue cycle
+      const r = Math.floor(128 + 80 * Math.sin(phase * 0.8));
+      const g = Math.floor(60 + 100 * Math.sin(phase * 0.6 + 2.1));
+      const b = Math.floor(140 + 100 * Math.sin(phase * 0.7 + 4.2));
+      // Fade to black for deep iterations
+      const fade = Math.pow(1 - t, 0.4);
+      return [r * fade, g * fade, b * fade];
+    }
+
+    function render() {
+      const scale = INITIAL_SCALE * Math.exp(-ZOOM_SPEED * frame);
+      const aspect = width / height;
+      const xMin = TARGET_X - scale * aspect * 0.5;
+      const yMin = TARGET_Y - scale * 0.5;
+      const xStep = (scale * aspect) / width;
+      const yStep = scale / height;
+      const maxIter = Math.min(80 + Math.floor(frame * 0.02), 200);
+      const data = imageData.data;
+
+      // Render every 2nd pixel for performance, interpolate
+      const step = 2;
+      for (let py = 0; py < height; py += step) {
+        for (let px = 0; px < width; px += step) {
+          const x0 = xMin + px * xStep;
+          const y0 = yMin + py * yStep;
+          let x = 0, y = 0, iter = 0;
+          while (x * x + y * y <= 4 && iter < maxIter) {
+            const xn = x * x - y * y + x0;
+            y = 2 * x * y + y0;
+            x = xn;
+            iter++;
+          }
+          const [r, g, b] = getColor(iter, maxIter);
+          // Fill the step x step block
+          for (let dy = 0; dy < step && py + dy < height; dy++) {
+            for (let dx = 0; dx < step && px + dx < width; dx++) {
+              const idx = ((py + dy) * width + (px + dx)) * 4;
+              data[idx] = r;
+              data[idx + 1] = g;
+              data[idx + 2] = b;
+              data[idx + 3] = 255;
+            }
+          }
+        }
+      }
+
+      ctx.putImageData(imageData, 0, 0);
+      frame++;
+      requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    render();
+
+    // ─── Scroll-triggered nav highlighting ───
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            navLinks.forEach((link) => {
+              link.classList.toggle('active', link.dataset.section === id);
+            });
+          }
+        });
+      },
+      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+
+    // ─── Section fade-in on scroll ───
+    const reveal = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      },
+      { threshold: 0.08 }
+    );
+
+    sections.forEach((s) => reveal.observe(s));
+  </script>
+</body>
+</html>
