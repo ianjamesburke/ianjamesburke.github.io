@@ -24,9 +24,14 @@
       --accent-bright: #a855f7;
       --accent-dim: rgba(147, 51, 234, 0.1);
       --accent-glow: rgba(147, 51, 234, 0.2);
+      --purple-warm: #c471f5;
+      --purple-cool: #7c5bf0;
+      --lavender: #b8a9e8;
       --green: #4ade80;
       --green-dim: rgba(74, 222, 128, 0.1);
+      --green-muted: #34d399;
       --blue: #60a5fa;
+      --blue-muted: #818cf8;
       --orange: #f97316;
       --orange-dim: rgba(249, 115, 22, 0.1);
       --red: #f43f5e;
@@ -54,8 +59,8 @@
     }
 
     ::selection {
-      background: rgba(147, 51, 234, 0.3);
-      color: var(--accent-bright);
+      background: rgba(196, 113, 245, 0.2);
+      color: var(--purple-warm);
     }
 
     a {
@@ -64,7 +69,7 @@
       transition: color 0.2s ease;
     }
 
-    a:hover { color: var(--accent-bright); }
+    a:hover { color: var(--lavender); }
 
     /* ─── FRACTAL BACKGROUND ─── */
 
@@ -198,7 +203,7 @@
 
     .name em {
       font-style: normal;
-      color: var(--accent-bright);
+      color: var(--purple-warm);
     }
 
     .role {
@@ -223,7 +228,7 @@
       display: inline-block;
       width: 7px;
       height: 15px;
-      background: var(--accent);
+      background: var(--green-muted);
       margin-left: 3px;
       vertical-align: text-bottom;
       animation: blink 1.1s step-end infinite;
@@ -271,13 +276,13 @@
 
     .nav-link:hover,
     .nav-link.active {
-      color: var(--accent-bright);
+      color: var(--lavender);
     }
 
     .nav-link:hover .nav-line,
     .nav-link.active .nav-line {
       width: 56px;
-      background: var(--accent);
+      background: var(--purple-cool);
     }
 
     /* ─── SIDEBAR FOOTER ─── */
@@ -310,10 +315,10 @@
     }
 
     .social-link:hover {
-      border-color: var(--accent);
-      color: var(--accent-bright);
-      background: var(--accent-dim);
-      box-shadow: 0 0 20px rgba(147, 51, 234, 0.12);
+      border-color: var(--purple-cool);
+      color: var(--lavender);
+      background: rgba(124, 91, 240, 0.08);
+      box-shadow: 0 0 20px rgba(124, 91, 240, 0.1);
     }
 
     .social-link .check-icon { display: none; }
@@ -355,7 +360,7 @@
       text-transform: uppercase;
       color: var(--text);
       padding-left: 14px;
-      border-left: 3px solid var(--accent);
+      border-left: 3px solid var(--purple-warm);
       margin-bottom: 40px;
     }
 
@@ -376,15 +381,15 @@
     }
 
     .about a {
-      color: var(--accent-bright);
+      color: var(--blue-muted);
       text-decoration: underline;
-      text-decoration-color: rgba(168, 85, 247, 0.3);
+      text-decoration-color: rgba(129, 140, 248, 0.3);
       text-underline-offset: 3px;
       transition: text-decoration-color 0.2s ease;
     }
 
     .about a:hover {
-      text-decoration-color: var(--accent-bright);
+      text-decoration-color: var(--blue-muted);
     }
 
     /* ─── EXPERIENCE ─── */
@@ -426,7 +431,7 @@
 
     .exp-company {
       font-size: 13.5px;
-      color: var(--accent-bright);
+      color: var(--green-muted);
       margin-bottom: 10px;
     }
 
@@ -459,8 +464,8 @@
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--accent);
-      opacity: 0.5;
+      background: var(--purple-cool);
+      opacity: 0.6;
     }
 
     .exp-tags {
@@ -590,7 +595,7 @@
     }
 
     .project-card:hover .project-link-icon {
-      color: var(--accent-bright);
+      color: var(--purple-warm);
       transform: translate(2px, -2px);
     }
 
@@ -663,7 +668,7 @@
     }
 
     .contact-text a {
-      color: var(--accent-bright);
+      color: var(--lavender);
     }
 
     .contact-links {
@@ -686,9 +691,9 @@
     }
 
     .contact-btn:hover {
-      border-color: var(--accent);
-      color: var(--accent-bright);
-      background: var(--accent-dim);
+      border-color: var(--purple-warm);
+      color: var(--purple-warm);
+      background: rgba(196, 113, 245, 0.08);
     }
 
     .contact-btn svg {
