@@ -145,10 +145,10 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 44%;
-      max-width: 520px;
+      width: 30%;
+      max-width: 360px;
       height: 100vh;
-      padding: 80px 60px 60px;
+      padding: 80px 40px 60px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -172,9 +172,9 @@
     }
 
     .main {
-      margin-left: 44%;
-      max-width: 720px;
-      padding: 80px 60px 120px 80px;
+      margin-left: 30%;
+      max-width: 900px;
+      padding: 80px 60px 120px 60px;
       width: 100%;
     }
 
@@ -459,21 +459,61 @@
       margin-top: 12px;
     }
 
+    /* ─── PROJECT GRID ─── */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── SKILLS ─── */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px 40px;
+    }
+
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
     /* ─── PROJECT CARDS ─── */
 
     .project-card {
-      display: block;
+      display: flex;
+      flex-direction: column;
       border: 1px solid var(--border);
       border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 28px;
       transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       background: var(--bg-raised);
     }
 
     .project-card:hover {
       border-color: var(--border-hover);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.3),
         0 0 40px rgba(147, 51, 234, 0.06),
@@ -719,8 +759,8 @@
     /* ─── RESPONSIVE ─── */
 
     @media (max-width: 1024px) {
-      .sidebar { width: 42%; padding: 60px 40px 40px; }
-      .main { margin-left: 42%; padding: 60px 40px 100px 50px; }
+      .sidebar { width: 28%; padding: 60px 28px 40px; }
+      .main { margin-left: 28%; padding: 60px 40px 100px 40px; }
     }
 
     @media (max-width: 768px) {
@@ -771,7 +811,11 @@
         </p>
 
         <nav class="nav fade-in">
-          <a href="#about" class="nav-link active" data-section="about">
+          <a href="#projects" class="nav-link active" data-section="projects">
+            <span class="nav-line"></span>
+            <span>Projects</span>
+          </a>
+          <a href="#about" class="nav-link" data-section="about">
             <span class="nav-line"></span>
             <span>About</span>
           </a>
@@ -779,13 +823,9 @@
             <span class="nav-line"></span>
             <span>Experience</span>
           </a>
-          <a href="#projects" class="nav-link" data-section="projects">
+          <a href="#skills" class="nav-link" data-section="skills">
             <span class="nav-line"></span>
-            <span>Projects</span>
-          </a>
-          <a href="#other" class="nav-link" data-section="other">
-            <span class="nav-line"></span>
-            <span>Other Work</span>
+            <span>Skills</span>
           </a>
           <a href="#contact" class="nav-link" data-section="contact">
             <span class="nav-line"></span>
@@ -812,6 +852,106 @@
 
     <!-- ─── RIGHT PANEL ─── -->
     <main class="main">
+
+      <!-- FEATURED PROJECTS -->
+      <section class="section" id="projects">
+        <div class="section-label">Featured Projects</div>
+        <div class="projects-grid">
+
+          <div class="project-card">
+            <div class="project-img-wrap">
+              <img src="plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <span class="project-name">Plexi</span>
+                <div class="project-links">
+                  <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="project-desc">A multi-dimensional terminal multiplexer for the agentic era.</p>
+              <div class="project-tags">
+                <span class="tag green">Rust</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap">
+              <img src="kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <span class="project-name">Kill Tony Archive</span>
+                <div class="project-links">
+                  <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                  <a href="https://github.com/ianjamesburke/kill-tony-archive" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="project-desc">Transcribes, analyzes, and ranks every 1-minute set from 500+ episodes.</p>
+              <div class="project-tags">
+                <span class="tag">Svelte</span>
+                <span class="tag blue">Python</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap">
+              <img src="fido.png" alt="Fido — TUI social app" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <span class="project-name">Fido</span>
+                <div class="project-links">
+                  <a href="https://fido-prod-ijb.web.app/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                  <a href="https://github.com/ianjamesburke/fido" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="project-desc">A TUI social app for nerds. Real-time chat and community in your terminal.</p>
+              <div class="project-tags">
+                <span class="tag green">Rust</span>
+                <span class="tag blue">WebSockets</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img-wrap">
+              <img src="dad-circles.png" alt="Dad Circles" loading="lazy">
+            </div>
+            <div class="project-body">
+              <div class="project-header">
+                <span class="project-name">Dad Circles</span>
+                <div class="project-links">
+                  <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  </a>
+                  <a href="https://github.com/ianjamesburke/dad-circles-v1" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                  </a>
+                </div>
+              </div>
+              <p class="project-desc">Location-first matching for local dads. Privacy-first, no feeds, no likes.</p>
+              <div class="project-tags">
+                <span class="tag blue">React Native</span>
+                <span class="tag green">Firebase</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
 
       <!-- ABOUT -->
       <section class="section" id="about">
@@ -904,145 +1044,70 @@
         </div>
       </section>
 
-      <!-- FEATURED PROJECTS -->
-      <section class="section" id="projects">
-        <div class="section-label">Featured Projects</div>
-
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
-          </div>
-          <div class="project-body">
-            <div class="project-header">
-              <span class="project-name">Plexi</span>
-              <div class="project-links">
-                <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-desc">A multi-dimensional terminal multiplexer for the agentic era. Rethinks how terminals, AI agents, and workflows coexist in a single interface.</p>
-            <div class="project-tags">
+      <!-- SKILLS -->
+      <section class="section" id="skills">
+        <div class="section-label">Skills</div>
+        <div class="skills-grid">
+          <div>
+            <div class="skill-group-label">Languages</div>
+            <div class="skill-list">
               <span class="tag green">Rust</span>
+              <span class="tag blue">TypeScript</span>
+              <span class="tag blue">JavaScript</span>
+              <span class="tag">Python</span>
             </div>
           </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
-          </div>
-          <div class="project-body">
-            <div class="project-header">
-              <span class="project-name">Kill Tony Archive</span>
-              <div class="project-links">
-                <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-                <a href="https://github.com/ianjamesburke/kill-tony-archive" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-desc">Transcribes, analyzes, and ranks every 1-minute set from 500+ episodes of the Kill Tony podcast. The complete record of what makes a crowd erupt &mdash; and what falls flat.</p>
-            <div class="project-tags">
+          <div>
+            <div class="skill-group-label">Frontend</div>
+            <div class="skill-list">
+              <span class="tag blue">React</span>
               <span class="tag">Svelte</span>
-              <span class="tag blue">Python</span>
+              <span class="tag green">Tailwind CSS</span>
+              <span class="tag blue">Vite</span>
             </div>
           </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="fido.png" alt="Fido — TUI social app" loading="lazy">
-          </div>
-          <div class="project-body">
-            <div class="project-header">
-              <span class="project-name">Fido</span>
-              <div class="project-links">
-                <a href="https://fido-prod-ijb.web.app/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-                <a href="https://github.com/ianjamesburke/fido" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-desc">A TUI social app for nerds. Real-time chat, code snippet sharing, and community discussions built entirely in the terminal. Distraction-free developer communication via Rust async runtime and WebSocket protocols.</p>
-            <div class="project-tags">
-              <span class="tag green">Rust</span>
-              <span class="tag blue">WebSockets</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-img-wrap">
-            <img src="dad-circles.png" alt="Dad Circles" loading="lazy">
-          </div>
-          <div class="project-body">
-            <div class="project-header">
-              <span class="project-name">Dad Circles</span>
-              <div class="project-links">
-                <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-                <a href="https://github.com/ianjamesburke/dad-circles-v1" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </a>
-              </div>
-            </div>
-            <p class="project-desc">Helping dads connect. Non-algorithmic, location-first matching that prioritizes proximity and shared context. Privacy-first &mdash; no feeds, no likes, just real people in your neighborhood. Submitted to Gemini API Developer Competition.</p>
-            <div class="project-tags">
-              <span class="tag blue">React Native</span>
+          <div>
+            <div class="skill-group-label">Backend &amp; Data</div>
+            <div class="skill-list">
+              <span class="tag green">FastAPI</span>
+              <span class="tag blue">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag green">PostgreSQL</span>
+              <span class="tag">SQLite</span>
               <span class="tag green">Firebase</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">AI / ML</div>
+            <div class="skill-list">
+              <span class="tag">OpenAI API</span>
+              <span class="tag">Claude API</span>
               <span class="tag">Gemini API</span>
+              <span class="tag green">RAG Pipelines</span>
+              <span class="tag blue">Prompt Engineering</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">DevOps</div>
+            <div class="skill-list">
+              <span class="tag blue">Docker</span>
+              <span class="tag">Fly.io</span>
+              <span class="tag green">Railway</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag blue">Google Cloud</span>
+            </div>
+          </div>
+          <div>
+            <div class="skill-group-label">Tools</div>
+            <div class="skill-list">
+              <span class="tag green">Neovim</span>
+              <span class="tag">tmux</span>
+              <span class="tag">zsh</span>
+              <span class="tag blue">Linux</span>
+              <span class="tag">Git</span>
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- OTHER PROJECTS -->
-      <section class="section" id="other">
-        <div class="section-label">Other Work</div>
-        <ul class="other-projects-list">
-          <li>
-            <a href="https://github.com/ianjamesburke/freelance-invoice-skill" target="_blank" rel="noopener" class="other-project">
-              <div class="other-project-info">
-                <div class="other-project-name">freelance-invoice-skill</div>
-                <div class="other-project-desc">Freelance time tracking and invoice PDF generation agent skill</div>
-              </div>
-              <span class="other-project-meta">JS</span>
-              <span class="other-project-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/ianjamesburke/telegram-bot-fly-io-starter" target="_blank" rel="noopener" class="other-project">
-              <div class="other-project-info">
-                <div class="other-project-name">telegram-bot-fly-io-starter</div>
-                <div class="other-project-desc">A starter repo for deploying a Telegram bot on Fly.io</div>
-              </div>
-              <span class="other-project-meta">Python</span>
-              <span class="other-project-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/ianjamesburke/AI-context-docs" target="_blank" rel="noopener" class="other-project">
-              <div class="other-project-info">
-                <div class="other-project-name">AI-context-docs</div>
-                <div class="other-project-desc">Compressed documentation optimized for AI reference material and context windows</div>
-              </div>
-              <span class="other-project-meta">Python</span>
-              <span class="other-project-link">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-              </span>
-            </a>
-          </li>
-        </ul>
       </section>
 
       <!-- CONTACT -->
