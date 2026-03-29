@@ -330,6 +330,33 @@
       background: var(--green-dim);
     }
 
+    .email-wrap {
+      position: relative;
+    }
+
+    .copy-toast {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--green);
+      background: var(--bg-raised);
+      border: 1px solid var(--green);
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: all 0.2s ease;
+    }
+
+    .copy-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .social-link svg {
       width: 16px;
       height: 16px;
@@ -658,6 +685,8 @@
     .copy-email-btn {
       cursor: pointer;
       font: inherit;
+      min-width: 260px;
+      text-align: left;
     }
 
     .contact-text {
@@ -808,10 +837,13 @@
           <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <button class="social-link" aria-label="Copy email" onclick="navigator.clipboard.writeText('ianjamesburke@gmail.com').then(()=>{this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),1500)})">
-            <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </button>
+          <div class="email-wrap">
+            <span class="copy-toast" id="sidebar-toast">Copied!</span>
+            <button class="social-link" aria-label="Copy email" id="sidebar-email">
+              <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </button>
+          </div>
         </div>
         <span class="status-line">Grand Rapids, MI</span>
       </div>
@@ -1059,10 +1091,13 @@
           Always interested in new projects, collaborations, or just nerding out about terminals and Rust. Whether you need a full-stack app shipped fast or an AI integration that actually works &mdash; let's talk.
         </p>
         <div class="contact-links">
-          <button class="contact-btn copy-email-btn" onclick="navigator.clipboard.writeText('ianjamesburke@gmail.com').then(()=>{this.querySelector('.btn-text').textContent='Copied!';setTimeout(()=>this.querySelector('.btn-text').textContent='ianjamesburke@gmail.com',1500)})">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            <span class="btn-text">ianjamesburke@gmail.com</span>
-          </button>
+          <div class="email-wrap">
+            <span class="copy-toast" id="contact-toast">Copied!</span>
+            <button class="contact-btn copy-email-btn" id="contact-email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span class="btn-text">ianjamesburke@gmail.com</span>
+            </button>
+          </div>
           <a href="https://github.com/ianjamesburke" target="_blank" rel="noopener" class="contact-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             GitHub
@@ -1107,6 +1142,29 @@
     );
 
     sections.forEach((s) => reveal.observe(s));
+
+    // ─── Copy email to clipboard ───
+    function copyEmail(btnEl, toastEl) {
+      navigator.clipboard.writeText('ianjamesburke@gmail.com').then(() => {
+        btnEl.classList.add('copied');
+        toastEl.classList.add('show');
+        const textEl = btnEl.querySelector('.btn-text');
+        if (textEl) textEl.textContent = 'Copied!';
+        setTimeout(() => {
+          btnEl.classList.remove('copied');
+          toastEl.classList.remove('show');
+          if (textEl) textEl.textContent = 'ianjamesburke@gmail.com';
+        }, 1500);
+      });
+    }
+
+    document.getElementById('sidebar-email').addEventListener('click', function() {
+      copyEmail(this, document.getElementById('sidebar-toast'));
+    });
+
+    document.getElementById('contact-email').addEventListener('click', function() {
+      copyEmail(this, document.getElementById('contact-toast'));
+    });
   </script>
 </body>
 </html>
