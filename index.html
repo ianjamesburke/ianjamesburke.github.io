@@ -27,6 +27,12 @@
       --green: #4ade80;
       --green-dim: rgba(74, 222, 128, 0.1);
       --blue: #60a5fa;
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.1);
+      --red: #f43f5e;
+      --red-dim: rgba(244, 63, 94, 0.1);
+      --yellow: #facc15;
+      --yellow-dim: rgba(250, 204, 21, 0.1);
       --serif: 'Instrument Serif', Georgia, serif;
       --sans: 'DM Sans', -apple-system, sans-serif;
       --mono: 'JetBrains Mono', 'SF Mono', monospace;
@@ -181,17 +187,17 @@
     /* ─── SIDEBAR CONTENT ─── */
 
     .name {
-      font-family: var(--serif);
-      font-size: 44px;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      font-family: var(--sans);
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
       color: var(--text);
       margin-bottom: 12px;
     }
 
     .name em {
-      font-style: italic;
+      font-style: normal;
       color: var(--accent-bright);
     }
 
@@ -296,6 +302,10 @@
       border-radius: 8px;
       border: 1px solid var(--border);
       color: var(--text-muted);
+      background: transparent;
+      font: inherit;
+      padding: 0;
+      cursor: pointer;
       transition: all 0.25s ease;
     }
 
@@ -304,6 +314,15 @@
       color: var(--accent-bright);
       background: var(--accent-dim);
       box-shadow: 0 0 20px rgba(147, 51, 234, 0.12);
+    }
+
+    .social-link .check-icon { display: none; }
+    .social-link.copied .email-icon { display: none; }
+    .social-link.copied .check-icon { display: block; }
+    .social-link.copied {
+      border-color: var(--green);
+      color: var(--green);
+      background: var(--green-dim);
     }
 
     .social-link svg {
@@ -329,23 +348,15 @@
     }
 
     .section-label {
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--accent);
+      color: var(--text);
+      padding-left: 14px;
+      border-left: 3px solid var(--accent);
       margin-bottom: 40px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .section-label::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
     }
 
     /* ─── ABOUT ─── */
@@ -528,15 +539,16 @@
     }
 
     .project-img-wrap img {
-      width: 100%;
-      height: 100%;
+      width: 102%;
+      height: 102%;
+      margin: -1% 0 0 -1%;
       object-fit: cover;
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       filter: brightness(0.9) saturate(0.9);
     }
 
     .project-card:hover .project-img-wrap img {
-      transform: scale(1.03);
+      transform: scale(1.04);
       filter: brightness(1) saturate(1);
     }
 
@@ -570,23 +582,19 @@
       letter-spacing: -0.01em;
     }
 
-    .project-links {
+    .project-link-icon {
+      color: var(--text-dim);
+      transition: all 0.3s ease;
       display: flex;
-      gap: 8px;
       flex-shrink: 0;
     }
 
-    .project-link {
-      color: var(--text-dim);
-      transition: color 0.2s ease;
-      display: flex;
-    }
-
-    .project-link:hover {
+    .project-card:hover .project-link-icon {
       color: var(--accent-bright);
+      transform: translate(2px, -2px);
     }
 
-    .project-link svg {
+    .project-link-icon svg {
       width: 16px;
       height: 16px;
     }
@@ -625,74 +633,27 @@
       background: rgba(96, 165, 250, 0.1);
     }
 
-    /* ─── OTHER PROJECTS ─── */
-
-    .other-projects-list {
-      list-style: none;
+    .tag.orange {
+      color: var(--orange);
+      background: var(--orange-dim);
     }
 
-    .other-project {
-      padding: 18px 20px;
-      border-radius: 10px;
-      margin-bottom: 4px;
-      transition: all 0.25s ease;
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 16px;
+    .tag.red {
+      color: var(--red);
+      background: var(--red-dim);
     }
 
-    .other-project:hover {
-      background: var(--bg-hover);
-    }
-
-    .other-project-info {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .other-project-name {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 3px;
-    }
-
-    .other-project:hover .other-project-name {
-      color: var(--accent-bright);
-    }
-
-    .other-project-desc {
-      font-size: 13px;
-      color: var(--text-dim);
-      line-height: 1.5;
-    }
-
-    .other-project-meta {
-      font-family: var(--mono);
-      font-size: 11px;
-      color: var(--text-dim);
-      white-space: nowrap;
-      padding-top: 2px;
-    }
-
-    .other-project-link {
-      color: var(--text-dim);
-      flex-shrink: 0;
-      padding-top: 2px;
-      transition: color 0.2s ease;
-    }
-
-    .other-project:hover .other-project-link {
-      color: var(--accent-bright);
-    }
-
-    .other-project-link svg {
-      width: 14px;
-      height: 14px;
+    .tag.yellow {
+      color: var(--yellow);
+      background: var(--yellow-dim);
     }
 
     /* ─── CONTACT ─── */
+
+    .copy-email-btn {
+      cursor: pointer;
+      font: inherit;
+    }
 
     .contact-text {
       color: var(--text-muted);
@@ -842,9 +803,10 @@
           <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <a href="mailto:ianjamesburke@gmail.com" class="social-link" aria-label="Email">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          </a>
+          <button class="social-link" aria-label="Copy email" onclick="navigator.clipboard.writeText('ianjamesburke@gmail.com').then(()=>{this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),1500)})">
+            <svg class="email-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
         </div>
         <span class="status-line">Grand Rapids, MI</span>
       </div>
@@ -858,97 +820,72 @@
         <div class="section-label">Featured Projects</div>
         <div class="projects-grid">
 
-          <div class="project-card">
+          <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-card">
             <div class="project-img-wrap">
               <img src="plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
             </div>
             <div class="project-body">
               <div class="project-header">
                 <span class="project-name">Plexi</span>
-                <div class="project-links">
-                  <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  </a>
-                </div>
+                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
               <p class="project-desc">A multi-dimensional terminal multiplexer for the agentic era.</p>
               <div class="project-tags">
-                <span class="tag green">Rust</span>
+                <span class="tag orange">Rust</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div class="project-card">
+          <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-card">
             <div class="project-img-wrap">
               <img src="kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
             </div>
             <div class="project-body">
               <div class="project-header">
                 <span class="project-name">Kill Tony Archive</span>
-                <div class="project-links">
-                  <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  </a>
-                  <a href="https://github.com/ianjamesburke/kill-tony-archive" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  </a>
-                </div>
+                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
               <p class="project-desc">Transcribes, analyzes, and ranks every 1-minute set from 500+ episodes.</p>
               <div class="project-tags">
                 <span class="tag">Svelte</span>
-                <span class="tag blue">Python</span>
+                <span class="tag green">Python</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div class="project-card">
+          <a href="https://fido-prod-ijb.web.app/" target="_blank" rel="noopener" class="project-card">
             <div class="project-img-wrap">
               <img src="fido.png" alt="Fido — TUI social app" loading="lazy">
             </div>
             <div class="project-body">
               <div class="project-header">
                 <span class="project-name">Fido</span>
-                <div class="project-links">
-                  <a href="https://fido-prod-ijb.web.app/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  </a>
-                  <a href="https://github.com/ianjamesburke/fido" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  </a>
-                </div>
+                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
               <p class="project-desc">A TUI social app for nerds. Real-time chat and community in your terminal.</p>
               <div class="project-tags">
-                <span class="tag green">Rust</span>
+                <span class="tag orange">Rust</span>
                 <span class="tag blue">WebSockets</span>
               </div>
             </div>
-          </div>
+          </a>
 
-          <div class="project-card">
+          <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-card">
             <div class="project-img-wrap">
               <img src="dad-circles.png" alt="Dad Circles" loading="lazy">
             </div>
             <div class="project-body">
               <div class="project-header">
                 <span class="project-name">Dad Circles</span>
-                <div class="project-links">
-                  <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-link" aria-label="Live site">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                  </a>
-                  <a href="https://github.com/ianjamesburke/dad-circles-v1" target="_blank" rel="noopener" class="project-link" aria-label="GitHub">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                  </a>
-                </div>
+                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
               <p class="project-desc">Location-first matching for local dads. Privacy-first, no feeds, no likes.</p>
               <div class="project-tags">
                 <span class="tag blue">React Native</span>
-                <span class="tag green">Firebase</span>
+                <span class="tag red">Firebase</span>
               </div>
             </div>
-          </div>
+          </a>
 
         </div>
       </section>
@@ -990,7 +927,7 @@
             <li>Workflow automation across Google Drive, Frame.io, and ClickUp</li>
           </ul>
           <div class="exp-tags">
-            <span class="tag">Python</span>
+            <span class="tag green">Python</span>
             <span class="tag green">FastAPI</span>
             <span class="tag blue">Next.js</span>
             <span class="tag">Google Cloud</span>
@@ -1006,7 +943,7 @@
           <p class="exp-desc">Solo-built a mobile app connecting local dads for mutual support and community. Non-algorithmic, location-first matching that prioritizes proximity and shared context over virality. Privacy-first &mdash; no feeds, no likes, just real people in your neighborhood.</p>
           <div class="exp-tags">
             <span class="tag blue">React Native</span>
-            <span class="tag green">Firebase</span>
+            <span class="tag red">Firebase</span>
             <span class="tag">Gemini API</span>
           </div>
         </div>
@@ -1051,10 +988,10 @@
           <div>
             <div class="skill-group-label">Languages</div>
             <div class="skill-list">
-              <span class="tag green">Rust</span>
+              <span class="tag orange">Rust</span>
               <span class="tag blue">TypeScript</span>
               <span class="tag blue">JavaScript</span>
-              <span class="tag">Python</span>
+              <span class="tag green">Python</span>
             </div>
           </div>
           <div>
@@ -1074,7 +1011,7 @@
               <span class="tag">Express</span>
               <span class="tag green">PostgreSQL</span>
               <span class="tag">SQLite</span>
-              <span class="tag green">Firebase</span>
+              <span class="tag red">Firebase</span>
             </div>
           </div>
           <div>
@@ -1117,10 +1054,10 @@
           Always interested in new projects, collaborations, or just nerding out about terminals and Rust. Whether you need a full-stack app shipped fast or an AI integration that actually works &mdash; let's talk.
         </p>
         <div class="contact-links">
-          <a href="mailto:ianjamesburke@gmail.com" class="contact-btn">
+          <button class="contact-btn copy-email-btn" onclick="navigator.clipboard.writeText('ianjamesburke@gmail.com').then(()=>{this.querySelector('.btn-text').textContent='Copied!';setTimeout(()=>this.querySelector('.btn-text').textContent='ianjamesburke@gmail.com',1500)})">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            ianjamesburke@gmail.com
-          </a>
+            <span class="btn-text">ianjamesburke@gmail.com</span>
+          </button>
           <a href="https://github.com/ianjamesburke" target="_blank" rel="noopener" class="contact-btn">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
             GitHub
