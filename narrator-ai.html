@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NarratorAI — Ian Burke</title>
+  <meta name="description" content="NarratorAI — An internal AI video production platform by Ian Burke">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+    :root {
+      --bg: #08060f;
+      --bg-raised: #0e0b18;
+      --bg-hover: #150f24;
+      --border: #241d3a;
+      --border-hover: #342a50;
+      --text: #e8e4f0;
+      --text-muted: #8a82a0;
+      --text-dim: #554e6e;
+      --accent: #7e22ce;
+      --accent-bright: #9333ea;
+      --accent-dim: rgba(126, 34, 206, 0.1);
+      --accent-glow: rgba(126, 34, 206, 0.2);
+      --purple-warm: #a855f7;
+      --purple-cool: #6d28d9;
+      --lavender: #a78bfa;
+      --green: #4ade80;
+      --green-dim: rgba(74, 222, 128, 0.1);
+      --blue: #60a5fa;
+      --blue-muted: #818cf8;
+      --orange: #f97316;
+      --orange-dim: rgba(249, 115, 22, 0.1);
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 15px;
+      overflow-x: hidden;
+    }
+
+    ::selection { background: rgba(168, 85, 247, 0.2); color: var(--lavender); }
+
+    a { color: var(--text); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--lavender); }
+
+    /* ─── BACKGROUND ─── */
+
+    .fractal-bg {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0; opacity: 0.07;
+      pointer-events: none; overflow: hidden;
+    }
+
+    .fractal-bg::before, .fractal-bg::after {
+      content: ''; position: absolute; border-radius: 50%;
+      filter: blur(80px);
+      animation: fractalDrift 45s ease-in-out infinite alternate;
+    }
+
+    .fractal-bg::before {
+      width: 140%; height: 140%; top: -30%; left: -20%;
+      background:
+        radial-gradient(ellipse 40% 35% at 25% 30%, #9333ea 0%, transparent 70%),
+        radial-gradient(ellipse 30% 45% at 70% 20%, #7c3aed 0%, transparent 65%),
+        radial-gradient(ellipse 50% 30% at 50% 70%, #4ade80 0%, transparent 60%),
+        radial-gradient(ellipse 25% 40% at 80% 60%, #9333ea 0%, transparent 70%),
+        radial-gradient(ellipse 35% 25% at 15% 75%, #6d28d9 0%, transparent 65%);
+    }
+
+    .fractal-bg::after {
+      width: 120%; height: 120%; top: -10%; left: -10%;
+      background:
+        radial-gradient(ellipse 35% 40% at 60% 55%, #7c3aed 0%, transparent 65%),
+        radial-gradient(ellipse 30% 35% at 85% 35%, #581c87 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 15%, #9333ea 0%, transparent 60%);
+      animation-delay: -20s; animation-duration: 60s;
+    }
+
+    @keyframes fractalDrift {
+      0% { transform: scale(1) rotate(0deg) translate(0, 0); }
+      33% { transform: scale(1.08) rotate(3deg) translate(2%, -1%); }
+      66% { transform: scale(0.95) rotate(-2deg) translate(-1%, 2%); }
+      100% { transform: scale(1.04) rotate(1.5deg) translate(1%, -1.5%); }
+    }
+
+    /* ─── LAYOUT ─── */
+
+    .page {
+      position: relative; z-index: 1;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 40px 120px;
+    }
+
+    /* ─── BACK LINK ─── */
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      margin-bottom: 64px;
+    }
+
+    .back:hover { color: var(--lavender); }
+
+    .back svg { width: 14px; height: 14px; }
+
+    /* ─── HERO ─── */
+
+    .hero { margin-bottom: 56px; }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-bright);
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-family: var(--sans);
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--text-muted);
+      line-height: 1.65;
+      max-width: 600px;
+      margin-bottom: 28px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--accent-bright);
+      background: var(--accent-dim);
+      padding: 4px 12px;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    .tag.green { color: var(--green); background: var(--green-dim); }
+    .tag.blue { color: var(--blue); background: rgba(96, 165, 250, 0.1); }
+    .tag.orange { color: var(--orange); background: var(--orange-dim); }
+
+    /* ─── SCREENSHOTS ─── */
+
+    .screenshots { margin-bottom: 72px; }
+
+    .screenshot-main {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--bg-raised);
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      transition: border-color 0.3s ease;
+    }
+
+    .screenshot-main:hover { border-color: var(--border-hover); }
+
+    .screenshot-main img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+
+    .screenshot-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .thumb {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16 / 9;
+      background: var(--bg-raised);
+      transition: border-color 0.2s ease, opacity 0.2s ease;
+      opacity: 0.5;
+    }
+
+    .thumb.active { border-color: var(--accent-bright); opacity: 1; }
+    .thumb:hover { border-color: var(--border-hover); opacity: 0.85; }
+    .thumb.active:hover { opacity: 1; }
+
+    .thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    /* ─── FEATURES ─── */
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 64px;
+      background: var(--border);
+    }
+
+    .feature {
+      background: var(--bg-raised);
+      padding: 28px 24px;
+    }
+
+    .feature-icon {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .feature-icon svg { width: 16px; height: 16px; color: var(--accent-bright); }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── INFRA ─── */
+
+    .infra { margin-bottom: 48px; }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 24px;
+    }
+
+    .infra-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--border);
+    }
+
+    .infra-item {
+      background: var(--bg-raised);
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .infra-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+
+    .infra-value {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    /* ─── PRIVATE BADGE ─── */
+
+    .private-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 14px;
+    }
+
+    .private-note::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      flex-shrink: 0;
+    }
+
+    /* ─── RESPONSIVE ─── */
+
+    @media (max-width: 640px) {
+      .page { padding: 48px 24px 80px; }
+      .hero-title { font-size: 36px; }
+      .features { grid-template-columns: 1fr; }
+      .infra-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .screenshot-thumbs { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="fractal-bg"></div>
+
+  <div class="page">
+
+    <a href="index.html" class="back">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Ian Burke
+    </a>
+
+    <div class="hero">
+      <div class="hero-eyebrow">Internal Tool · Private</div>
+      <h1 class="hero-title">NarratorAI</h1>
+      <p class="hero-subtitle">An end-to-end AI production platform — turns scripts into fully produced videos, and gives the team a natural-language interface for Facebook ad analytics.</p>
+      <div class="hero-tags">
+        <span class="tag">Next.js</span>
+        <span class="tag green">Firebase</span>
+        <span class="tag blue">Gemini</span>
+        <span class="tag">ElevenLabs</span>
+        <span class="tag orange">Fal AI</span>
+        <span class="tag">Facebook Graph API</span>
+      </div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshots">
+      <div class="screenshot-main" id="mainShot">
+        <img id="mainImg" src="images/narrator-ai.png" alt="NarratorAI screenshot">
+      </div>
+      <div class="screenshot-thumbs">
+        <div class="thumb active" onclick="setShot(0, this)">
+          <img src="images/narrator-ai.png" alt="AI media generation">
+        </div>
+        <div class="thumb" onclick="setShot(1, this)">
+          <img src="images/narrator-ai-2.png" alt="Media Gen interface">
+        </div>
+        <div class="thumb" onclick="setShot(2, this)">
+          <img src="images/narrator-ai-3.png" alt="Scene generator">
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+        </div>
+        <div class="feature-title">Video Pipeline</div>
+        <div class="feature-desc">Script-to-video in stages — scene splitting, character design, AI stills via Gemini, voiceover sync, and Ken Burns video assembly via Fal AI. Fire-and-forget with async status tracking.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <div class="feature-title">AI Media Gen</div>
+        <div class="feature-desc">Image and video generation with reference image support, style presets (Pixar 3D, claymation, graphic novel), and ElevenLabs TTS for custom voiceovers with voice selection.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div class="feature-title">Analytics Chat</div>
+        <div class="feature-desc">Gemini-powered chat with custom Genkit tools — queries Facebook ad performance, runs account-level reports, compares time ranges, and surfaces top-performing creatives in plain English.</div>
+      </div>
+    </div>
+
+    <!-- INFRASTRUCTURE -->
+    <div class="infra">
+      <div class="section-label">Infrastructure</div>
+      <div class="infra-grid">
+        <div class="infra-item">
+          <span class="infra-label">Frontend</span>
+          <span class="infra-value">Next.js 16 · TypeScript · Tailwind CSS v4</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Backend</span>
+          <span class="infra-value">Firebase Cloud Functions (Node.js 22) · Genkit</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Database & Auth</span>
+          <span class="infra-value">Firestore · Firebase Auth · Cloud Storage</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">AI</span>
+          <span class="infra-value">Gemini 2.5 Flash · Fal AI · ElevenLabs TTS</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Data</span>
+          <span class="infra-value">Facebook Graph API · Cloud Run pipelines</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Hosting</span>
+          <span class="infra-value">Firebase Hosting · staging + production envs</span>
+        </div>
+      </div>
+    </div>
+
+    <span class="private-note">Private — not publicly available</span>
+
+  </div>
+
+  <script>
+    const shots = ['images/narrator-ai.png', 'images/narrator-ai-2.png', 'images/narrator-ai-3.png'];
+
+    function setShot(index, el) {
+      document.getElementById('mainImg').src = shots[index];
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
