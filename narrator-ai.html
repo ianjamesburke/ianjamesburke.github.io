@@ -380,17 +380,20 @@
     <!-- SCREENSHOTS -->
     <div class="screenshots">
       <div class="screenshot-main" id="mainShot">
-        <img id="mainImg" src="images/narrator-ai.png" alt="NarratorAI screenshot">
+        <img id="mainImg" src="images/narrator-ai-5.png" alt="NarratorAI screenshot">
       </div>
       <div class="screenshot-thumbs">
         <div class="thumb active" onclick="setShot(0, this)">
-          <img src="images/narrator-ai.png" alt="AI media generation">
+          <img src="images/narrator-ai-5.png" alt="AI Content — image generation">
         </div>
         <div class="thumb" onclick="setShot(1, this)">
-          <img src="images/narrator-ai-2.png" alt="Media Gen interface">
+          <img src="images/narrator-ai-6.png" alt="Pipeline V2 — projects">
         </div>
         <div class="thumb" onclick="setShot(2, this)">
-          <img src="images/narrator-ai-3.png" alt="Scene generator">
+          <img src="images/narrator-ai-7.png" alt="Pipeline V2 — scene stills">
+        </div>
+        <div class="thumb" onclick="setShot(3, this)">
+          <img src="images/narrator-ai-8.png" alt="Analytics chat">
         </div>
       </div>
     </div>
@@ -456,7 +459,7 @@
   </div>
 
   <script>
-    const shots = ['images/narrator-ai.png', 'images/narrator-ai-2.png', 'images/narrator-ai-3.png'];
+    const shots = ['images/narrator-ai-5.png', 'images/narrator-ai-6.png', 'images/narrator-ai-7.png', 'images/narrator-ai-8.png'];
 
     function setShot(index, el) {
       document.getElementById('mainImg').src = shots[index];
