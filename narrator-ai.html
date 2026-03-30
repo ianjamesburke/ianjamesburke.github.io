@@ -366,7 +366,7 @@
     <div class="hero">
       <div class="hero-eyebrow">Internal Tool · Private</div>
       <h1 class="hero-title">NarratorAI</h1>
-      <p class="hero-subtitle">An end-to-end AI production platform — turns scripts into fully produced videos, and gives the team a natural-language interface for Facebook ad analytics.</p>
+      <p class="hero-subtitle">An internal platform built for a performance marketing team — a multi-stage AI video production pipeline and a conversational analytics layer built on top of a custom Facebook data sync infrastructure.</p>
       <div class="hero-tags">
         <span class="tag">Next.js</span>
         <span class="tag green">Firebase</span>
@@ -405,21 +405,21 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
         </div>
         <div class="feature-title">Video Pipeline</div>
-        <div class="feature-desc">Script-to-video in stages — scene splitting, character design, AI stills via Gemini, voiceover sync, and Ken Burns video assembly via Fal AI. Fire-and-forget with async status tracking.</div>
+        <div class="feature-desc">Script-to-video across five stages: scene splitting, character design, Gemini image generation per scene, ElevenLabs voiceover, and Fal AI video assembly with Ken Burns motion. Jobs are fire-and-forget — status tracked async in Firestore so the UI never blocks.</div>
       </div>
       <div class="feature">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
-        <div class="feature-title">AI Media Gen</div>
-        <div class="feature-desc">Image and video generation with reference image support, style presets (Pixar 3D, claymation, graphic novel), and ElevenLabs TTS for custom voiceovers with voice selection.</div>
+        <div class="feature-title">Facebook Data Sync</div>
+        <div class="feature-desc">A custom sync layer wraps the Facebook Graph API — pulling ad-level insights daily across multiple accounts with rate-limit awareness, exponential backoff, and concurrent worker pools. Raw data is written to a <code>daily_insights</code> Firestore collection using deterministic composite keys (<code>accountId_date_adId</code>), making every re-sync fully idempotent.</div>
       </div>
       <div class="feature">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
         <div class="feature-title">Analytics Chat</div>
-        <div class="feature-desc">Gemini-powered chat with custom Genkit tools — queries Facebook ad performance, runs account-level reports, compares time ranges, and surfaces top-performing creatives in plain English.</div>
+        <div class="feature-desc">A Gemini-powered chat interface backed by custom Genkit tools that query the synced Firestore data — not Facebook directly. Tools compute weighted creative rankings (spend share + normalized spend), categorize ads by marketing angle and execution style via Gemini, and surface top performers, time-range comparisons, and category breakdowns in plain English.</div>
       </div>
     </div>
 
@@ -429,27 +429,27 @@
       <div class="infra-grid">
         <div class="infra-item">
           <span class="infra-label">Frontend</span>
-          <span class="infra-value">Next.js 16 · TypeScript · Tailwind CSS v4</span>
+          <span class="infra-value">Next.js 16 (static export) · TypeScript · Tailwind CSS v4</span>
         </div>
         <div class="infra-item">
           <span class="infra-label">Backend</span>
-          <span class="infra-value">Firebase Cloud Functions (Node.js 22) · Genkit</span>
+          <span class="infra-value">Firebase Cloud Functions v2 · Node.js 22 · Google Genkit</span>
         </div>
         <div class="infra-item">
-          <span class="infra-label">Database & Auth</span>
-          <span class="infra-value">Firestore · Firebase Auth · Cloud Storage</span>
+          <span class="infra-label">Data Layer</span>
+          <span class="infra-value">Firestore · deterministic composite doc keys · adaptive batch writes · idempotent re-sync</span>
         </div>
         <div class="infra-item">
           <span class="infra-label">AI</span>
-          <span class="infra-value">Gemini 2.5 Flash · Fal AI · ElevenLabs TTS</span>
+          <span class="infra-value">Gemini 2.5 Flash · Fal AI (video) · ElevenLabs TTS · Genkit tool calling</span>
         </div>
         <div class="infra-item">
-          <span class="infra-label">Data</span>
-          <span class="infra-value">Facebook Graph API · Cloud Run pipelines</span>
+          <span class="infra-label">Data Ingestion</span>
+          <span class="infra-value">Facebook Graph API v22 · rate-limited sync workers · exponential backoff · creative batch-fetching</span>
         </div>
         <div class="infra-item">
-          <span class="infra-label">Hosting</span>
-          <span class="infra-value">Firebase Hosting · staging + production envs</span>
+          <span class="infra-label">Hosting & Auth</span>
+          <span class="infra-value">Firebase Hosting · Firebase Auth · Cloud Storage · staging + prod environments</span>
         </div>
       </div>
     </div>
