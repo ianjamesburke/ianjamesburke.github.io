@@ -191,6 +191,17 @@
 
     /* ─── SIDEBAR CONTENT ─── */
 
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 20%;
+      border: 2px solid var(--border);
+      margin-bottom: 20px;
+      display: block;
+    }
+
     .name {
       font-family: var(--sans);
       font-size: 48px;
@@ -751,6 +762,102 @@
     .section { opacity: 0; transform: translateY(16px); transition: all 0.5s ease; }
     .section.visible { opacity: 1; transform: translateY(0); }
 
+    /* ─── VIDEO ─── */
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .video-embed-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      background: var(--bg-raised);
+    }
+
+    .video-embed-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 5px;
+      letter-spacing: -0.01em;
+    }
+
+    .video-meta {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      margin-bottom: 6px;
+    }
+
+    .video-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ─── MUSIC ─── */
+
+    .music-intro {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+
+    .music-short-wrap {
+      display: flex;
+      gap: 28px;
+      margin-bottom: 28px;
+      align-items: flex-start;
+    }
+
+    .music-short-embed {
+      flex-shrink: 0;
+    }
+
+    .music-short-embed iframe {
+      border-radius: 12px;
+      display: block;
+    }
+
+    .music-short-desc {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      line-height: 1.75;
+      padding-top: 4px;
+    }
+
+    .music-short-desc strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .spotify-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .spotify-grid iframe {
+      border-radius: 12px;
+      display: block;
+    }
+
     /* ─── RESPONSIVE ─── */
 
     @media (max-width: 1024px) {
@@ -778,6 +885,12 @@
       .fractal-bg { opacity: 0.04; }
     }
 
+    @media (max-width: 600px) {
+      .music-short-wrap { flex-direction: column; }
+      .spotify-grid { grid-template-columns: 1fr; }
+      .video-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 480px) {
       .sidebar { padding: 36px 20px 32px; }
       .main { padding: 16px 20px 60px; }
@@ -797,6 +910,7 @@
     <!-- ─── LEFT PANEL ─── -->
     <aside class="sidebar">
       <div class="identity">
+        <img src="images/ian.png" alt="Ian Burke" class="avatar fade-in">
         <h1 class="name fade-in">Ian <em>Burke</em></h1>
         <p class="role fade-in">Software Engineer &middot; Full-Stack Developer &middot; AI Integration</p>
         <p class="tagline fade-in">full-time vibe debugger<span class="cursor"></span></p>
@@ -812,6 +926,14 @@
           <a href="#about" class="nav-link" data-section="about">
             <span class="nav-line"></span>
             <span>About</span>
+          </a>
+          <a href="#video" class="nav-link" data-section="video">
+            <span class="nav-line"></span>
+            <span>Video</span>
+          </a>
+          <a href="#music" class="nav-link" data-section="music">
+            <span class="nav-line"></span>
+            <span>Music</span>
           </a>
           <a href="#experience" class="nav-link" data-section="experience">
             <span class="nav-line"></span>
@@ -835,6 +957,12 @@
           </a>
           <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="social-link" aria-label="X / Twitter">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/ian_and_the_robot/" target="_blank" rel="noopener" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/ian-burke-158350332/" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           </a>
           <div class="email-wrap">
             <span class="copy-toast" id="sidebar-toast">Copied!</span>
@@ -973,6 +1101,53 @@
           <p>
             These days I write <strong>Rust</strong> for anything that needs to be fast and correct, <strong>Python</strong> for AI tooling and pipelines, and <strong>TypeScript</strong> for everything that lives in a browser. I've shipped production AI integrations with <strong>Claude, Gemini, and OpenAI</strong>.
           </p>
+        </div>
+      </section>
+
+      <!-- VIDEO -->
+      <section class="section" id="video">
+        <div class="section-label">Video</div>
+        <div class="video-grid">
+
+          <div class="video-item">
+            <div class="video-embed-wrap">
+              <iframe src="https://www.youtube.com/embed/8qrNdVcZ7SA" title="DoorDash — Solo Production" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">DoorDash</div>
+            <div class="video-meta">Narrative Ads &middot; Solo production</div>
+            <p class="video-desc">Wrote, directed, filmed, and edited solo — from concept to final cut without a crew.</p>
+          </div>
+
+          <div class="video-item">
+            <div class="video-embed-wrap">
+              <iframe src="https://www.youtube.com/embed/yHvVM_4ituU" title="Gathering of the People — Fort Apache Heritage Foundation" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+            </div>
+            <div class="video-title">Gathering of the People</div>
+            <div class="video-meta">Fort Apache Heritage Foundation &middot; Annual</div>
+            <p class="video-desc">Annual event film for the Fort Apache Heritage Foundation, documenting the Gathering of the People — a yearly celebration of White Mountain Apache culture and community.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MUSIC -->
+      <section class="section" id="music">
+        <div class="section-label">Music</div>
+        <p class="music-intro">
+          Outside of code I make music under a couple projects. Also: making beats on a GameCube controller.
+        </p>
+        <div class="music-short-wrap">
+          <div class="music-short-embed">
+            <iframe width="200" height="356" src="https://www.youtube.com/embed/xtemveUbcnU" title="Making a beat on a GameCube controller" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+          <div class="music-short-desc">
+            <strong>Making a beat on a GameCube controller</strong><br><br>
+            Because why not. The GameCube controller has surprisingly good button feel for live triggering.
+          </div>
+        </div>
+        <div class="spotify-grid">
+          <iframe src="https://open.spotify.com/embed/artist/3kxmOjAV50R1QK7oWc0ZS0?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+          <iframe src="https://open.spotify.com/embed/artist/0jh43WjjRpVwvX9pftuemm?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </section>
 
@@ -1135,6 +1310,14 @@
           <a href="https://x.com/atfostermusic" target="_blank" rel="noopener" class="contact-btn">
             <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
             @atfostermusic
+          </a>
+          <a href="https://www.instagram.com/ian_and_the_robot/" target="_blank" rel="noopener" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+          <a href="https://www.linkedin.com/in/ian-burke-158350332/" target="_blank" rel="noopener" class="contact-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
           </a>
         </div>
       </section>
