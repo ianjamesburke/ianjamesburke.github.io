@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian Burke | Selected Work</title>
+  <meta name="description" content="Three projects by Ian Burke: AI media tools for Narrative Ads, the PLEXI desktop workspace, and Kill Tony Archive.">
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; }
+    body { margin: 0; background: #d9d6d0; color: #242420; font-family: 'Trebuchet MS', sans-serif; }
+    a { color: inherit; text-underline-offset: 4px; }
+    a:focus-visible { outline: 3px solid currentColor; outline-offset: 5px; }
+    .toolbar { max-width: 1152px; margin: 24px auto; padding: 0 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; font-size: 14px; }
+    .toolbar a { display: inline-flex; align-items: center; min-height: 44px; }
+    .toolbar .download { background: #242420; color: #fff; border-radius: 4px; padding: 10px 18px; text-decoration: none; }
+    .sheet { --paper: #f4f0e7; --ink: #242420; --muted: #626259; --line: #cbc7bd; --accent: #9b3f27; width: 1152px; height: 816px; padding: 36px 42px; margin: 0 auto 28px; background: var(--paper); color: var(--ink); display: grid; grid-template-rows: 32px 130px minmax(0, 1fr) 98px; gap: 22px; overflow: hidden; }
+    .masthead { display: flex; align-items: flex-start; justify-content: space-between; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; }
+    .masthead a { text-decoration: none; }
+    .masthead strong { font-size: 12px; letter-spacing: 2px; }
+    .heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+    .eyebrow { font: 11px/1.4 'Courier New', monospace; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin: 0 0 9px; }
+    h1, h2 { font: normal 51px/1.02 Georgia, serif; letter-spacing: -1.8px; margin: 0; }
+    .project-number { font: normal 104px/0.85 Georgia, serif; letter-spacing: -8px; color: var(--accent); opacity: 0.75; }
+    .case-body { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 32px; min-height: 0; }
+    .story { display: flex; flex-direction: column; padding-top: 6px; }
+    .story p { margin: 0 0 18px; font-size: 16px; line-height: 1.5; }
+    .story .lead { font-size: 19px; line-height: 1.42; }
+    .label { display: block; color: var(--accent); font: bold 10px/1.4 'Courier New', monospace; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 8px; }
+    .project-link { margin-top: auto; font-size: 13px; }
+    figure { margin: 0; min-width: 0; }
+    .visual { position: relative; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+    .screen { display: block; width: 100%; height: auto; max-height: 100%; object-fit: contain; border: 1px solid var(--line); border-radius: 7px; box-shadow: 0 12px 24px #24242020; }
+    .narrative .visual { padding: 0 0 46px; }
+    .narrative .screen { width: 96%; }
+    .inset { position: absolute; width: 260px; right: 0; bottom: 0; background: var(--paper); border: 5px solid var(--paper); border-radius: 8px; box-shadow: 0 10px 24px #24242030; }
+    .inset img { display: block; width: 100%; border-radius: 3px; }
+    .inset figcaption { padding: 6px 2px 1px; font: 10px/1.3 'Courier New', monospace; color: var(--muted); }
+    .bottom { border-top: 1px solid var(--line); padding-top: 15px; display: grid; grid-template-columns: 1fr 1fr 1.15fr; gap: 28px; }
+    .bottom p { margin: 0; font-size: 12px; line-height: 1.5; }
+    .bottom .label { margin-bottom: 5px; }
+    .bottom .contact { text-align: right; }
+    .bottom .contact a { display: block; margin-bottom: 5px; }
+    .plexi { --paper: #171b22; --ink: #f0f1e9; --muted: #b3b9c4; --line: #414853; --accent: #a8d8ad; }
+    .plexi h2 { font-family: 'Trebuchet MS', sans-serif; font-weight: bold; letter-spacing: -2.5px; }
+    .plexi .screen { border-color: #52586b; box-shadow: 0 12px 32px #0006; }
+    .plexi .project-number { color: #a8d8ad; }
+    .archive { --paper: #f0f1eb; --accent: #b1372e; --line: #c6cbc0; }
+    .archive .case-body { grid-template-columns: 270px minmax(0, 1fr); }
+    .archive .screen { max-height: 100%; width: 100%; object-fit: contain; object-position: center; }
+    .pipeline { display: flex; align-items: center; gap: 8px; font: 12px/1.5 'Courier New', monospace; color: var(--accent); border-top: 1px solid var(--line); padding-top: 13px; margin-top: 3px; }
+    .metric { font: 43px/1 Georgia, serif; margin-bottom: 4px; color: var(--accent); }
+    .metric-note { color: var(--muted); font-size: 11px; line-height: 1.4; }
+    @page { size: 12in 8.5in; margin: 0; }
+    @media print {
+      html, body { margin: 0; padding: 0; background: #fff; }
+      body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .toolbar { display: none; }
+      .sheet { margin: 0; break-after: page; break-inside: avoid; }
+      .sheet:last-child { break-after: auto; }
+    }
+    @media screen and (max-width: 1151px) {
+      .sheet { width: calc(100% - 32px); height: auto; min-height: 0; padding: 28px; grid-template-rows: auto auto auto auto; }
+      .heading { min-height: 120px; }
+      h1, h2 { font-size: 42px; }
+      .project-number { font-size: 80px; }
+      .case-body, .archive .case-body { grid-template-columns: 230px minmax(0, 1fr); gap: 24px; }
+      .visual { min-height: 280px; }
+      .inset { width: 45%; }
+      .story .lead { font-size: 17px; }
+      .story p { font-size: 14px; }
+    }
+    @media screen and (max-width: 700px) {
+      .sheet { width: calc(100% - 20px); padding: 23px; gap: 24px; margin-bottom: 16px; }
+      .masthead { gap: 12px; padding-bottom: 12px; font-size: 9px; }
+      .masthead strong { font-size: 10px; }
+      .heading { min-height: 0; }
+      h1, h2 { font-size: 36px; letter-spacing: -1.2px; }
+      .project-number { font-size: 54px; letter-spacing: -4px; }
+      .case-body, .archive .case-body { display: flex; flex-direction: column; }
+      .story .lead { font-size: 18px; }
+      .story p { font-size: 15px; }
+      .project-link { margin-top: 0; min-height: 44px; display: flex; align-items: center; }
+      .visual { min-height: 0; }
+      .narrative .visual { padding-bottom: 64px; }
+      .inset { width: 48%; }
+      .bottom { grid-template-columns: 1fr; gap: 14px; }
+      .bottom .contact { text-align: left; }
+      .bottom .contact a { display: inline-block; margin-right: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Portfolio actions">
+    <a href="index.html">&larr; Ian Burke</a>
+    <a href="resume.html">One-page resume</a>
+    <a class="download" href="Ian-Burke-Portfolio.pdf" download>Download visual portfolio</a>
+  </nav>
+  <main>
+    <article class="sheet narrative" aria-labelledby="narrative-title">
+      <div class="masthead"><a href="https://ianjamesburke.github.io"><strong>Ian Burke</strong> / Selected work</a><span>AI products &amp; software engineering</span></div>
+      <header class="heading">
+        <div><p class="eyebrow">NarratorAI / Narrative Ads</p><h1 id="narrative-title">Software for<br>making video.</h1></div>
+        <span class="project-number" aria-hidden="true">01</span>
+      </header>
+      <div class="case-body">
+        <div class="story">
+          <p class="lead">I started in video production. Now I build tools for the people doing that work.</p>
+          <span class="label">The work</span>
+          <p>AI media workflows, voiceovers, and ad analytics in one internal platform. My work spans the interface, provider integrations, and cloud backend.</p>
+          <span class="label">Beyond the interface</span>
+          <p>Investigating generation failures, deploying capacity changes, and reporting on provider costs.</p>
+          <a class="project-link" href="https://ianjamesburke.github.io/narrator-ai.html">Explore the project &nearr;</a>
+        </div>
+        <div class="visual">
+          <img class="screen" src="images/narrator-ai-7.png" alt="NarratorAI scene generation workflow with a sequence of generated gym images">
+          <figure class="inset"><img src="images/narrator-ai-video-review.png" alt="Narrative video review queue with upload states and AI review badges"><figcaption>Video review / August 2026</figcaption></figure>
+        </div>
+      </div>
+      <footer class="bottom">
+        <div><span class="label">My role</span><p>Freelance software engineer<br>Application development &amp; operations</p></div>
+        <div><span class="label">Built with</span><p>TypeScript / Next.js / Firebase<br>Gemini / fal.ai / ElevenLabs</p></div>
+        <div class="contact"><a href="mailto:ianjamesburke@gmail.com">ianjamesburke@gmail.com</a><p>Internal client platform<br>September 2026 &middot; 1 / 3</p></div>
+      </footer>
+    </article>
+
+    <article class="sheet plexi" aria-labelledby="plexi-title">
+      <div class="masthead"><a href="https://ianjamesburke.github.io"><strong>Ian Burke</strong> / Selected work</a><span>Agent tooling / Rust</span></div>
+      <header class="heading">
+        <div><p class="eyebrow">PLEXI / Desktop workspace</p><h2 id="plexi-title">My workspace<br>for coding agents.</h2></div>
+        <span class="project-number" aria-hidden="true">02</span>
+      </header>
+      <div class="case-body">
+        <div class="story">
+          <p class="lead">Terminals, project context, and small apps. In the same place.</p>
+          <span class="label">Why I built it</span>
+          <p>I wanted an environment I could change as my work with coding agents changed. PLEXI is now my daily workspace.</p>
+          <span class="label">What I built</span>
+          <p>A Rust desktop host with panes, project contexts, an agent-accessible CLI, and a WASM app runtime.</p>
+          <a class="project-link" href="https://plexiapp.com">plexiapp.com &nearr;</a>
+        </div>
+        <figure class="visual"><img class="screen" src="images/plexi-workspace.png" alt="PLEXI desktop with project contexts, an editor, a coding-agent terminal, and multiple panes"></figure>
+      </div>
+      <footer class="bottom">
+        <div><span class="label">My role</span><p>Creator &amp; developer<br>Product, host architecture, CLI &amp; SDK</p></div>
+        <div><span class="label">Built with</span><p>Rust / egui / Wasmtime<br>macOS pre-release</p></div>
+        <div class="contact"><a href="https://github.com/ianjamesburke/PLEXI">View source on GitHub &nearr;</a><p>Open source / In active development<br>September 2026 &middot; 2 / 3</p></div>
+      </footer>
+    </article>
+
+    <article class="sheet archive" aria-labelledby="archive-title">
+      <div class="masthead"><a href="https://ianjamesburke.github.io"><strong>Ian Burke</strong> / Selected work</a><span>Audio / Structured data / Web</span></div>
+      <header class="heading">
+        <div><p class="eyebrow">Kill Tony Archive</p><h2 id="archive-title">Making long recordings<br>browsable.</h2></div>
+        <span class="project-number" aria-hidden="true">03</span>
+      </header>
+      <div class="case-body">
+        <div class="story">
+          <p class="lead">A pipeline that turns podcast audio into records people can explore.</p>
+          <span class="label">What I built</span>
+          <p>Separate transcription and analysis stages, transcript deduplication, and speaker normalization. A web app adds rankings, voting, and shareable stat cards.</p>
+          <div class="metric">1,422</div>
+          <div class="metric-note">Set records across 110 episodes.<br>Local dataset, September 2026.</div>
+          <div class="pipeline" aria-label="Pipeline: Audio to transcript to records">Audio &rarr; Transcript &rarr; Records</div>
+          <a class="project-link" href="https://killtonyarchive.com">killtonyarchive.com &nearr;</a>
+        </div>
+        <figure class="visual"><img class="screen" src="images/kill-tony-sets.png" alt="Kill Tony Archive web application showing its browsable set rankings"></figure>
+      </div>
+      <footer class="bottom">
+        <div><span class="label">My role</span><p>Creator &amp; developer<br>Data pipeline, API &amp; frontend</p></div>
+        <div><span class="label">Built with</span><p>Python / Gemini / SQLite<br>FastAPI / SvelteKit</p></div>
+        <div class="contact"><a href="mailto:ianjamesburke@gmail.com">Let's talk &nearr;</a><p><a href="https://ianjamesburke.github.io">ianjamesburke.github.io</a>September 2026 &middot; 3 / 3</p></div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

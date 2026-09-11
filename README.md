@@ -2,6 +2,8 @@
 
 Static HTML published through GitHub Pages. `index.html` is the portfolio; `resume.html` is the resume source. `Ian-Burke-Resume.pdf` is its downloadable print export.
 
+`portfolio.html` is the three-page visual case-study portfolio. Its PDF is `Ian-Burke-Portfolio.pdf`. It has its own 12-by-8.5-inch print layout; export it using the CSS page size, background graphics on, and headers and footers off. Keep it separate from the one-page application resume.
+
 Preview locally:
 
 ```sh
