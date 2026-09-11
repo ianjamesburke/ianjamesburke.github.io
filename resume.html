@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ian Burke | Resume</title>
+  <meta name="description" content="Ian Burke: software engineering, AI integration, data pipelines, and agent tooling. Experience at Davenport University and Narrative Ads.">
+  <style>
+    :root { color-scheme: light; --ink: #24232b; --muted: #55525c; --accent: #593c77; --line: #d9d3df; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: #efedf0; font: 15px/1.5 'Trebuchet MS', sans-serif; }
+    a { color: var(--accent); text-underline-offset: 3px; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+    .toolbar { max-width: 850px; margin: 24px auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
+    .actions { display: flex; gap: 12px; align-items: center; }
+    .actions a, button { border: 1px solid var(--line); border-radius: 5px; padding: 10px 14px; min-height: 44px; background: #fff; font: inherit; cursor: pointer; }
+    .actions a { text-decoration: none; }
+    main { max-width: 850px; margin: 0 auto 40px; padding: 46px 52px; background: #fff; box-shadow: 0 8px 36px #27202e0d; }
+    header { border-bottom: 2px solid var(--ink); padding-bottom: 17px; margin-bottom: 20px; }
+    h1 { font: 48px/1.05 Georgia, serif; letter-spacing: -1.5px; margin: 0 0 8px; }
+    .role { margin: 0 0 10px; font-size: 16px; }
+    .contact { display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: 12px; }
+    .summary { margin: 0 0 20px; }
+    section { margin-top: 19px; }
+    h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 11px; color: var(--accent); }
+    article { margin-bottom: 13px; break-inside: avoid; }
+    .entry-heading { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+    h3 { font-size: 14px; margin: 0; }
+    .date { color: var(--muted); font-size: 12px; white-space: nowrap; }
+    .position { color: var(--muted); margin: 1px 0 5px; font-size: 13px; }
+    ul { margin: 5px 0 0; padding-left: 17px; }
+    li { margin: 3px 0; }
+    .project p { margin: 4px 0 0; }
+    .skills { margin: 0; }
+    @page { size: Letter; margin: 0.5in 0.6in; }
+    @media print {
+      body { background: #fff; font-size: 10pt; line-height: 1.38; }
+      .toolbar { display: none; }
+      main { max-width: none; margin: 0; padding: 0; box-shadow: none; }
+      header { padding-bottom: 12px; margin-bottom: 14px; }
+      h1 { font-size: 31pt; }
+      .role { font-size: 11pt; }
+      .contact { font-size: 8.5pt; }
+      .summary { margin-bottom: 13px; }
+      section { margin-top: 14px; }
+      h2 { font-size: 8pt; margin-bottom: 8px; }
+      h3 { font-size: 10pt; }
+      .date, .position { font-size: 9pt; }
+      article { margin-bottom: 10px; }
+      a { color: inherit; text-decoration: none; }
+    }
+    @media screen and (max-width: 600px) {
+      body { font-size: 14px; }
+      .toolbar { padding: 0 18px; flex-wrap: wrap; margin: 16px auto; }
+      main { padding: 28px 22px; margin-bottom: 0; }
+      h1 { font-size: 40px; }
+      .entry-heading { flex-wrap: wrap; gap: 2px 12px; }
+      .contact { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="toolbar" aria-label="Resume actions">
+    <a href="index.html">&larr; Portfolio</a>
+    <div class="actions">
+      <a href="Ian-Burke-Resume.pdf" download>Download PDF</a>
+      <button type="button" onclick="window.print()">Print</button>
+    </div>
+  </nav>
+  <main>
+    <header>
+      <h1>Ian Burke</h1>
+      <p class="role">Software Engineer &middot; AI Integration &amp; Automation</p>
+      <div class="contact">
+        <a href="mailto:ianjamesburke@gmail.com">ianjamesburke@gmail.com</a>
+        <a href="https://ianjamesburke.github.io">ianjamesburke.github.io</a>
+        <a href="https://github.com/ianjamesburke">github.com/ianjamesburke</a>
+      </div>
+    </header>
+    <p class="summary">Build and maintain AI products, data pipelines, and tools for working with coding agents. Work across user interfaces, backend services, provider integrations, and production troubleshooting. Background in commercial video production.</p>
+
+    <section aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      <article>
+        <div class="entry-heading"><h3>Davenport University</h3><span class="date">Current</span></div>
+        <p class="position">AI Integration Specialist</p>
+      </article>
+      <article>
+        <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2022 &ndash; Present</span></div>
+        <p class="position">Freelance Software Engineer</p>
+        <ul>
+          <li>Build and maintain NarratorAI, an internal platform for AI media production and advertising analytics, using TypeScript, Next.js, and Firebase.</li>
+          <li>Develop image, video, and voiceover workflows with Gemini, fal.ai, and ElevenLabs, alongside advertising-data integrations.</li>
+          <li>Investigate generation failures, deploy backend capacity changes, and reconcile provider billing into monthly infrastructure reports.</li>
+        </ul>
+      </article>
+      <article>
+        <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2018 &ndash; 2022</span></div>
+        <p class="position">Video Producer &amp; Editor</p>
+        <p>Directed, produced, and edited paid social ads for brands including DoorDash, Harry's, and Native. Managed creative direction, revisions, and production handoffs.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="projects-heading">
+      <h2 id="projects-heading">Selected Projects</h2>
+      <article class="project">
+        <h3><a href="https://github.com/ianjamesburke/kill-tony-archive">Kill Tony Archive</a> &middot; AI data pipeline and web application</h3>
+        <p>Built separate transcription and structured-extraction stages for long recordings, with transcript deduplication and speaker normalization. The September 2026 local dataset contains 1,422 set records across 110 episodes. Python, Gemini, SQLite, FastAPI, and SvelteKit.</p>
+      </article>
+      <article class="project">
+        <h3><a href="https://plexiapp.com">PLEXI</a> &middot; Desktop workspace for coding agents</h3>
+        <p>Built a Rust application combining terminal panes, project contexts, notes, and apps. Includes an agent-accessible CLI and a WASM app runtime. Used as my daily working environment; macOS pre-release.</p>
+      </article>
+    </section>
+
+    <section aria-labelledby="skills-heading">
+      <h2 id="skills-heading">Technical Skills</h2>
+      <p class="skills">Python, TypeScript, JavaScript, Rust &middot; React / Next.js, SvelteKit, FastAPI, Node.js &middot; Firebase, Google Cloud, SQLite, GitHub Actions &middot; AI provider integration, structured extraction, agent workflows, incident investigation</p>
+    </section>
+  </main>
+</body>
+</html>

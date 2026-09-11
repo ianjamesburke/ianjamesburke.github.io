@@ -195,7 +195,7 @@
 
     .screenshot-main img {
       width: 100%; height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: top left;
       display: block;
       transition: opacity 0.25s ease;
@@ -366,7 +366,7 @@
     <div class="hero">
       <div class="hero-eyebrow">Internal Tool · Private</div>
       <h1 class="hero-title">NarratorAI</h1>
-      <p class="hero-subtitle">An internal platform built for a performance marketing team — a multi-stage AI video production pipeline and a conversational analytics layer built on top of a custom Facebook data sync infrastructure.</p>
+      <p class="hero-subtitle">AI media production and advertising analytics for Narrative Ads. My work spans the user interface, provider integrations, cloud backend, and ongoing operations.</p>
       <div class="hero-tags">
         <span class="tag">Next.js</span>
         <span class="tag green">Firebase</span>
@@ -395,6 +395,9 @@
         <div class="thumb" onclick="setShot(3, this)">
           <img src="images/narrator-ai-8.png" alt="Analytics chat">
         </div>
+        <div class="thumb" onclick="setShot(4, this)">
+          <img src="images/narrator-ai-video-review.png" alt="Video review queue with upload states, variants, and AI review badges">
+        </div>
       </div>
     </div>
 
@@ -405,21 +408,39 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
         </div>
         <div class="feature-title">Video Pipeline</div>
-        <div class="feature-desc">Script-to-video across five stages: scene splitting, character design, Gemini image generation per scene, ElevenLabs voiceover, and Fal AI video assembly with Ken Burns motion. Jobs are fire-and-forget — status tracked async in Firestore so the UI never blocks.</div>
+        <div class="feature-desc">Workflows for scripts, scene images, voiceovers, and video generation. Provider integrations connect the editing interface to Gemini, fal.ai, and ElevenLabs, with job state stored in Firestore.</div>
       </div>
       <div class="feature">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
         </div>
         <div class="feature-title">Facebook Data Sync</div>
-        <div class="feature-desc">A custom sync layer wraps the Facebook Graph API — pulling ad-level insights daily across multiple accounts with rate-limit awareness, exponential backoff, and concurrent worker pools. Raw data is written to a <code>daily_insights</code> Firestore collection using deterministic composite keys (<code>accountId_date_adId</code>), making every re-sync fully idempotent.</div>
+        <div class="feature-desc">Imports campaign and ad-performance data from the Facebook Graph API into Firestore. The application uses that data for account views, analytics, and queries, with rate-limit handling and repeatable syncs.</div>
       </div>
       <div class="feature">
         <div class="feature-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         </div>
         <div class="feature-title">Analytics Chat</div>
-        <div class="feature-desc">A Gemini-powered chat interface backed by custom Genkit tools that query the synced Firestore data — not Facebook directly. Tools compute weighted creative rankings (spend share + normalized spend), categorize ads by marketing angle and execution style via Gemini, and surface top performers, time-range comparisons, and category breakdowns in plain English.</div>
+        <div class="feature-desc">A Gemini-powered interface with Genkit tools for querying synced advertising data. It connects natural-language questions to campaign performance, creative categories, and time-range comparisons.</div>
+      </div>
+    </div>
+
+    <div class="infra">
+      <div class="section-label">Operating the product</div>
+      <div class="infra-grid">
+        <div class="infra-item">
+          <span class="infra-label">Generation capacity</span>
+          <span class="infra-value">Investigated concurrent generation failures and deployed an increase in the instance limits for image and video callables.</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Provider failures</span>
+          <span class="infra-value">Developed clearer upstream-error reporting and structured incident records to support investigation.</span>
+        </div>
+        <div class="infra-item">
+          <span class="infra-label">Cost reporting</span>
+          <span class="infra-value">Combined billing exports and API activity from GCP, fal.ai, OpenRouter, and Fly.io into monthly reports.</span>
+        </div>
       </div>
     </div>
 
@@ -441,11 +462,11 @@
         </div>
         <div class="infra-item">
           <span class="infra-label">AI</span>
-          <span class="infra-value">Gemini 2.5 Flash · Fal AI (video) · ElevenLabs TTS · Genkit tool calling</span>
+          <span class="infra-value">Gemini · fal.ai · ElevenLabs TTS · Genkit tool calling</span>
         </div>
         <div class="infra-item">
           <span class="infra-label">Data Ingestion</span>
-          <span class="infra-value">Facebook Graph API v22 · rate-limited sync workers · exponential backoff · creative batch-fetching</span>
+          <span class="infra-value">Facebook Graph API · rate-limited sync workers · exponential backoff · creative batch-fetching</span>
         </div>
         <div class="infra-item">
           <span class="infra-label">Hosting & Auth</span>
@@ -459,10 +480,11 @@
   </div>
 
   <script>
-    const shots = ['images/narrator-ai-5.png', 'images/narrator-ai-6.png', 'images/narrator-ai-7.png', 'images/narrator-ai-8.png'];
+    const shots = ['images/narrator-ai-5.png', 'images/narrator-ai-6.png', 'images/narrator-ai-7.png', 'images/narrator-ai-8.png', 'images/narrator-ai-video-review.png'];
 
     function setShot(index, el) {
       document.getElementById('mainImg').src = shots[index];
+      document.getElementById('mainImg').alt = el.querySelector('img').alt;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
       el.classList.add('active');
     }

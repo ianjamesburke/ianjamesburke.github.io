@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ian Burke</title>
-  <meta name="description" content="Ian Burke — Software Engineer, Full-Stack Developer, AI Integration Specialist">
+  <title>Ian Burke | AI Products &amp; Software Engineering</title>
+  <meta name="description" content="Ian Burke builds AI products, data pipelines, and tools for working with coding agents. Selected work, experience, and resume.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -655,6 +655,27 @@
       gap: 6px;
     }
 
+    .project-note {
+      margin-bottom: 12px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 11px;
+      line-height: 1.6;
+    }
+
+    .resume-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 12px;
+      color: var(--lavender);
+      font-size: 14px;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .resume-link:focus-visible { outline: 2px solid var(--lavender); outline-offset: 4px; }
+
     .tag {
       font-family: var(--mono);
       font-size: 11px;
@@ -713,6 +734,7 @@
 
     .contact-links {
       display: flex;
+      flex-wrap: wrap;
       gap: 12px;
     }
 
@@ -918,11 +940,12 @@
       <div class="identity">
         <img src="images/ian.png" alt="Ian Burke" class="avatar fade-in">
         <h1 class="name fade-in">Ian <em>Burke</em></h1>
-        <p class="role fade-in">Software Engineer &middot; Full-Stack Developer &middot; AI Integration</p>
+        <p class="role fade-in">Software Engineer &middot; AI Products &amp; Automation</p>
         <p class="tagline fade-in">full-time vibe debugger<span class="cursor"></span></p>
         <p class="bio fade-in">
-          Full-stack engineer with a past life in video production.
+          I build AI tools for real workflows, from media production to working with coding agents.
         </p>
+        <a class="resume-link fade-in" href="resume.html">View resume &rarr;</a>
 
         <nav class="nav fade-in">
           <a href="#projects" class="nav-link active" data-section="projects">
@@ -999,7 +1022,8 @@
                 <span class="project-name">NarratorAI</span>
                 <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
-              <p class="project-desc">An internal AI video production platform. Converts scripts into fully produced videos — AI scene generation, character design, ElevenLabs voiceovers, and Ken Burns video assembly. Includes a Gemini-powered analytics chat for Facebook ad performance.</p>
+              <p class="project-desc">AI media tools and ad analytics for Narrative Ads. My work spans generation workflows, provider integrations, cloud capacity, and monthly infrastructure reporting.</p>
+              <p class="project-note">Client work &middot; Ongoing development and operations</p>
               <div class="project-tags">
                 <span class="tag">Next.js</span>
                 <span class="tag green">Firebase</span>
@@ -1018,7 +1042,8 @@
                 <span class="project-name">Plexi</span>
                 <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
-              <p class="project-desc">A multi-dimensional terminal multiplexer for the agentic era.</p>
+              <p class="project-desc">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
+              <p class="project-note">Open source &middot; macOS pre-release</p>
               <div class="project-tags">
                 <span class="tag orange">Rust</span>
               </div>
@@ -1034,7 +1059,8 @@
                 <span class="project-name">Kill Tony Archive</span>
                 <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
-              <p class="project-desc">Transcribes, analyzes, and ranks every 1-minute set from 500+ episodes.</p>
+              <p class="project-desc">An audio-to-data pipeline and web app for exploring stand-up sets. Separates transcription from analysis, cleans up repeated records, and adds rankings, voting, and shareable stat cards.</p>
+              <p class="project-note">Python &amp; Gemini pipeline &middot; FastAPI &amp; SvelteKit app</p>
               <div class="project-tags">
                 <span class="tag">Svelte</span>
                 <span class="tag green">Python</span>
@@ -1044,14 +1070,14 @@
 
           <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-card">
             <div class="project-img-wrap">
-              <img src="images/fido.png" alt="Fido — TUI social app" loading="lazy">
+              <img src="images/fido.png" alt="Fido terminal interface" loading="lazy">
             </div>
             <div class="project-body">
               <div class="project-header">
                 <span class="project-name">Fido</span>
                 <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
               </div>
-              <p class="project-desc">A TUI social app for nerds. Real-time chat and community in your terminal.</p>
+              <p class="project-desc">Discord for GitHub repos, in your terminal. Open Fido inside a repo to join its community, with channels, threads, DMs, and notifications.</p>
               <div class="project-tags">
                 <span class="tag orange">Rust</span>
                 <span class="tag blue">WebSockets</span>
@@ -1170,10 +1196,10 @@
         <div class="section-label">About</div>
         <div class="about">
           <p>
-            I got into software through video production &mdash; spent four years directing and editing ads for DoorDash, Harry's, Dr. Squatch. Learned how to scope a project, hit a deadline, and know when something is done. Turns out that's most of what engineering is.
+            I got into software through video production, directing and editing ads for brands including DoorDash, Harry's, and Dr. Squatch. Building tools for that work led me into engineering.
           </p>
           <p>
-            These days I write <strong>Rust</strong> for anything that needs to be fast and correct, <strong>Python</strong> for AI tooling and pipelines, and <strong>TypeScript</strong> for everything that lives in a browser. I've shipped production AI integrations with <strong>Claude, Gemini, and OpenAI</strong>.
+            Today I build and maintain AI tools for <strong>Narrative Ads</strong>, turn long recordings into structured data with <strong>Python</strong>, and build <strong>PLEXI</strong> in Rust. I work across the interface, backend, and provider integrations, including the debugging and reporting needed to keep a product running.
           </p>
         </div>
       </section>
@@ -1232,16 +1258,24 @@
 
         <div class="exp-item">
           <div class="exp-header">
+            <span class="exp-role">AI Integration Specialist</span>
+            <span class="exp-date">Current</span>
+          </div>
+          <div class="exp-company">Davenport University</div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
             <span class="exp-role">Freelance Software Engineer</span>
             <span class="exp-date">2022 &mdash; Present</span>
           </div>
           <div class="exp-company">Narrative Ads</div>
-          <p class="exp-desc">Built and maintained Narrator AI, a custom AI-powered content analysis and automation platform for social media marketing. Supported campaigns for DoorDash, Mudwater, Pretty Litter, Dollar Shave Club, Harry's, Dr. Squatch, and Native.</p>
+          <p class="exp-desc">Build and maintain NarratorAI, an internal platform for AI media production and advertising analytics. Work spans the application, external services, and production operations.</p>
           <ul class="exp-highlights">
-            <li>AI-powered marketing analytics &mdash; extracting winning angles and copy from top-performing campaigns</li>
-            <li>Automated video QA pipeline via Frame API, reducing manual review time by 70%</li>
-            <li>Scalable speech-to-text transcription system for video content analysis</li>
-            <li>Workflow automation across Google Drive, Frame.io, and ClickUp</li>
+            <li>Develop image, video, and voiceover workflows using AI providers and Firebase</li>
+            <li>Build ad-data integrations and tools for querying campaign performance</li>
+            <li>Investigate generation failures and deploy backend capacity changes</li>
+            <li>Reconcile GCP, fal.ai, OpenRouter, and Fly.io costs into monthly reports</li>
           </ul>
           <div class="exp-tags">
             <span class="tag green">Python</span>
@@ -1281,20 +1315,11 @@
 
         <div class="exp-item">
           <div class="exp-header">
-            <span class="exp-role">Medtech &amp; IT Support</span>
-            <span class="exp-date">2024 &mdash; 2025</span>
-          </div>
-          <div class="exp-company">Black Rock City &middot; Rampart Medical</div>
-          <p class="exp-desc">Logistics/IT team at the on-site hospital unit at Burning Man. Onboarded doctors and EMTs to communications platforms, optimized intake documentation systems. Operated in extreme desert conditions &mdash; dust storms, heat, zero infrastructure.</p>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
             <span class="exp-role">Video Producer &amp; Editor</span>
             <span class="exp-date">2018 &mdash; 2022</span>
           </div>
           <div class="exp-company">Narrative Ads</div>
-          <p class="exp-desc">Led creative strategy and production for 50+ paid social campaigns. Produced and edited 1000+ video ads for Facebook, Instagram, and TikTok. Collaborated directly with brands like DoorDash, Harry's, and Native on creative direction. Scaled team workflows to handle 20+ simultaneous campaigns.</p>
+          <p class="exp-desc">Directed, produced, and edited paid social ads for Facebook, Instagram, and TikTok, including work for DoorDash, Harry's, and Native. Managed creative direction, edits, and production handoffs.</p>
         </div>
       </section>
 
@@ -1337,8 +1362,8 @@
               <span class="tag">OpenAI API</span>
               <span class="tag">Claude API</span>
               <span class="tag">Gemini API</span>
-              <span class="tag green">RAG Pipelines</span>
-              <span class="tag blue">Prompt Engineering</span>
+              <span class="tag green">Structured Extraction</span>
+              <span class="tag blue">Agent Workflows</span>
             </div>
           </div>
           <div>
@@ -1368,7 +1393,7 @@
       <section class="section" id="contact">
         <div class="section-label">Contact</div>
         <p class="contact-text">
-          Always interested in new projects, collaborations, or just nerding out about AI. Let's talk.
+          Have a workflow that needs better software? I'm interested in AI engineering roles and ongoing product work.
         </p>
         <div class="contact-links">
           <div class="email-wrap">
