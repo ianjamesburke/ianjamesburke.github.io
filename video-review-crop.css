@@ -1,0 +1,17 @@
+/* Keep only the app: exclude the top 250 pixels from the 3456 x 2234 source. */
+.video-review-crop {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3456 / 1984;
+}
+.video-review-crop > img {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  transform: translateY(-11.190689%);
+}
