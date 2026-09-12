@@ -351,6 +351,7 @@
       .screenshot-thumbs { grid-template-columns: repeat(3, 1fr); }
     }
   </style>
+  <link rel="stylesheet" href="video-review-crop.css">
 </head>
 <body>
 
@@ -395,7 +396,7 @@
         <div class="thumb" onclick="setShot(3, this)">
           <img src="images/narrator-ai-8.png" alt="Analytics chat">
         </div>
-        <div class="thumb" onclick="setShot(4, this)">
+        <div class="thumb video-review-crop" onclick="setShot(4, this)">
           <img src="images/narrator-ai-video-review.png" alt="Video review queue with upload states, variants, and AI review badges">
         </div>
       </div>
@@ -483,6 +484,7 @@
     const shots = ['images/narrator-ai-5.png', 'images/narrator-ai-6.png', 'images/narrator-ai-7.png', 'images/narrator-ai-8.png', 'images/narrator-ai-video-review.png'];
 
     function setShot(index, el) {
+      document.getElementById('mainShot').classList.toggle('video-review-crop', index === 4);
       document.getElementById('mainImg').src = shots[index];
       document.getElementById('mainImg').alt = el.querySelector('img').alt;
       document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
