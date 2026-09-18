@@ -513,16 +513,129 @@
       margin-top: 12px;
     }
 
-    /* ─── PROJECT GRID ─── */
+    /* ─── FEATURED PROJECT ─── */
 
-    .projects-grid {
+    .project-featured {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 24px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--bg-raised);
+      overflow: hidden;
+      margin-bottom: 20px;
+      transition: border-color 0.25s ease;
     }
 
-    @media (max-width: 640px) {
-      .projects-grid { grid-template-columns: 1fr; }
+    a.project-featured:hover {
+      border-color: var(--border-hover);
+    }
+
+    .project-featured-media {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      background: var(--bg);
+    }
+
+    .project-featured-media iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .project-featured-media--img img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.9) saturate(0.9);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.5s ease;
+    }
+
+    a.project-featured:hover .project-featured-media--img img {
+      transform: scale(1.03);
+      filter: brightness(1) saturate(1);
+    }
+
+    .project-featured-body {
+      padding: 24px 28px 24px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .project-featured-body .project-desc { margin-bottom: 12px; }
+    .project-featured-body .project-tags { margin-bottom: 4px; }
+
+    @media (max-width: 768px) {
+      .project-featured { grid-template-columns: 1fr; }
+      .project-featured-body { padding: 4px 20px 24px; }
+    }
+
+    /* ─── PROJECT MINI LIST ─── */
+
+    .projects-mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 20px;
+    }
+
+    .project-mini {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .project-mini:hover {
+      background: var(--bg-hover);
+      border-color: var(--border);
+    }
+
+    .project-mini-thumb {
+      flex-shrink: 0;
+      width: 52px;
+      height: 52px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .project-mini-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-mini-body {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .project-mini-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .project-mini-desc {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* ─── SKILLS ─── */
@@ -1011,184 +1124,86 @@
       <!-- FEATURED PROJECTS -->
       <section class="section" id="projects">
         <div class="section-label">Featured Projects</div>
-        <div class="projects-grid">
 
-          <a href="narrator-ai.html" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/narrator-ai-7.png" alt="NarratorAI — AI video production platform" loading="lazy">
+        <div class="project-featured">
+          <div class="project-featured-media">
+            <iframe src="https://www.youtube.com/embed/feCpLvn81Dk" title="nooise jam — music for feeling like it's happening" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+          </div>
+          <div class="project-featured-body">
+            <div class="project-header">
+              <span class="project-name">nooise</span>
+              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">NarratorAI</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">AI media tools and ad analytics for Narrative Ads. My work spans generation workflows, provider integrations, cloud capacity, and monthly infrastructure reporting.</p>
-              <p class="project-note">Client work &middot; Ongoing development and operations</p>
-              <div class="project-tags">
-                <span class="tag">Next.js</span>
-                <span class="tag green">Firebase</span>
-                <span class="tag blue">Gemini</span>
-                <span class="tag">ElevenLabs</span>
-              </div>
+            <p class="project-desc">Ambient music generator for the terminal. Rust synth engine with live controls — I wanted an excuse to build a synth and something to put on during flow. The clip above is a jam rendered straight out of it.</p>
+            <div class="project-tags">
+              <span class="tag orange">Rust</span>
+              <span class="tag">TUI</span>
+            </div>
+            <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="resume-link">View on GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-featured">
+          <div class="project-featured-media project-featured-media--img">
+            <img src="images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
+          </div>
+          <div class="project-featured-body">
+            <div class="project-header">
+              <span class="project-name">Plexi</span>
+              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+            </div>
+            <p class="project-desc">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
+            <p class="project-note">Open source &middot; macOS pre-release</p>
+            <div class="project-tags">
+              <span class="tag orange">Rust</span>
+            </div>
+          </div>
+        </a>
+
+        <div class="projects-mini-list">
+
+          <a href="narrator-ai.html" class="project-mini">
+            <div class="project-mini-thumb"><img src="images/narrator-ai-7.png" alt="NarratorAI" loading="lazy"></div>
+            <div class="project-mini-body">
+              <span class="project-mini-name">NarratorAI</span>
+              <span class="project-mini-desc">AI media tools and ad analytics for Narrative Ads.</span>
             </div>
           </a>
 
-          <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Plexi</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
-              <p class="project-note">Open source &middot; macOS pre-release</p>
-              <div class="project-tags">
-                <span class="tag orange">Rust</span>
-              </div>
+          <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-mini">
+            <div class="project-mini-thumb"><img src="images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
+            <div class="project-mini-body">
+              <span class="project-mini-name">Kill Tony Archive</span>
+              <span class="project-mini-desc">Audio-to-data pipeline and web app for exploring stand-up sets.</span>
             </div>
           </a>
 
-          <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Kill Tony Archive</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">An audio-to-data pipeline and web app for exploring stand-up sets. Separates transcription from analysis, cleans up repeated records, and adds rankings, voting, and shareable stat cards.</p>
-              <p class="project-note">Python &amp; Gemini pipeline &middot; FastAPI &amp; SvelteKit app</p>
-              <div class="project-tags">
-                <span class="tag">Svelte</span>
-                <span class="tag green">Python</span>
-              </div>
+          <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-mini">
+            <div class="project-mini-thumb"><img src="images/fido.png" alt="Fido" loading="lazy"></div>
+            <div class="project-mini-body">
+              <span class="project-mini-name">Fido</span>
+              <span class="project-mini-desc">Discord for GitHub repos, in your terminal.</span>
             </div>
           </a>
 
-          <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/fido.png" alt="Fido terminal interface" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Fido</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Discord for GitHub repos, in your terminal. Open Fido inside a repo to join its community, with channels, threads, DMs, and notifications.</p>
-              <div class="project-tags">
-                <span class="tag orange">Rust</span>
-                <span class="tag blue">WebSockets</span>
-              </div>
+          <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-mini">
+            <div class="project-mini-thumb"><img src="images/dad-circles.png" alt="Dad Circles" loading="lazy"></div>
+            <div class="project-mini-body">
+              <span class="project-mini-name">Dad Circles</span>
+              <span class="project-mini-desc">Location-first matching for local dads.</span>
             </div>
           </a>
 
-          <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/dad-circles.png" alt="Dad Circles" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Dad Circles</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Location-first matching for local dads. Privacy-first, no feeds, no likes.</p>
-              <div class="project-tags">
-                <span class="tag blue">React Native</span>
-                <span class="tag red">Firebase</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="wordsonyourhead.html" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/wordsonyourhead-1.png" alt="Words On Your Head — custom embroidered hats" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Words On Your Head</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Custom embroidered hat e-commerce. Type anything, get a live preview, check out with Stripe. Printful handles fulfillment.</p>
-              <div class="project-tags">
-                <span class="tag orange">Astro</span>
-                <span class="tag">Stripe</span>
-                <span class="tag blue">Printful API</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap">
-              <img src="images/nooise.png" alt="nooise — ambient music generator" loading="lazy">
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">nooise</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Ambient music generator for the terminal. Rust synth engine with live controls — I wanted an excuse to build a synth and something to put on during flow.</p>
-              <div class="project-tags">
-                <span class="tag orange">Rust</span>
-                <span class="tag">TUI</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://github.com/ianjamesburke/stint" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap" style="background: linear-gradient(135deg, #3b1d6e 0%, #1e1040 100%); display:flex; align-items:center; justify-content:center;">
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(168,85,247,0.6)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="12" x2="13" y2="12"/><line x1="9" y1="15" x2="11" y2="15"/></svg>
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Stint</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Git-tracked sprint planning. Tasks are markdown files, sprints are ordered lists, everything lives in <code>.stint/</code> inside your repo. CLI + TUI, no account required.</p>
-              <div class="project-tags">
-                <span class="tag orange">Rust</span>
-                <span class="tag">CLI</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://ianjamesburke.github.io/entheocast" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap" style="background: linear-gradient(135deg, #0d3d3a 0%, #061a20 100%); display:flex; align-items:center; justify-content:center;">
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(52,211,153,0.6)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a4.5 4.5 0 0 1 0 9 4.5 4.5 0 0 0 0 9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Entheocast</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">Psychedelic clinical trials, regulatory updates, and research aggregated weekly into a structured open dataset. GitHub Actions runs the pipeline every Sunday night.</p>
-              <div class="project-tags">
-                <span class="tag green">Python</span>
-                <span class="tag">GitHub Actions</span>
-              </div>
-            </div>
-          </a>
-
-          <a href="https://github.com/ianjamesburke/moss" target="_blank" rel="noopener" class="project-card">
-            <div class="project-img-wrap" style="background: linear-gradient(135deg, #0f3320 0%, #071a0e 100%); display:flex; align-items:center; justify-content:center;">
-              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(74,222,128,0.6)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            </div>
-            <div class="project-body">
-              <div class="project-header">
-                <span class="project-name">Moss</span>
-                <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-              </div>
-              <p class="project-desc">A tiny language that reads like English and compiles to Rust. One page of spec, one day to learn, one way to write each thing.</p>
-              <div class="project-tags">
-                <span class="tag orange">Rust</span>
-                <span class="tag green">Language</span>
-              </div>
+          <a href="wordsonyourhead.html" class="project-mini">
+            <div class="project-mini-thumb"><img src="images/wordsonyourhead-1.png" alt="Words On Your Head" loading="lazy"></div>
+            <div class="project-mini-body">
+              <span class="project-mini-name">Words On Your Head</span>
+              <span class="project-mini-desc">Custom embroidered hat e-commerce.</span>
             </div>
           </a>
 
         </div>
+        <a href="https://github.com/ianjamesburke?tab=repositories" target="_blank" rel="noopener" class="resume-link">More projects on GitHub &rarr;</a>
       </section>
 
       <!-- ABOUT -->
@@ -1196,7 +1211,7 @@
         <div class="section-label">About</div>
         <div class="about">
           <p>
-            I got into software through video production, directing and editing ads for brands including DoorDash, Harry's, and Dr. Squatch. Building tools for that work led me into engineering.
+            I got into software from music production — building tools to speed up my own workflow turned out to be the more interesting problem. That led me into engineering.
           </p>
           <p>
             Today I build and maintain AI tools for <strong>Narrative Ads</strong>, turn long recordings into structured data with <strong>Python</strong>, and build <strong>PLEXI</strong> in Rust. I work across the interface, backend, and provider integrations, including the debugging and reporting needed to keep a product running.
@@ -1258,10 +1273,23 @@
 
         <div class="exp-item">
           <div class="exp-header">
-            <span class="exp-role">AI Integration Specialist</span>
+            <span class="exp-role">Automation &amp; AI Integration Specialist</span>
             <span class="exp-date">Current</span>
           </div>
-          <div class="exp-company">Davenport University</div>
+          <div class="exp-company">Davenport University &middot; Web Development and Custom Applications</div>
+          <p class="exp-desc">Design and ship AI-backed tools for university staff, from a Google Chat assistant to automated donor research briefings. Own the full path from prototype to production on university infrastructure: deployments, CI/CD on hosts with no inbound access, per-app model keys with spend budgets, and deploy gates that verify each shipped capability actually works.</p>
+          <ul class="exp-highlights">
+            <li>Built "Pounce," a Google Chat AI assistant for university staff (Next.js, SQLite, Gemini and on-prem Gemma/Llama via a LiteLLM gateway), with slash commands for status reports, donor briefings, and bug/idea intake</li>
+            <li>Designed the CI/CD pattern for the university's AI host: self-hosted pull-based deploys with systemd and Docker Compose, gated by a capability-level post-deploy verifier</li>
+            <li>Automated donor research briefings (Blackbaud NXT plus grounded web research) delivered as Google Docs from Chat, replacing manual prep</li>
+            <li>Stood up a shared LiteLLM gateway with per-app virtual keys, budgets, and a five-node on-prem Gemma pool</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag blue">Next.js</span>
+            <span class="tag">LiteLLM</span>
+            <span class="tag blue">Docker</span>
+            <span class="tag green">Gemini</span>
+          </div>
         </div>
 
         <div class="exp-item">
