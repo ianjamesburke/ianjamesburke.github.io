@@ -34,7 +34,7 @@
     .skills { margin: 0; }
     @page { size: Letter; margin: 0.5in 0.6in; }
     @media print {
-      body { background: #fff; font-size: 10pt; line-height: 1.38; }
+      body { background: #fff; font-size: 9.5pt; line-height: 1.32; }
       .toolbar { display: none; }
       main { max-width: none; margin: 0; padding: 0; box-shadow: none; }
       header { padding-bottom: 12px; margin-bottom: 14px; }
@@ -44,9 +44,10 @@
       .summary { margin-bottom: 13px; }
       section { margin-top: 14px; }
       h2 { font-size: 8pt; margin-bottom: 8px; }
-      h3 { font-size: 10pt; }
+      h3 { font-size: 9.5pt; }
       .date, .position { font-size: 9pt; }
-      article { margin-bottom: 10px; }
+      article { margin-bottom: 8px; }
+      li { margin: 2px 0; }
       a { color: inherit; text-decoration: none; }
     }
     @media screen and (max-width: 600px) {
@@ -84,10 +85,12 @@
       <article>
         <div class="entry-heading"><h3>Davenport University</h3><span class="date">Current</span></div>
         <p class="position">Automation &amp; AI Integration Specialist &middot; Web Development and Custom Applications</p>
+        <p>Design and ship AI-backed tools for university staff, from a Google Chat assistant to automated donor research briefings. Own the full path from prototype to production on university infrastructure: deployments, CI/CD on hosts with no inbound access, per-app model keys with spend budgets, and deploy gates that verify each shipped capability actually works.</p>
         <ul>
-          <li>Built "Pounce," a Google Chat AI assistant for university staff (Next.js, SQLite, Gemini and on-prem Gemma/Llama via a shared LiteLLM gateway with per-app keys and budgets), with slash commands for status reports, donor briefings, and bug/idea intake.</li>
+          <li>Built "Pounce," a Google Chat AI assistant for university staff (Next.js, SQLite, Gemini and on-prem Gemma/Llama via a LiteLLM gateway), with slash commands for status reports, donor briefings, and bug/idea intake.</li>
           <li>Designed the CI/CD pattern for the university's AI host: self-hosted pull-based deploys with systemd and Docker Compose, gated by a capability-level post-deploy verifier.</li>
           <li>Automated donor research briefings (Blackbaud NXT plus grounded web research) delivered as Google Docs from Chat, replacing manual prep.</li>
+          <li>Stood up a shared LiteLLM gateway with per-app virtual keys, budgets, and a five-node on-prem Gemma pool.</li>
         </ul>
       </article>
       <article>
