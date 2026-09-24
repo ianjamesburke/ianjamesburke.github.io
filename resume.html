@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ian Burke | Resume</title>
-  <meta name="description" content="Ian Burke: software engineering, AI integration, data pipelines, and agent tooling. Experience at Davenport University and Narrative Ads.">
+  <meta name="description" content="Ian Burke: software engineer building AI tools for university staff and video production teams. Experience at Davenport University and Narrative Ads.">
   <style>
     :root { color-scheme: light; --ink: #24232b; --muted: #55525c; --accent: #593c77; --line: #d9d3df; }
     * { box-sizing: border-box; }
@@ -78,52 +78,55 @@
         <a href="https://github.com/ianjamesburke">github.com/ianjamesburke</a>
       </div>
     </header>
-    <p class="summary">Build and maintain AI products, data pipelines, and tools for working with coding agents. Work across user interfaces, backend services, provider integrations, and production troubleshooting. Background in commercial video production.</p>
+    <p class="summary">Software engineer building AI tools for university staff and video production teams. Previously worked in commercial video production.</p>
 
     <section aria-labelledby="experience-heading">
       <h2 id="experience-heading">Experience</h2>
       <article>
         <div class="entry-heading"><h3>Davenport University</h3><span class="date">Current</span></div>
-        <p class="position">Automation &amp; AI Integration Specialist &middot; Web Development and Custom Applications</p>
-        <p>Design and ship AI-backed tools for university staff, from a Google Chat assistant to automated donor research briefings. Own the full path from prototype to production on university infrastructure: deployments, CI/CD on hosts with no inbound access, per-app model keys with spend budgets, and deploy gates that verify each shipped capability actually works.</p>
+        <p class="position">Automation &amp; AI Integration Specialist</p>
         <ul>
-          <li>Built "Pounce," a Google Chat AI assistant for university staff (Next.js, SQLite, Gemini and on-prem Gemma/Llama via a LiteLLM gateway), with slash commands for status reports, donor briefings, and bug/idea intake.</li>
-          <li>Designed the CI/CD pattern for the university's AI host: self-hosted pull-based deploys with systemd and Docker Compose, gated by a capability-level post-deploy verifier.</li>
-          <li>Automated donor research briefings (Blackbaud NXT plus grounded web research) delivered as Google Docs from Chat, replacing manual prep.</li>
-          <li>Stood up a shared LiteLLM gateway with per-app virtual keys, budgets, and a five-node on-prem Gemma pool.</li>
+          <li>Built Pounce, a Google Chat agent that helps staff create status reports and donor briefings, submit bugs and ideas, and create Google Docs in shared drives. Built with Next.js, SQLite, Gemini, and locally hosted Gemma and Llama models through LiteLLM.</li>
+          <li>Built APIs and MCP servers for university data, including sports search across roughly 282,000 images on campus storage and donor research using Blackbaud NXT. Connected these tools to Pounce, with donor research returned in Google Chat cards and Docs.</li>
+          <li>Configured a LiteLLM gateway with separate model keys and spending limits for each app, plus a five-node Gemma pool serving multiple campus agents.</li>
+          <li>Built pull-based deployments using systemd and Docker Compose for campus servers that cannot accept inbound connections. Added automated checks to test agent tools after deployment.</li>
         </ul>
       </article>
       <article>
         <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2022 &ndash; Present</span></div>
-        <p class="position">Freelance Software Engineer</p>
+        <p class="position">Full Stack Developer, NarratorAI</p>
         <ul>
-          <li>Build and maintain NarratorAI, an internal platform for AI media production and advertising analytics, using TypeScript, Next.js, and Firebase.</li>
-          <li>Develop image, video, and voiceover workflows with Gemini, fal.ai, and ElevenLabs, alongside advertising-data integrations.</li>
-          <li>Investigate generation failures, deploy backend capacity changes, and reconcile provider billing into monthly infrastructure reports.</li>
+          <li>Built and maintain NarratorAI, an internal platform for AI media production and ads, using TypeScript, Next.js, and Firebase. Brought workflows previously spread across Frame.io, ClickUp, and Google Drive into one application.</li>
+          <li>Built image, video, and voiceover generation pipelines using Gemini, fal.ai, ElevenLabs, and OpenRouter.</li>
+          <li>Added chat tools that let staff request media generation, review work, and run video-editing jobs.</li>
+          <li>Debugged generation jobs, provider failures, and backend capacity issues under load.</li>
+          <li>Built tools for querying ad performance data and reconciled monthly costs across GCP, fal.ai, OpenRouter, and Fly.io.</li>
         </ul>
       </article>
       <article>
         <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2018 &ndash; 2022</span></div>
         <p class="position">Video Producer &amp; Editor</p>
-        <p>Directed, produced, and edited paid social ads for brands including DoorDash, Harry's, and Native. Managed creative direction, revisions, and production handoffs.</p>
+        <ul>
+          <li>Directed and edited paid social ads for brands including DoorDash, Harry&rsquo;s, and Native.</li>
+        </ul>
       </article>
     </section>
 
     <section aria-labelledby="projects-heading">
       <h2 id="projects-heading">Selected Projects</h2>
       <article class="project">
-        <h3><a href="https://github.com/ianjamesburke/kill-tony-archive">Kill Tony Archive</a> &middot; AI data pipeline and web application</h3>
-        <p>Built separate transcription and structured-extraction stages for long recordings, with transcript deduplication and speaker normalization. The September 2026 local dataset contains 1,422 set records across 110 episodes. Python, Gemini, SQLite, FastAPI, and SvelteKit.</p>
+        <h3><a href="https://github.com/ianjamesburke/kill-tony-archive">Kill Tony Archive</a></h3>
+        <p>Built a pipeline to transcribe and extract structured data from 1,422 sets across 110 episodes. Used Python, Gemini, SQLite, FastAPI, and SvelteKit.</p>
       </article>
       <article class="project">
-        <h3><a href="https://plexiapp.com">PLEXI</a> &middot; Desktop workspace for coding agents</h3>
-        <p>Built a Rust application combining terminal panes, project contexts, notes, and apps. Includes an agent-accessible CLI and a WASM app runtime. Used as my daily working environment; macOS pre-release.</p>
+        <h3><a href="https://plexiapp.com">PLEXI</a></h3>
+        <p>Built a Rust desktop workspace for coding agents, with terminal panes, command-line agents, and a WASM app runtime. Available as a macOS prerelease.</p>
       </article>
     </section>
 
     <section aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Technical Skills</h2>
-      <p class="skills">Python, TypeScript, JavaScript, Rust &middot; React / Next.js, SvelteKit, FastAPI, Node.js &middot; Firebase, Google Cloud, SQLite, GitHub Actions &middot; AI provider integration, structured extraction, agent workflows, incident investigation</p>
+      <h2 id="skills-heading">Skills</h2>
+      <p class="skills">Python, TypeScript, JavaScript, Rust &middot; React, Next.js, SvelteKit, FastAPI &middot; Firebase, GCP, SQLite, Docker Compose, systemd &middot; LiteLLM, OpenRouter, MCP, agent tool calling, structured extraction, CI/CD</p>
     </section>
   </main>
 </body>
