@@ -1,133 +1,47 @@
 <!DOCTYPE html>
+<!-- SHIP CANDIDATE: Ian locked paper-typewriter (v7). Production toolbar. Paths assume site root (resume.html next to index.html). -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ian Burke | Resume</title>
-  <meta name="description" content="Ian Burke: software engineer building AI tools for university staff and video production teams. Experience at Davenport University and Narrative Ads.">
-  <style>
-    :root { color-scheme: light; --ink: #24232b; --muted: #55525c; --accent: #593c77; --line: #d9d3df; }
-    * { box-sizing: border-box; }
-    body { margin: 0; color: var(--ink); background: #efedf0; font: 15px/1.5 'Trebuchet MS', sans-serif; }
-    a { color: var(--accent); text-underline-offset: 3px; }
-    a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-    .toolbar { max-width: 850px; margin: 24px auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 24px; }
-    .actions { display: flex; gap: 12px; align-items: center; }
-    .actions a, button { border: 1px solid var(--line); border-radius: 5px; padding: 10px 14px; min-height: 44px; background: #fff; font: inherit; cursor: pointer; }
-    .actions a { text-decoration: none; }
-    main { max-width: 850px; margin: 0 auto 40px; padding: 46px 52px; background: #fff; box-shadow: 0 8px 36px #27202e0d; }
-    header { border-bottom: 2px solid var(--ink); padding-bottom: 17px; margin-bottom: 20px; }
-    h1 { font: 48px/1.05 Georgia, serif; letter-spacing: -1.5px; margin: 0 0 8px; }
-    .role { margin: 0 0 10px; font-size: 16px; }
-    .contact { display: flex; flex-wrap: wrap; gap: 3px 16px; font-size: 12px; }
-    .summary { margin: 0 0 20px; }
-    section { margin-top: 19px; }
-    h2 { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 11px; color: var(--accent); }
-    article { margin-bottom: 13px; break-inside: avoid; }
-    .entry-heading { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
-    h3 { font-size: 14px; margin: 0; }
-    .date { color: var(--muted); font-size: 12px; white-space: nowrap; }
-    .position { color: var(--muted); margin: 1px 0 5px; font-size: 13px; }
-    ul { margin: 5px 0 0; padding-left: 17px; }
-    li { margin: 3px 0; }
-    .project p { margin: 4px 0 0; }
-    .skills { margin: 0; }
-    @page { size: Letter; margin: 0.5in 0.6in; }
-    @media print {
-      body { background: #fff; font-size: 9.5pt; line-height: 1.32; }
-      .toolbar { display: none; }
-      main { max-width: none; margin: 0; padding: 0; box-shadow: none; }
-      header { padding-bottom: 12px; margin-bottom: 14px; }
-      h1 { font-size: 31pt; }
-      .role { font-size: 11pt; }
-      .contact { font-size: 8.5pt; }
-      .summary { margin-bottom: 13px; }
-      section { margin-top: 14px; }
-      h2 { font-size: 8pt; margin-bottom: 8px; }
-      h3 { font-size: 9.5pt; }
-      .date, .position { font-size: 9pt; }
-      article { margin-bottom: 8px; }
-      li { margin: 2px 0; }
-      a { color: inherit; text-decoration: none; }
-    }
-    @media screen and (max-width: 600px) {
-      body { font-size: 14px; }
-      .toolbar { padding: 0 18px; flex-wrap: wrap; margin: 16px auto; }
-      main { padding: 28px 22px; margin-bottom: 0; }
-      h1 { font-size: 40px; }
-      .entry-heading { flex-wrap: wrap; gap: 2px 12px; }
-      .contact { flex-direction: column; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ian Burke — Resume</title>
+<style>
+
+*{box-sizing:border-box}html{color-scheme:light}body{margin:0;background:#e9e9e7;color:#242424;font:12px/1.48 'Courier New',Courier,monospace}a{color:inherit;text-underline-offset:3px;text-decoration-thickness:1px}a:hover{text-decoration-thickness:2px}a:focus-visible{outline:2px solid currentColor;outline-offset:4px}.toolbar{max-width:850px;margin:auto;padding:17px 32px;font:12px/1.5 Arial,sans-serif}.sheet{max-width:850px;margin:0 auto 32px;padding:34px 38px;background:white;box-shadow:0 6px 30px #0000000b}h1,h2,h3,p{margin:0}h1{font-size:36px;line-height:1.05;letter-spacing:-1.7px}.role{font-size:12px;margin-top:8px}.contact{display:flex;flex-wrap:wrap;gap:5px 16px;font-size:10px;font-style:normal;margin-top:15px}.summary{margin-top:20px}.experience,.projects,.skills{margin-top:19px}h2{font-size:11px;line-height:1.35;text-transform:uppercase;letter-spacing:1.3px;margin-bottom:11px}h3{font-size:13px;line-height:1.3}.job-head{display:flex;justify-content:space-between;gap:14px;align-items:baseline}.job-role{font-size:11px;margin-top:3px}.date{font-size:10px;white-space:nowrap;color:#505050}.job+.job{margin-top:15px}ul{padding-left:17px;margin:7px 0 0}li{padding-left:2px;margin-top:4px}.project+.project{margin-top:10px}.project h3{font-size:12px}.project p{margin-top:4px}.skills p{font-size:11px}h2,h3,.job-head{break-after:avoid}li,.project{break-inside:avoid}
+@page{size:Letter;margin:.4in}
+@media print{html,body{background:white}body{font-size:8.5pt;line-height:1.31;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.sheet{width:100%;max-width:none;margin:0;padding:0;box-shadow:none}h1{font-size:28pt}.role{font-size:9pt}.contact{font-size:7.5pt;margin-top:10px;gap:4px 12px}.summary{margin-top:13px}.experience,.projects,.skills{margin-top:13px}h2{font-size:8pt;margin-bottom:8px}h3{font-size:9pt}.job-role{font-size:8.5pt}.date{font-size:7.5pt}.job+.job{margin-top:10px}ul{margin-top:5px}li{margin-top:3px}.project h3,.skills p{font-size:8.5pt}.project+.project{margin-top:7px}.project p{margin-top:3px}}
+@media screen and (max-width:600px){.toolbar{padding:15px 20px}.sheet{margin:0;padding:28px 22px;box-shadow:none}body{font-size:12px;line-height:1.55}h1{font-size:33px}.contact{flex-direction:column;font-size:11px;gap:7px}.job-head{display:block}.date{margin-top:4px}.experience,.projects,.skills{margin-top:24px}.job+.job{margin-top:20px}}
+
+body{background:#e7e1d4;color:#302c25}.sheet{background:#fffaf0;padding:34px 42px;border:1px solid #b9b09f}.identity{text-align:center;padding-bottom:15px;border-bottom:3px double #6b6254}h1{font-size:37px;letter-spacing:3px;font-weight:normal;text-transform:uppercase}.role{margin-top:10px}.contact{justify-content:center;font-size:10px;gap:5px 13px}.summary{padding:13px 0;border-bottom:1px dashed #807566;margin-top:2px}h2{text-align:center;font-size:11px;letter-spacing:2px;display:flex;align-items:center;gap:15px}h2:before,h2:after{content:'';flex:1;border-top:1px solid #807566}.job-head{display:grid;grid-template-columns:minmax(0,1fr) auto}.job-role{font-style:italic}.date{color:#514a3f}ul{list-style-type:square}.project h3{display:inline;font-weight:bold}.project p{display:inline}.project h3:after{content:' — ';font-weight:normal}.project+.project{margin-top:10px}.skills{border-bottom:3px double #6b6254;padding-bottom:15px}.skills p{font-size:11px}
+@media print{html,body{background:white}.sheet{padding:0;border:0;background:#fffaf0}h1{font-size:28pt}.identity{padding-bottom:10px}.summary{padding:10px 0}h2{font-size:8pt}.skills{padding-bottom:10px}.skills p{font-size:8.5pt}.project+.project{margin-top:7px}}
+@media screen and (max-width:600px){.sheet{padding:28px 21px;border:0}h1{font-size:30px;letter-spacing:1px}.contact{align-items:center;font-size:10.5px}.job-head{display:block}h2{letter-spacing:1px;gap:10px}.role{font-size:11px}}
+
+.toolbar{max-width:850px;margin:auto;padding:14px 24px 8px;font:13px/1.4 system-ui,Arial,sans-serif}
+.action-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.action-bar .btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 18px;border:1px solid #6b6254;border-radius:6px;background:#fffaf0;color:#302c25;text-decoration:none;font:600 14px/1.2 system-ui,Arial,sans-serif;cursor:pointer;box-sizing:border-box}
+.action-bar .btn:hover{background:#f3ebdc}
+.action-bar .btn:focus-visible{outline:3px solid #302c25;outline-offset:3px}
+.action-bar .btn-primary{background:#302c25;color:#fffaf0;border-color:#302c25;min-width:140px;font-size:15px;padding:12px 22px}
+.action-bar .btn-primary:hover{background:#1f1c17;color:#fffaf0}
+.action-bar .btn-secondary{background:#fffaf0}
+.action-bar .btn-ghost{border:0;background:transparent;min-height:auto;padding:8px 6px;font:12px/1.3 system-ui,Arial,sans-serif;color:#514a3f;text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.action-bar .btn-ghost:hover{color:#302c25}
+.action-bar .spacer{flex:1 1 12px}
+@media screen and (max-width:600px){.toolbar{padding:12px 16px}.action-bar{gap:8px}.action-bar .btn{flex:1 1 calc(50% - 8px)}.action-bar .btn-primary{flex:1 1 100%}.action-bar .spacer{display:none}.action-bar .btn-ghost{flex:1 1 100%;text-align:center}}
+@media print{.toolbar{display:none!important}}
+
+</style>
 </head>
 <body>
-  <nav class="toolbar" aria-label="Resume actions">
-    <a href="index.html">&larr; Portfolio</a>
-    <div class="actions">
-      <a href="Ian-Burke-Resume.pdf" download>Download PDF</a>
-      <button type="button" onclick="window.print()">Print</button>
-    </div>
-  </nav>
-  <main>
-    <header>
-      <h1>Ian Burke</h1>
-      <p class="role">Software Engineer &middot; AI Integration &amp; Automation</p>
-      <div class="contact">
-        <a href="mailto:ianjamesburke@gmail.com">ianjamesburke@gmail.com</a>
-        <a href="https://ianjamesburke.github.io">ianjamesburke.github.io</a>
-        <a href="https://github.com/ianjamesburke">github.com/ianjamesburke</a>
-      </div>
-    </header>
-    <p class="summary">Software engineer building AI tools for university staff and video production teams. Previously worked in commercial video production.</p>
+<nav class="toolbar" aria-label="Resume actions">
+<div class="action-bar">
+<a class="btn btn-primary" href="index.html">Portfolio</a>
+<a class="btn btn-secondary" href="Ian-Burke-Resume.pdf" download>Download PDF</a>
+<button type="button" class="btn btn-secondary" onclick="window.print()">Print</button>
+<span class="spacer" aria-hidden="true"></span>
 
-    <section aria-labelledby="experience-heading">
-      <h2 id="experience-heading">Experience</h2>
-      <article>
-        <div class="entry-heading"><h3>Davenport University</h3><span class="date">Current</span></div>
-        <p class="position">Automation &amp; AI Integration Specialist</p>
-        <ul>
-          <li>Built Pounce, a Google Chat agent that helps staff create status reports and donor briefings, submit bugs and ideas, and create Google Docs in shared drives. Built with Next.js, SQLite, Gemini, and locally hosted Gemma and Llama models through LiteLLM.</li>
-          <li>Built APIs and MCP servers for university data, including sports search across roughly 282,000 images on campus storage and donor research using Blackbaud NXT. Connected these tools to Pounce, with donor research returned in Google Chat cards and Docs.</li>
-          <li>Configured a LiteLLM gateway with separate model keys and spending limits for each app, plus a five-node Gemma pool serving multiple campus agents.</li>
-          <li>Built pull-based deployments using systemd and Docker Compose for campus servers that cannot accept inbound connections. Added automated checks to test agent tools after deployment.</li>
-        </ul>
-      </article>
-      <article>
-        <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2022 &ndash; Present</span></div>
-        <p class="position">Full Stack Developer, NarratorAI</p>
-        <ul>
-          <li>Built and maintain NarratorAI, an internal platform for AI media production and ads, using TypeScript, Next.js, and Firebase. Brought workflows previously spread across Frame.io, ClickUp, and Google Drive into one application.</li>
-          <li>Built image, video, and voiceover generation pipelines using Gemini, fal.ai, ElevenLabs, and OpenRouter.</li>
-          <li>Added chat tools that let staff request media generation, review work, and run video-editing jobs.</li>
-          <li>Debugged generation jobs, provider failures, and backend capacity issues under load.</li>
-          <li>Built tools for querying ad performance data and reconciled monthly costs across GCP, fal.ai, OpenRouter, and Fly.io.</li>
-        </ul>
-      </article>
-      <article>
-        <div class="entry-heading"><h3>Narrative Ads</h3><span class="date">2018 &ndash; 2022</span></div>
-        <p class="position">Video Producer &amp; Editor</p>
-        <ul>
-          <li>Directed and edited paid social ads for brands including DoorDash, Harry&rsquo;s, and Native.</li>
-        </ul>
-      </article>
-    </section>
-
-    <section aria-labelledby="projects-heading">
-      <h2 id="projects-heading">Selected Projects</h2>
-      <article class="project">
-        <h3><a href="https://github.com/ianjamesburke/kill-tony-archive">Kill Tony Archive</a></h3>
-        <p>Built a pipeline to transcribe and extract structured data from 1,422 sets across 110 episodes. Used Python, Gemini, SQLite, FastAPI, and SvelteKit.</p>
-      </article>
-      <article class="project">
-        <h3><a href="https://plexiapp.com">PLEXI</a></h3>
-        <p>Built a Rust desktop workspace for coding agents, with terminal panes, command-line agents, and a WASM app runtime. Available as a macOS prerelease.</p>
-      </article>
-    </section>
-
-    <section aria-labelledby="skills-heading">
-      <h2 id="skills-heading">Skills</h2>
-      <p class="skills">Python, TypeScript, JavaScript, Rust &middot; React, Next.js, SvelteKit, FastAPI &middot; Firebase, GCP, SQLite, Docker Compose, systemd &middot; LiteLLM, OpenRouter, MCP, agent tool calling, structured extraction, CI/CD</p>
-    </section>
-  </main>
+</div>
+</nav>
+<main class="sheet" aria-label="Ian Burke resume"><header class="identity"><h1>Ian Burke</h1><p class="role">Software Engineer · AI Integration &amp; Automation</p></header><address class="contact"><a href="mailto:ianjamesburke@gmail.com">ianjamesburke@gmail.com</a><a href="https://ianjamesburke.github.io">ianjamesburke.github.io</a><a href="https://github.com/ianjamesburke">github.com/ianjamesburke</a></address><section class="summary" aria-label="Summary"><p>Software engineer building AI tools for university staff and video production teams. Previously worked in commercial video production.</p></section><section class="experience"><h2>Experience</h2><article class="job"><div class="job-head"><div><h3>Davenport University</h3><p class="job-role">Automation &amp; AI Integration Specialist</p></div><p class="date">Current</p></div><ul><li>Built Pounce, a Google Chat agent that helps staff create status reports and donor briefings, submit bugs and ideas, and create Google Docs in shared drives. Built with Next.js, SQLite, Gemini, and locally hosted Gemma and Llama models through LiteLLM.</li><li>Built APIs and MCP servers for university data, including sports search across roughly 282,000 images on campus storage and donor research using Blackbaud NXT. Connected these tools to Pounce, with donor research returned in Google Chat cards and Docs.</li><li>Configured a LiteLLM gateway with separate model keys and spending limits for each app, plus a five-node Gemma pool serving multiple campus agents.</li><li>Built pull-based deployments using systemd and Docker Compose for campus servers that cannot accept inbound connections. Added automated checks to test agent tools after deployment.</li></ul></article><article class="job"><div class="job-head"><div><h3>Narrative Ads</h3><p class="job-role">Full Stack Developer, NarratorAI</p></div><p class="date">2022 – Present</p></div><ul><li>Built and maintain NarratorAI, an internal platform for AI media production and ads, using TypeScript, Next.js, and Firebase. Brought workflows previously spread across Frame.io, ClickUp, and Google Drive into one application.</li><li>Built image, video, and voiceover generation pipelines using Gemini, fal.ai, ElevenLabs, and OpenRouter.</li><li>Added chat tools that let staff request media generation, review work, and run video-editing jobs.</li><li>Debugged generation jobs, provider failures, and backend capacity issues under load.</li><li>Built tools for querying ad performance data and reconciled monthly costs across GCP, fal.ai, OpenRouter, and Fly.io.</li></ul></article><article class="job"><div class="job-head"><div><h3>Narrative Ads</h3><p class="job-role">Video Producer &amp; Editor</p></div><p class="date">2018 – 2022</p></div><ul><li>Directed and edited paid social ads for brands including DoorDash, Harry&#x27;s, and Native.</li></ul></article></section><section class="projects"><h2>Selected Projects</h2><div class="project-list"><article class="project"><h3><a href="https://github.com/ianjamesburke/kill-tony-archive">Kill Tony Archive</a></h3><p>Built a pipeline to transcribe and extract structured data from 1,422 sets across 110 episodes. Used Python, Gemini, SQLite, FastAPI, and SvelteKit.</p></article><article class="project"><h3><a href="https://plexiapp.com">PLEXI</a></h3><p>Built a Rust desktop workspace for coding agents, with terminal panes, command-line agents, and a WASM app runtime. Available as a macOS prerelease.</p></article></div></section><section class="skills"><h2>Skills</h2><p>Python, TypeScript, JavaScript, Rust · React, Next.js, SvelteKit, FastAPI · Firebase, GCP, SQLite, Docker Compose, systemd · LiteLLM, OpenRouter, MCP, agent tool calling, structured extraction, CI/CD</p></section></main>
 </body>
 </html>

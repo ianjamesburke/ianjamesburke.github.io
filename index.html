@@ -4,43 +4,46 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ian Burke | AI Products &amp; Software Engineering</title>
-  <meta name="description" content="Ian Burke builds AI products, data pipelines, and tools for working with coding agents. Selected work, experience, and resume.">
+  <!-- v7b accent fork (slate): Slate blue. Cool slate-blue. Quiet technical. Flowing sidebar + labels. -->
+  <meta name="description" content="Ian Burke builds AI products, data pipelines, and tools for working with coding agents. Recent work, experience, and resume.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@300;400;500&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
     :root {
-      --bg: #0f0d1a;
-      --bg-raised: #16122a;
-      --bg-hover: #1e1838;
-      --border: #2e2548;
-      --border-hover: #3e3260;
-      --text: #f5f2ff;
-      --text-muted: #c8c0e0;
-      --text-dim: #9890b0;
-      --accent: #7e22ce;
-      --accent-bright: #9333ea;
-      --accent-dim: rgba(126, 34, 206, 0.1);
-      --accent-glow: rgba(126, 34, 206, 0.2);
-      --purple-warm: #a855f7;
-      --purple-cool: #6d28d9;
-      --lavender: #a78bfa;
+      --bg: #0c0c0b;
+      --bg-raised: #141413;
+      --bg-hover: #1a1a18;
+      --border: #2a2a26;
+      --border-hover: #3f3f36;
+      --text: #f2efe6;
+      --text-muted: #b8b3a6;
+      --text-dim: #7a7568;
+      --accent: #7a9bb8;
+      --accent-bright: #9bb4c9;
+      --accent-dim: rgba(122, 155, 184, 0.12);
+      --accent-glow: rgba(122, 155, 184, 0.18);
+      --brass: #7a9bb8;
+      --brass-dim: #55748f;
+      --brass-bright: #9bb4c9;
+      --ink-cream: #e8e2d4;
       --green: #4ade80;
       --green-dim: rgba(74, 222, 128, 0.1);
       --green-muted: #34d399;
       --blue: #60a5fa;
-      --blue-muted: #818cf8;
+      --blue-muted: #8ba4c7;
       --orange: #f97316;
       --orange-dim: rgba(249, 115, 22, 0.1);
       --red: #f43f5e;
       --red-dim: rgba(244, 63, 94, 0.1);
       --yellow: #facc15;
       --yellow-dim: rgba(250, 204, 21, 0.1);
-      --serif: 'Instrument Serif', Georgia, serif;
+      --serif: 'Courier Prime', 'Courier New', Courier, monospace;
+      --display: 'Courier Prime', 'Courier New', Courier, monospace;
       --sans: 'DM Sans', -apple-system, sans-serif;
-      --mono: 'JetBrains Mono', 'SF Mono', monospace;
+      --mono: 'JetBrains Mono', 'SF Mono', 'Courier New', monospace;
     }
 
     html {
@@ -59,8 +62,8 @@
     }
 
     ::selection {
-      background: rgba(168, 85, 247, 0.2);
-      color: var(--lavender);
+      background: rgba(122, 155, 184, 0.25);
+      color: var(--ink-cream);
     }
 
     a {
@@ -69,7 +72,7 @@
       transition: color 0.2s ease;
     }
 
-    a:hover { color: var(--lavender); }
+    a:hover { color: var(--ink-cream); }
 
     /* ─── FRACTAL BACKGROUND ─── */
 
@@ -100,11 +103,11 @@
       top: -30%;
       left: -20%;
       background:
-        radial-gradient(ellipse 40% 35% at 25% 30%, #9333ea 0%, transparent 70%),
-        radial-gradient(ellipse 30% 45% at 70% 20%, #7c3aed 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 25% 30%, #7a9bb8 0%, transparent 70%),
+        radial-gradient(ellipse 30% 45% at 70% 20%, #55748f 0%, transparent 65%),
         radial-gradient(ellipse 50% 30% at 50% 70%, #4ade80 0%, transparent 60%),
-        radial-gradient(ellipse 25% 40% at 80% 60%, #9333ea 0%, transparent 70%),
-        radial-gradient(ellipse 35% 25% at 15% 75%, #6d28d9 0%, transparent 65%),
+        radial-gradient(ellipse 25% 40% at 80% 60%, #7a9bb8 0%, transparent 70%),
+        radial-gradient(ellipse 35% 25% at 15% 75%, #55748f 0%, transparent 65%),
         radial-gradient(ellipse 20% 50% at 40% 45%, #22c55e 0%, transparent 55%);
     }
 
@@ -114,10 +117,10 @@
       top: -10%;
       left: -10%;
       background:
-        radial-gradient(ellipse 35% 40% at 60% 55%, #7c3aed 0%, transparent 65%),
+        radial-gradient(ellipse 35% 40% at 60% 55%, #55748f 0%, transparent 65%),
         radial-gradient(ellipse 45% 25% at 30% 80%, #4ade80 0%, transparent 60%),
-        radial-gradient(ellipse 30% 35% at 85% 35%, #581c87 0%, transparent 70%),
-        radial-gradient(ellipse 40% 30% at 20% 15%, #9333ea 0%, transparent 60%),
+        radial-gradient(ellipse 30% 35% at 85% 35%, #2f3d4a 0%, transparent 70%),
+        radial-gradient(ellipse 40% 30% at 20% 15%, #7a9bb8 0%, transparent 60%),
         radial-gradient(ellipse 25% 45% at 55% 25%, #16a34a 0%, transparent 55%);
       animation-delay: -20s;
       animation-duration: 60s;
@@ -147,46 +150,30 @@
 
     .wrapper {
       display: flex;
+      align-items: flex-start;
       min-height: 100vh;
       position: relative;
       z-index: 1;
     }
 
     .sidebar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 30%;
+      flex: 0 0 min(30%, 360px);
+      width: min(30%, 360px);
       max-width: 360px;
-      height: 100vh;
       padding: 80px 40px 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 10;
+      border-right: 1px solid var(--border);
+      overflow: visible;
     }
 
-    .sidebar::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(
-        180deg,
-        transparent 0%,
-        var(--border) 15%,
-        var(--border) 85%,
-        transparent 100%
-      );
-    }
+    .identity { display: block; }
 
     .main {
-      margin-left: 30%;
+      flex: 1 1 0;
+      min-width: 0;
       max-width: 900px;
       padding: 80px 60px 120px 60px;
       width: 100%;
+      overflow: visible;
     }
 
     /* ─── SIDEBAR CONTENT ─── */
@@ -203,7 +190,7 @@
     }
 
     .name {
-      font-family: var(--sans);
+      font-family: var(--display);
       font-size: 48px;
       font-weight: 700;
       letter-spacing: -0.03em;
@@ -214,7 +201,7 @@
 
     .name em {
       font-style: normal;
-      color: var(--purple-warm);
+      color: var(--brass);
     }
 
     .role {
@@ -239,7 +226,7 @@
       display: inline-block;
       width: 7px;
       height: 15px;
-      background: var(--green-muted);
+      background: var(--brass);
       margin-left: 3px;
       vertical-align: text-bottom;
       animation: blink 1.1s step-end infinite;
@@ -260,7 +247,7 @@
     /* ─── NAV ─── */
 
     .nav {
-      margin-top: 56px;
+      margin-top: 40px;
     }
 
     .nav-link {
@@ -287,26 +274,53 @@
 
     .nav-link:hover,
     .nav-link.active {
-      color: var(--lavender);
+      color: var(--ink-cream);
     }
 
     .nav-link:hover .nav-line,
     .nav-link.active .nav-line {
       width: 56px;
-      background: var(--purple-cool);
+      background: var(--brass-dim);
     }
 
     /* ─── SIDEBAR FOOTER ─── */
 
     .sidebar-footer {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      margin-top: 28px;
+      padding-top: 28px;
+    }
+
+    .sidebar-contact-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 2px;
+    }
+
+    .sidebar-email {
+      display: block;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-email:hover {
+      color: var(--accent);
     }
 
     .socials {
       display: flex;
       gap: 16px;
+      margin-top: 14px;
+      margin-bottom: 14px;
     }
 
     .social-link {
@@ -326,10 +340,10 @@
     }
 
     .social-link:hover {
-      border-color: var(--purple-cool);
-      color: var(--lavender);
-      background: rgba(109, 40, 217, 0.1);
-      box-shadow: 0 0 20px rgba(109, 40, 217, 0.08);
+      border-color: var(--brass-dim);
+      color: var(--ink-cream);
+      background: rgba(196, 165, 116, 0.1);
+      box-shadow: 0 0 20px rgba(196, 165, 116, 0.08);
     }
 
     .social-link .check-icon { display: none; }
@@ -391,14 +405,14 @@
     }
 
     .section-label {
-      font-family: var(--sans);
+      font-family: var(--display);
       font-size: 14px;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--text);
       padding-left: 14px;
-      border-left: 3px solid var(--purple-warm);
+      border-left: 3px solid var(--brass);
       margin-bottom: 40px;
     }
 
@@ -502,7 +516,7 @@
       width: 4px;
       height: 4px;
       border-radius: 50%;
-      background: var(--purple-cool);
+      background: var(--brass-dim);
       opacity: 0.6;
     }
 
@@ -683,7 +697,7 @@
       transform: translateY(-3px);
       box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.3),
-        0 0 40px rgba(147, 51, 234, 0.06),
+        0 0 40px rgba(196, 165, 116, 0.06),
         inset 0 1px 0 rgba(255, 255, 255, 0.02);
     }
 
@@ -731,7 +745,7 @@
     }
 
     .project-name {
-      font-family: var(--sans);
+      font-family: var(--display);
       font-size: 17px;
       font-weight: 600;
       color: var(--text);
@@ -746,7 +760,7 @@
     }
 
     .project-card:hover .project-link-icon {
-      color: var(--purple-warm);
+      color: var(--brass);
       transform: translate(2px, -2px);
     }
 
@@ -781,13 +795,13 @@
       align-items: center;
       min-height: 44px;
       margin-top: 12px;
-      color: var(--lavender);
+      color: var(--ink-cream);
       font-size: 14px;
       text-decoration: underline;
       text-underline-offset: 4px;
     }
 
-    .resume-link:focus-visible { outline: 2px solid var(--lavender); outline-offset: 4px; }
+    .resume-link:focus-visible { outline: 2px solid var(--ink-cream); outline-offset: 4px; }
 
     .tag {
       font-family: var(--mono);
@@ -842,7 +856,7 @@
     }
 
     .contact-text a {
-      color: var(--lavender);
+      color: var(--ink-cream);
     }
 
     .contact-links {
@@ -866,9 +880,9 @@
     }
 
     .contact-btn:hover {
-      border-color: var(--purple-cool);
-      color: var(--lavender);
-      background: rgba(109, 40, 217, 0.08);
+      border-color: var(--brass-dim);
+      color: var(--ink-cream);
+      background: rgba(196, 165, 116, 0.08);
     }
 
     .contact-btn svg {
@@ -1000,22 +1014,20 @@
     /* ─── RESPONSIVE ─── */
 
     @media (max-width: 1024px) {
-      .sidebar { width: 28%; padding: 60px 28px 40px; }
-      .main { margin-left: 28%; padding: 60px 40px 100px 40px; }
+      .sidebar { flex-basis: 28%; width: 28%; padding: 60px 28px 40px; }
+      .main { padding: 60px 40px 100px 40px; }
     }
 
     @media (max-width: 768px) {
       .wrapper { flex-direction: column; }
       .sidebar {
-        position: relative;
+        flex-basis: auto;
         width: 100%;
         max-width: none;
-        height: auto;
         padding: 48px 28px 40px;
       }
-      .sidebar::after { display: none; }
+      .sidebar { border-right: 0; }
       .main {
-        margin-left: 0;
         padding: 20px 28px 80px;
       }
       .bio {
@@ -1040,6 +1052,63 @@
       .contact-btn { width: 100%; justify-content: center; }
       .exp-header { flex-direction: column; gap: 2px; }
     }
+
+    /* ─── v7 dark-typewriter accents ─── */
+    .name {
+      letter-spacing: 0.04em;
+      text-transform: none;
+      font-weight: 700;
+    }
+    .name em { color: var(--brass); font-style: normal; }
+    .role { font-family: var(--display); letter-spacing: 0.08em; text-transform: uppercase; font-size: 12px; }
+    .section-label {
+      letter-spacing: 0.14em;
+      font-weight: 700;
+      border-left: 0;
+      padding-left: 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      position: relative;
+    }
+    .section-label::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -1px;
+      width: 48px; height: 2px;
+      background: var(--brass);
+    }
+    .tag { color: var(--brass-bright); border-radius: 2px; }
+    a:hover { color: var(--brass); }
+    .resume-link { color: var(--brass); }
+    .resume-link:focus-visible { outline-color: var(--brass); }
+    .nav-link:hover, .nav-link.active { color: var(--ink-cream); }
+    .nav-link:hover .nav-line, .nav-link.active .nav-line { background: var(--brass); }
+    .fractal-bg { opacity: 0.045; }
+
+
+    /* ─── v7b tighter editorial ─── */
+    .section-label {
+      letter-spacing: 0.22em;
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 28px;
+      border-top: 3px double var(--border);
+      border-bottom: 3px double var(--border);
+      padding: 10px 0;
+    }
+    .section-label::after { display: none; }
+    .name { letter-spacing: 0.12em; text-transform: uppercase; font-size: 40px; }
+    .sidebar { padding: 64px 36px 48px; }
+    .main { padding: 64px 48px 100px 48px; }
+    .section { margin-bottom: 72px; }
+    .about p { font-size: 14.5px; letter-spacing: 0.01em; }
+    .project-featured { border-radius: 4px; }
+    .project-mini { border-radius: 4px; }
+    .exp-item { border-radius: 4px; padding: 16px 18px; }
+    .avatar { border-radius: 4px; border-color: var(--brass-dim); }
+    .tagline { letter-spacing: 0.08em; }
+    .status-line { letter-spacing: 0.14em; text-transform: uppercase; }
+
   </style>
 </head>
 <body>
@@ -1051,7 +1120,7 @@
     <!-- ─── LEFT PANEL ─── -->
     <aside class="sidebar">
       <div class="identity">
-        <img src="images/ian.png" alt="Ian Burke" class="avatar fade-in">
+        <img src="/images/ian.png" alt="Ian Burke" class="avatar fade-in">
         <h1 class="name fade-in">Ian <em>Burke</em></h1>
         <p class="role fade-in">Software Engineer &middot; AI Products &amp; Automation</p>
         <p class="tagline fade-in">full-time vibe debugger<span class="cursor"></span></p>
@@ -1079,7 +1148,7 @@
           </a>
           <a href="#experience" class="nav-link" data-section="experience">
             <span class="nav-line"></span>
-            <span>Experience</span>
+            <span>Recent Experience</span>
           </a>
           <a href="#skills" class="nav-link" data-section="skills">
             <span class="nav-line"></span>
@@ -1090,9 +1159,10 @@
             <span>Contact</span>
           </a>
         </nav>
-      </div>
 
-      <div class="sidebar-footer fade-in">
+        <div class="sidebar-footer fade-in">
+        <div class="sidebar-contact-label">Contact</div>
+        <button type="button" class="sidebar-email" id="sidebar-email-text" aria-label="Copy email">ianjamesburke@gmail.com</button>
         <div class="socials">
           <a href="https://github.com/ianjamesburke" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
@@ -1115,6 +1185,7 @@
           </div>
         </div>
         <span class="status-line">Grand Rapids, MI</span>
+        </div>
       </div>
     </aside>
 
@@ -1122,8 +1193,8 @@
     <main class="main">
 
       <!-- FEATURED PROJECTS -->
-      <section class="section" id="projects">
-        <div class="section-label">Featured Projects</div>
+      <section class="section visible" id="projects">
+        <div class="section-label">Recent Work</div>
 
         <div class="project-featured">
           <div class="project-featured-media">
@@ -1145,7 +1216,7 @@
 
         <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-featured">
           <div class="project-featured-media project-featured-media--img">
-            <img src="images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
+            <img src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
           </div>
           <div class="project-featured-body">
             <div class="project-header">
@@ -1163,7 +1234,7 @@
         <div class="projects-mini-list">
 
           <a href="narrator-ai.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="images/narrator-ai-7.png" alt="NarratorAI" loading="lazy"></div>
+            <div class="project-mini-thumb"><img src="/images/narrator-ai-7.png" alt="NarratorAI" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">NarratorAI</span>
               <span class="project-mini-desc">AI media tools and ad analytics for Narrative Ads.</span>
@@ -1171,7 +1242,7 @@
           </a>
 
           <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
+            <div class="project-mini-thumb"><img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Kill Tony Archive</span>
               <span class="project-mini-desc">Audio-to-data pipeline and web app for exploring stand-up sets.</span>
@@ -1179,7 +1250,7 @@
           </a>
 
           <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="images/fido.png" alt="Fido" loading="lazy"></div>
+            <div class="project-mini-thumb"><img src="/images/fido.png" alt="Fido" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Fido</span>
               <span class="project-mini-desc">Discord for GitHub repos, in your terminal.</span>
@@ -1187,7 +1258,7 @@
           </a>
 
           <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="images/dad-circles.png" alt="Dad Circles" loading="lazy"></div>
+            <div class="project-mini-thumb"><img src="/images/dad-circles.png" alt="Dad Circles" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Dad Circles</span>
               <span class="project-mini-desc">Location-first matching for local dads.</span>
@@ -1195,7 +1266,7 @@
           </a>
 
           <a href="wordsonyourhead.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="images/wordsonyourhead-1.png" alt="Words On Your Head" loading="lazy"></div>
+            <div class="project-mini-thumb"><img src="/images/wordsonyourhead-1.png" alt="Words On Your Head" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Words On Your Head</span>
               <span class="project-mini-desc">Custom embroidered hat e-commerce.</span>
@@ -1219,7 +1290,7 @@
         </div>
       </section>
 
-      <!-- VIDEO -->
+<!-- VIDEO -->
       <section class="section" id="video">
         <div class="section-label">Video</div>
         <div class="video-grid">
@@ -1267,89 +1338,50 @@
         </div>
       </section>
 
+
       <!-- EXPERIENCE -->
       <section class="section" id="experience">
-        <div class="section-label">Experience</div>
+        <div class="section-label">Recent Experience</div>
 
         <div class="exp-item">
           <div class="exp-header">
             <span class="exp-role">Automation &amp; AI Integration Specialist</span>
             <span class="exp-date">Current</span>
           </div>
-          <div class="exp-company">Davenport University &middot; Web Development and Custom Applications</div>
-          <p class="exp-desc">Design and ship AI-backed tools for university staff, from a Google Chat assistant to automated donor research briefings. Own the full path from prototype to production on university infrastructure: deployments, CI/CD on hosts with no inbound access, per-app model keys with spend budgets, and deploy gates that verify each shipped capability actually works.</p>
+          <div class="exp-company">Davenport University</div>
           <ul class="exp-highlights">
-            <li>Built "Pounce," a Google Chat AI assistant for university staff (Next.js, SQLite, Gemini and on-prem Gemma/Llama via a LiteLLM gateway), with slash commands for status reports, donor briefings, and bug/idea intake</li>
-            <li>Designed the CI/CD pattern for the university's AI host: self-hosted pull-based deploys with systemd and Docker Compose, gated by a capability-level post-deploy verifier</li>
-            <li>Automated donor research briefings (Blackbaud NXT plus grounded web research) delivered as Google Docs from Chat, replacing manual prep</li>
-            <li>Stood up a shared LiteLLM gateway with per-app virtual keys, budgets, and a five-node on-prem Gemma pool</li>
+            <li>Built Pounce, a Google Chat agent for staff reports, donor briefings, bug/idea intake, and Google Docs in shared drives (Next.js, SQLite, Gemini, LiteLLM).</li>
+            <li>Built APIs and MCP servers for university data; configured a LiteLLM gateway with per-app keys and spending limits.</li>
+            <li>Pull-based deployments with systemd and Docker Compose for campus servers that cannot accept inbound connections, plus automated agent tool checks.</li>
           </ul>
           <div class="exp-tags">
-            <span class="tag blue">Next.js</span>
-            <span class="tag">LiteLLM</span>
-            <span class="tag blue">Docker</span>
+            <span class="tag">Next.js</span>
+            <span class="tag green">LiteLLM</span>
+            <span class="tag blue">MCP</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Full Stack Developer, NarratorAI</span>
+            <span class="exp-date">2022–Present</span>
+          </div>
+          <div class="exp-company">Narrative Ads</div>
+          <ul class="exp-highlights">
+            <li>Built and maintain NarratorAI — TypeScript, Next.js, Firebase — consolidating Frame.io / ClickUp / Drive workflows into one app.</li>
+            <li>Image, video, and voiceover pipelines (Gemini, fal.ai, ElevenLabs, OpenRouter) plus chat tools for generation, review, and editing jobs.</li>
+            <li>Debugged provider failures and capacity under load; ad-performance query tools and monthly cost reconciliation across GCP, fal.ai, OpenRouter, Fly.io.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag orange">Firebase</span>
             <span class="tag green">Gemini</span>
           </div>
         </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Freelance Software Engineer</span>
-            <span class="exp-date">2022 &mdash; Present</span>
-          </div>
-          <div class="exp-company">Narrative Ads</div>
-          <p class="exp-desc">Build and maintain NarratorAI, an internal platform for AI media production and advertising analytics. Work spans the application, external services, and production operations.</p>
-          <ul class="exp-highlights">
-            <li>Develop image, video, and voiceover workflows using AI providers and Firebase</li>
-            <li>Build ad-data integrations and tools for querying campaign performance</li>
-            <li>Investigate generation failures and deploy backend capacity changes</li>
-            <li>Reconcile GCP, fal.ai, OpenRouter, and Fly.io costs into monthly reports</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag green">Python</span>
-            <span class="tag green">FastAPI</span>
-            <span class="tag blue">Next.js</span>
-            <span class="tag">Google Cloud</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Founder &amp; Developer</span>
-            <span class="exp-date">2024 &mdash; Present</span>
-          </div>
-          <div class="exp-company">DadCircles</div>
-          <p class="exp-desc">Solo-built a mobile app connecting local dads for mutual support and community. Non-algorithmic, location-first matching that prioritizes proximity and shared context over virality. Privacy-first &mdash; no feeds, no likes, just real people in your neighborhood.</p>
-          <div class="exp-tags">
-            <span class="tag blue">React Native</span>
-            <span class="tag red">Firebase</span>
-            <span class="tag">Gemini API</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Shopify App Developer</span>
-            <span class="exp-date">2024 &mdash; Present</span>
-          </div>
-          <div class="exp-company">Parallax Variant Editor</div>
-          <p class="exp-desc">Built and published a Shopify app for TikTok Shop automation and product data management. Live on the Shopify App Store with automated product catalog sync and bulk CSV operations.</p>
-          <div class="exp-tags">
-            <span class="tag blue">Node.js</span>
-            <span class="tag">Shopify API</span>
-            <span class="tag green">PostgreSQL</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Video Producer &amp; Editor</span>
-            <span class="exp-date">2018 &mdash; 2022</span>
-          </div>
-          <div class="exp-company">Narrative Ads</div>
-          <p class="exp-desc">Directed, produced, and edited paid social ads for Facebook, Instagram, and TikTok, including work for DoorDash, Harry's, and Native. Managed creative direction, edits, and production handoffs.</p>
-        </div>
       </section>
+
 
       <!-- SKILLS -->
       <section class="section" id="skills">
@@ -1358,60 +1390,40 @@
           <div>
             <div class="skill-group-label">Languages</div>
             <div class="skill-list">
+              <span class="tag">Python</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">JavaScript</span>
               <span class="tag orange">Rust</span>
-              <span class="tag blue">TypeScript</span>
-              <span class="tag blue">JavaScript</span>
-              <span class="tag green">Python</span>
             </div>
           </div>
           <div>
-            <div class="skill-group-label">Frontend</div>
+            <div class="skill-group-label">Application</div>
             <div class="skill-list">
-              <span class="tag blue">React</span>
-              <span class="tag">Svelte</span>
-              <span class="tag green">Tailwind CSS</span>
-              <span class="tag blue">Vite</span>
+              <span class="tag">React</span>
+              <span class="tag">Next.js</span>
+              <span class="tag">SvelteKit</span>
+              <span class="tag">FastAPI</span>
             </div>
           </div>
           <div>
-            <div class="skill-group-label">Backend &amp; Data</div>
+            <div class="skill-group-label">Data &amp; infra</div>
             <div class="skill-list">
-              <span class="tag green">FastAPI</span>
-              <span class="tag blue">Node.js</span>
-              <span class="tag">Express</span>
-              <span class="tag green">PostgreSQL</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">GCP</span>
               <span class="tag">SQLite</span>
-              <span class="tag red">Firebase</span>
+              <span class="tag">Docker Compose</span>
+              <span class="tag">systemd</span>
             </div>
           </div>
           <div>
-            <div class="skill-group-label">AI / ML</div>
+            <div class="skill-group-label">AI &amp; delivery</div>
             <div class="skill-list">
-              <span class="tag">OpenAI API</span>
-              <span class="tag">Claude API</span>
-              <span class="tag">Gemini API</span>
-              <span class="tag green">Structured Extraction</span>
-              <span class="tag blue">Agent Workflows</span>
-            </div>
-          </div>
-          <div>
-            <div class="skill-group-label">DevOps</div>
-            <div class="skill-list">
-              <span class="tag blue">Docker</span>
-              <span class="tag">Fly.io</span>
-              <span class="tag green">Railway</span>
-              <span class="tag">GitHub Actions</span>
-              <span class="tag blue">Google Cloud</span>
-            </div>
-          </div>
-          <div>
-            <div class="skill-group-label">Tools</div>
-            <div class="skill-list">
-              <span class="tag green">Neovim</span>
-              <span class="tag">tmux</span>
-              <span class="tag">zsh</span>
-              <span class="tag blue">Linux</span>
-              <span class="tag">Git</span>
+              <span class="tag green">LiteLLM</span>
+              <span class="tag">OpenRouter</span>
+              <span class="tag blue">MCP</span>
+              <span class="tag">agent tool calling</span>
+              <span class="tag">structured extraction</span>
+              <span class="tag">CI/CD</span>
             </div>
           </div>
         </div>
@@ -1502,6 +1514,12 @@
     document.getElementById('sidebar-email').addEventListener('click', function() {
       copyEmail(this, document.getElementById('sidebar-toast'));
     });
+    var sidebarEmailText = document.getElementById('sidebar-email-text');
+    if (sidebarEmailText) {
+      sidebarEmailText.addEventListener('click', function() {
+        copyEmail(document.getElementById('sidebar-email'), document.getElementById('sidebar-toast'));
+      });
+    }
 
     document.getElementById('contact-email').addEventListener('click', function() {
       copyEmail(this, document.getElementById('contact-toast'));
