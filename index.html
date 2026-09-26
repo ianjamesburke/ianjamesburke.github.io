@@ -755,8 +755,6 @@
     }
 
     .work-selector-stage {
-      display: grid;
-      grid-template-columns: minmax(0, 1.38fr) minmax(240px, 0.76fr);
       min-height: 430px;
     }
 
@@ -786,8 +784,8 @@
     .work-selector-title {
       position: absolute;
       z-index: 1;
-      right: 28px;
-      bottom: 25px;
+      right: 34px;
+      bottom: 28px;
       left: 28px;
       pointer-events: none;
     }
@@ -823,8 +821,10 @@
     .work-selector-copy {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 28px 26px;
+      align-items: flex-start;
+      max-width: 640px;
+      margin-top: 14px;
+      pointer-events: auto;
     }
 
     .work-selector-kicker {
@@ -838,14 +838,15 @@
 
     .work-selector-copy p {
       margin-top: 0;
-      color: var(--text-muted);
-      font-size: 14px;
-      line-height: 1.7;
+      color: var(--ink-cream);
+      font-size: 13.5px;
+      line-height: 1.6;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
     }
 
     .work-selector-meta {
-      margin-top: 20px;
-      color: var(--text-dim);
+      margin-top: 14px;
+      color: var(--accent-bright);
       font-family: var(--mono);
       font-size: 10px;
       line-height: 1.6;
@@ -853,9 +854,8 @@
     }
 
     .work-selector-action {
-      align-self: flex-start;
       min-height: 40px;
-      margin-top: 24px;
+      margin-top: 16px;
       padding: 9px 13px;
       border: 1px solid var(--brass-dim);
       background: var(--accent-dim);
@@ -874,10 +874,9 @@
       .work-selector-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-right: 0; border-bottom: 1px solid var(--project-border); }
       .work-selector-label { grid-column: 1 / -1; }
       .work-selector-button { min-height: 68px; }
-      .work-selector-stage { grid-template-columns: 1fr; min-height: 0; }
-      .work-selector-media { aspect-ratio: 16 / 9; }
-      .work-selector-copy { padding: 28px 24px; }
-      .work-selector-title { right: 22px; bottom: 20px; left: 22px; }
+      .work-selector-stage { min-height: 0; }
+      .work-selector-media { min-height: 490px; }
+      .work-selector-title { right: 22px; bottom: 22px; left: 22px; }
       .work-selector-title h3 { font-size: clamp(27px, 9vw, 38px); }
     }
 
@@ -1478,12 +1477,12 @@
               <div class="work-selector-title is-entering" id="work-selector-title">
                 <span class="work-selector-kicker" id="work-selector-kind">Open-source product</span>
                 <h3 id="work-selector-name">Plexi</h3>
+                <div class="work-selector-copy">
+                  <p id="work-selector-description">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
+                  <div class="work-selector-meta" id="work-selector-meta">Rust · Terminal workspace · macOS pre-release</div>
+                  <a class="work-selector-action" id="work-selector-link" href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener">View on GitHub ↗</a>
+                </div>
               </div>
-            </div>
-            <div class="work-selector-copy">
-              <p id="work-selector-description">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
-              <div class="work-selector-meta" id="work-selector-meta">Rust · Terminal workspace · macOS pre-release</div>
-              <a class="work-selector-action" id="work-selector-link" href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener">View on GitHub ↗</a>
             </div>
           </article>
         </div>
