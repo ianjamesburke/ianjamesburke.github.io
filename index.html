@@ -614,21 +614,23 @@
       .project-featured-body { padding: 4px 20px 24px; }
     }
 
-    /* ─── PROJECT MINI LIST ─── */
+    /* ─── PROJECT GRID ─── */
 
     .projects-mini-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
       margin-bottom: 20px;
     }
 
     .project-mini {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 12px;
-      border-radius: 10px;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 4px;
       border: 1px solid var(--project-border);
       background: var(--project-surface);
       transition: all 0.2s ease;
@@ -641,9 +643,8 @@
 
     .project-mini-thumb {
       flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border-radius: 8px;
+      width: 100%;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
       background: var(--bg);
     }
@@ -657,8 +658,9 @@
     .project-mini-body {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
       min-width: 0;
+      padding: 16px;
     }
 
     .project-mini-name {
@@ -670,9 +672,11 @@
     .project-mini-desc {
       font-size: 12.5px;
       color: var(--text-dim);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      .projects-mini-list { grid-template-columns: 1fr; }
     }
 
     /* ─── SKILLS ─── */
@@ -1287,16 +1291,25 @@
           </div>
         </a>
 
-        <div class="projects-mini-list">
-
-          <a href="narrator-ai.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/narrator-ai-7.png" alt="NarratorAI" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">NarratorAI</span>
-              <span class="project-mini-desc">AI media tools and ad analytics for Narrative Ads.</span>
+        <a href="narrator-ai.html" class="project-featured">
+          <div class="project-featured-media project-featured-media--img">
+            <img src="/images/narrator-ai-7.png" alt="NarratorAI media production workspace" loading="lazy">
+          </div>
+          <div class="project-featured-body">
+            <div class="project-header">
+              <span class="project-name">NarratorAI</span>
+              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </div>
-          </a>
+            <p class="project-desc">AI media tools and ad analytics for Narrative Ads. Generation workflows, provider integrations, cloud capacity, and the reporting needed to keep production moving.</p>
+            <div class="project-tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Firebase</span>
+              <span class="tag">AI media</span>
+            </div>
+          </div>
+        </a>
 
+        <div class="projects-mini-list">
           <a href="https://killtonyarchive.com/" target="_blank" rel="noopener noreferrer" class="project-mini">
             <div class="project-mini-thumb"><img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
             <div class="project-mini-body">
