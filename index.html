@@ -775,6 +775,46 @@
       transition: opacity 0.16s ease, transform 0.5s ease, filter 0.4s ease;
     }
 
+    .work-selector-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 9, 9, 0.92) 0%, rgba(7, 9, 9, 0.36) 38%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .work-selector-title {
+      position: absolute;
+      z-index: 1;
+      right: 28px;
+      bottom: 25px;
+      left: 28px;
+      pointer-events: none;
+    }
+
+    .work-selector-title .work-selector-kicker { display: block; }
+
+    .work-selector-title h3 {
+      max-width: 100%;
+      margin-top: 8px;
+      color: var(--ink-cream);
+      font-family: var(--display);
+      font-size: clamp(28px, 3vw, 43px);
+      line-height: 1.04;
+      letter-spacing: 0.035em;
+      overflow-wrap: anywhere;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+    }
+
+    .work-selector-title.is-entering {
+      animation: selector-title-enter 0.36s cubic-bezier(0.22, 0.74, 0.25, 1) both;
+    }
+
+    @keyframes selector-title-enter {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     .work-selector-stage:hover .work-selector-media img {
       transform: scale(1.025);
       filter: brightness(0.92) saturate(0.95);
@@ -796,19 +836,8 @@
       text-transform: uppercase;
     }
 
-    .work-selector-copy h3 {
-      margin-top: 12px;
-      max-width: 100%;
-      color: var(--ink-cream);
-      font-family: var(--display);
-      font-size: clamp(24px, 2.2vw, 32px);
-      line-height: 1.05;
-      letter-spacing: 0.035em;
-      overflow-wrap: anywhere;
-    }
-
     .work-selector-copy p {
-      margin-top: 18px;
+      margin-top: 0;
       color: var(--text-muted);
       font-size: 14px;
       line-height: 1.7;
@@ -848,6 +877,12 @@
       .work-selector-stage { grid-template-columns: 1fr; min-height: 0; }
       .work-selector-media { aspect-ratio: 16 / 9; }
       .work-selector-copy { padding: 28px 24px; }
+      .work-selector-title { right: 22px; bottom: 20px; left: 22px; }
+      .work-selector-title h3 { font-size: clamp(27px, 9vw, 38px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .work-selector-title.is-entering { animation: none; }
     }
 
     /* ─── SKILLS ─── */
@@ -1438,10 +1473,14 @@
             <button class="work-selector-button" type="button" data-name="Words On Your Head" data-kind="E-commerce project" data-image="/images/wordsonyourhead-1.png" data-copy="A custom embroidered-hat store built around playful product discovery and a simple, characterful shopping experience." data-meta="Commerce · Design · Product" data-href="wordsonyourhead.html" data-action="Read case study"><strong>Words On Your Head</strong><span class="work-selector-tags"><small>Commerce</small><small>Design</small></span></button>
           </nav>
           <article class="work-selector-stage">
-            <div class="work-selector-media"><img id="work-selector-image" src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="eager"></div>
+            <div class="work-selector-media">
+              <img id="work-selector-image" src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="eager">
+              <div class="work-selector-title is-entering" id="work-selector-title">
+                <span class="work-selector-kicker" id="work-selector-kind">Open-source product</span>
+                <h3 id="work-selector-name">Plexi</h3>
+              </div>
+            </div>
             <div class="work-selector-copy">
-              <span class="work-selector-kicker" id="work-selector-kind">Open-source product</span>
-              <h3 id="work-selector-name">Plexi</h3>
               <p id="work-selector-description">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
               <div class="work-selector-meta" id="work-selector-meta">Rust · Terminal workspace · macOS pre-release</div>
               <a class="work-selector-action" id="work-selector-link" href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener">View on GitHub ↗</a>
@@ -1642,6 +1681,7 @@
     const workSelectorButtons = document.querySelectorAll('.work-selector-button');
     const workSelectorImage = document.getElementById('work-selector-image');
     const workSelectorLink = document.getElementById('work-selector-link');
+    const workSelectorTitle = document.getElementById('work-selector-title');
 
     workSelectorButtons.forEach((button) => button.addEventListener('click', () => {
       workSelectorButtons.forEach((item) => item.classList.toggle('active', item === button));
@@ -1655,6 +1695,9 @@
       document.getElementById('work-selector-kind').textContent = button.dataset.kind;
       document.getElementById('work-selector-description').textContent = button.dataset.copy;
       document.getElementById('work-selector-meta').textContent = button.dataset.meta;
+      workSelectorTitle.classList.remove('is-entering');
+      void workSelectorTitle.offsetWidth;
+      workSelectorTitle.classList.add('is-entering');
       workSelectorLink.href = button.dataset.href;
       workSelectorLink.textContent = `${button.dataset.action} ↗`;
       if (button.dataset.external === 'true') {
