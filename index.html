@@ -614,45 +614,42 @@
       .project-featured-body { padding: 4px 20px 24px; }
     }
 
-    /* ─── PROJECT GRID ─── */
+    .project-lane-label {
+      margin: 48px 0 20px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ─── PROJECT INDEX ─── */
 
     .projects-mini-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
       margin-bottom: 20px;
+      border-top: 1px solid var(--border);
     }
 
     .project-mini {
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      padding: 0;
-      overflow: hidden;
-      border-radius: 4px;
-      border: 1px solid var(--project-border);
-      background: var(--project-surface);
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 100px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
       transition: all 0.2s ease;
     }
 
+    .project-mini { padding-right: 20px; }
+    .project-mini + .project-mini { padding-left: 20px; border-left: 1px solid var(--border); }
+
     .project-mini:hover {
-      background: var(--bg-hover);
-      border-color: var(--accent);
-    }
-
-    .project-mini-thumb {
-      flex-shrink: 0;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      overflow: hidden;
-      background: var(--bg);
-    }
-
-    .project-mini-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      color: var(--brass);
     }
 
     .project-mini-body {
@@ -660,7 +657,6 @@
       flex-direction: column;
       gap: 4px;
       min-width: 0;
-      padding: 16px;
     }
 
     .project-mini-name {
@@ -675,8 +671,17 @@
       line-height: 1.5;
     }
 
+    .project-mini-arrow {
+      color: var(--text-dim);
+      font-size: 18px;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .project-mini:hover .project-mini-arrow { color: var(--brass); transform: translate(3px, -3px); }
+
     @media (max-width: 600px) {
       .projects-mini-list { grid-template-columns: 1fr; }
+      .project-mini, .project-mini + .project-mini { padding-left: 0; padding-right: 0; border-left: 0; }
     }
 
     /* ─── SKILLS ─── */
@@ -1254,25 +1259,7 @@
 
       <!-- FEATURED PROJECTS -->
       <section class="section visible" id="projects">
-        <div class="section-label">Recent Work</div>
-
-        <div class="project-featured">
-          <div class="project-featured-media">
-            <iframe src="https://www.youtube.com/embed/feCpLvn81Dk" title="nooise jam — music for feeling like it's happening" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">nooise</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-            </div>
-            <p class="project-desc">Ambient music generator for the terminal. Rust synth engine with live controls — I wanted an excuse to build a synth and something to put on during flow. The clip above is a jam rendered straight out of it.</p>
-            <div class="project-tags">
-              <span class="tag orange">Rust</span>
-              <span class="tag">TUI</span>
-            </div>
-            <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="resume-link">View on GitHub &rarr;</a>
-          </div>
-        </div>
+        <div class="section-label">Selected Software Products</div>
 
         <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-featured">
           <div class="project-featured-media project-featured-media--img">
@@ -1309,37 +1296,67 @@
           </div>
         </a>
 
-        <div class="projects-mini-list">
-          <a href="https://killtonyarchive.com/" target="_blank" rel="noopener noreferrer" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">Kill Tony Archive</span>
-              <span class="project-mini-desc">Audio-to-data pipeline and web app for exploring stand-up sets.</span>
+        <a href="https://killtonyarchive.com/" target="_blank" rel="noopener noreferrer" class="project-featured">
+          <div class="project-featured-media project-featured-media--img">
+            <img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
+          </div>
+          <div class="project-featured-body">
+            <div class="project-header">
+              <span class="project-name">Kill Tony Archive</span>
+              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
             </div>
-          </a>
+            <p class="project-desc">A searchable archive built from 1,422 stand-up sets across 110 episodes. I built the audio-to-data pipeline and web app for finding sets, comics, and moments.</p>
+            <div class="project-tags">
+              <span class="tag">Python</span>
+              <span class="tag">Gemini</span>
+              <span class="tag">FastAPI</span>
+            </div>
+          </div>
+        </a>
 
+        <div class="project-lane-label">Creative &amp; Independent Work</div>
+
+        <div class="project-featured">
+          <div class="project-featured-media">
+            <iframe src="https://www.youtube.com/embed/feCpLvn81Dk" title="nooise jam — music for feeling like it's happening" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
+          </div>
+          <div class="project-featured-body">
+            <div class="project-header">
+              <span class="project-name">nooise</span>
+              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+            </div>
+            <p class="project-desc">An ambient music generator for the terminal. I built the Rust synth engine and live controls because I wanted something that made the workday sound better.</p>
+            <div class="project-tags">
+              <span class="tag orange">Rust</span>
+              <span class="tag">TUI</span>
+            </div>
+            <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="resume-link">View on GitHub &rarr;</a>
+          </div>
+        </div>
+
+        <div class="projects-mini-list">
           <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/fido.png" alt="Fido" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Fido</span>
               <span class="project-mini-desc">Discord for GitHub repos, in your terminal.</span>
             </div>
+            <span class="project-mini-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/dad-circles.png" alt="Dad Circles" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Dad Circles</span>
               <span class="project-mini-desc">Location-first matching for local dads.</span>
             </div>
+            <span class="project-mini-arrow" aria-hidden="true">↗</span>
           </a>
 
           <a href="wordsonyourhead.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/wordsonyourhead-1.png" alt="Words On Your Head" loading="lazy"></div>
             <div class="project-mini-body">
               <span class="project-mini-name">Words On Your Head</span>
               <span class="project-mini-desc">Custom embroidered hat e-commerce.</span>
             </div>
+            <span class="project-mini-arrow" aria-hidden="true">↗</span>
           </a>
 
         </div>
@@ -1545,7 +1562,7 @@
         active = sections[sections.length - 1]?.id;
       } else {
         sections.forEach((section) => {
-          if (section.getBoundingClientRect().top <= window.innerHeight * 0.35) {
+          if (section.getBoundingClientRect().top <= 1) {
             active = section.id;
           }
         });
