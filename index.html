@@ -684,6 +684,167 @@
       .project-mini, .project-mini + .project-mini { padding-left: 0; padding-right: 0; border-left: 0; }
     }
 
+    /* ─── WORK SELECTOR ─── */
+
+    .work-selector {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.42fr) minmax(0, 1fr);
+      border: 1px solid var(--project-border);
+      background: var(--project-surface);
+    }
+
+    .work-selector-nav {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--project-border);
+      background: #141817;
+    }
+
+    .work-selector-label {
+      padding: 18px 18px 14px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .work-selector-button {
+      width: 100%;
+      padding: 13px 18px;
+      border: 0;
+      border-top: 1px solid rgba(122, 155, 184, 0.12);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .work-selector-button:hover,
+    .work-selector-button.active {
+      background: var(--accent-dim);
+      color: var(--ink-cream);
+    }
+
+    .work-selector-button.active { box-shadow: inset 3px 0 0 var(--brass); }
+
+    .work-selector-button strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 15px;
+      letter-spacing: 0.025em;
+    }
+
+    .work-selector-tags {
+      display: flex;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .work-selector-tags small {
+      color: var(--brass-dim);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.03em;
+    }
+
+    .work-selector-stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1.06fr) minmax(250px, 0.94fr);
+      min-height: 430px;
+    }
+
+    .work-selector-media {
+      position: relative;
+      min-height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .work-selector-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.78) saturate(0.82);
+      transition: opacity 0.16s ease, transform 0.5s ease, filter 0.4s ease;
+    }
+
+    .work-selector-stage:hover .work-selector-media img {
+      transform: scale(1.025);
+      filter: brightness(0.92) saturate(0.95);
+    }
+
+    .work-selector-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 34px;
+    }
+
+    .work-selector-kicker {
+      color: var(--brass);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .work-selector-copy h3 {
+      margin-top: 12px;
+      color: var(--ink-cream);
+      font-family: var(--display);
+      font-size: clamp(27px, 3vw, 42px);
+      line-height: 1.05;
+      letter-spacing: 0.035em;
+    }
+
+    .work-selector-copy p {
+      margin-top: 18px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .work-selector-meta {
+      margin-top: 20px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+
+    .work-selector-action {
+      align-self: flex-start;
+      min-height: 40px;
+      margin-top: 24px;
+      padding: 9px 13px;
+      border: 1px solid var(--brass-dim);
+      background: var(--accent-dim);
+      color: var(--brass-bright);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .work-selector-action:hover { background: var(--brass); color: var(--bg); }
+
+    @media (max-width: 768px) {
+      .work-selector { grid-template-columns: 1fr; }
+      .work-selector-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-right: 0; border-bottom: 1px solid var(--project-border); }
+      .work-selector-label { grid-column: 1 / -1; }
+      .work-selector-button { min-height: 68px; }
+      .work-selector-stage { grid-template-columns: 1fr; min-height: 0; }
+      .work-selector-media { aspect-ratio: 16 / 9; }
+      .work-selector-copy { padding: 28px 24px; }
+    }
+
     /* ─── SKILLS ─── */
 
     .skills-grid {
@@ -1259,106 +1420,28 @@
 
       <!-- FEATURED PROJECTS -->
       <section class="section visible" id="projects">
-        <div class="section-label">Selected Software Products</div>
-
-        <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-featured">
-          <div class="project-featured-media project-featured-media--img">
-            <img src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">Plexi</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <div class="section-label">Selected Work</div>
+        <div class="work-selector">
+          <nav class="work-selector-nav" aria-label="Projects">
+            <div class="work-selector-label">Select a project</div>
+            <button class="work-selector-button active" type="button" data-name="Plexi" data-kind="Open-source product" data-image="/images/plexi.png" data-copy="My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime." data-meta="Rust · Terminal workspace · macOS pre-release" data-href="https://github.com/ianjamesburke/PLEXI" data-action="View on GitHub" data-external="true"><strong>Plexi</strong><span class="work-selector-tags"><small>Rust</small><small>Desktop</small></span></button>
+            <button class="work-selector-button" type="button" data-name="NarratorAI" data-kind="Internal product" data-image="/images/narrator-ai-7.png" data-copy="AI media tools and ad analytics for Narrative Ads. Generation workflows, provider integrations, cloud capacity, and the reporting needed to keep production moving." data-meta="TypeScript · Firebase · AI media" data-href="narrator-ai.html" data-action="Read case study"><strong>NarratorAI</strong><span class="work-selector-tags"><small>TypeScript</small><small>Firebase</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Kill Tony Archive" data-kind="Public application" data-image="/images/kill-tony-archive.png" data-copy="A searchable archive built from 1,422 stand-up sets across 110 episodes. I built the audio-to-data pipeline and web app for finding sets, comics, and moments." data-meta="Python · Gemini · FastAPI" data-href="https://killtonyarchive.com/" data-action="Visit archive" data-external="true"><strong>Kill Tony</strong><span class="work-selector-tags"><small>Python</small><small>Search</small></span></button>
+            <button class="work-selector-button" type="button" data-name="nooise" data-kind="Creative tool" data-image="/images/nooise.png" data-copy="An ambient music generator for the terminal, built around a live Rust synthesis engine and expressive, playable controls." data-meta="Rust · Synthesis · Terminal instrument" data-href="https://github.com/ianjamesburke/nooise" data-action="View on GitHub" data-external="true"><strong>nooise</strong><span class="work-selector-tags"><small>Rust</small><small>Audio</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Fido" data-kind="Developer tool" data-image="/images/fido.png" data-copy="A terminal-native space for repository work, team discussion, and the information that usually gets lost between GitHub and chat." data-meta="Rust · Terminal · GitHub" data-href="https://fido-web-production.up.railway.app/" data-action="Open Fido" data-external="true"><strong>Fido</strong><span class="work-selector-tags"><small>Rust</small><small>GitHub</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Dad Circles" data-kind="Independent product" data-image="/images/dad-circles.png" data-copy="A location-first matching product that helps dads find nearby community at the same stage of fatherhood." data-meta="React · Matching · Community" data-href="https://dadcircles.com/" data-action="Visit site" data-external="true"><strong>Dad Circles</strong><span class="work-selector-tags"><small>React</small><small>Community</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Words On Your Head" data-kind="E-commerce project" data-image="/images/wordsonyourhead-1.png" data-copy="A custom embroidered-hat store built around playful product discovery and a simple, characterful shopping experience." data-meta="Commerce · Design · Product" data-href="wordsonyourhead.html" data-action="Read case study"><strong>Words On Your Head</strong><span class="work-selector-tags"><small>Commerce</small><small>Design</small></span></button>
+          </nav>
+          <article class="work-selector-stage">
+            <div class="work-selector-media"><img id="work-selector-image" src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="eager"></div>
+            <div class="work-selector-copy">
+              <span class="work-selector-kicker" id="work-selector-kind">Open-source product</span>
+              <h3 id="work-selector-name">Plexi</h3>
+              <p id="work-selector-description">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
+              <div class="work-selector-meta" id="work-selector-meta">Rust · Terminal workspace · macOS pre-release</div>
+              <a class="work-selector-action" id="work-selector-link" href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener">View on GitHub ↗</a>
             </div>
-            <p class="project-desc">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
-            <p class="project-note">Open source &middot; macOS pre-release</p>
-            <div class="project-tags">
-              <span class="tag orange">Rust</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="narrator-ai.html" class="project-featured">
-          <div class="project-featured-media project-featured-media--img">
-            <img src="/images/narrator-ai-7.png" alt="NarratorAI media production workspace" loading="lazy">
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">NarratorAI</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-            </div>
-            <p class="project-desc">AI media tools and ad analytics for Narrative Ads. Generation workflows, provider integrations, cloud capacity, and the reporting needed to keep production moving.</p>
-            <div class="project-tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">Firebase</span>
-              <span class="tag">AI media</span>
-            </div>
-          </div>
-        </a>
-
-        <a href="https://killtonyarchive.com/" target="_blank" rel="noopener noreferrer" class="project-featured">
-          <div class="project-featured-media project-featured-media--img">
-            <img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy">
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">Kill Tony Archive</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-            </div>
-            <p class="project-desc">A searchable archive built from 1,422 stand-up sets across 110 episodes. I built the audio-to-data pipeline and web app for finding sets, comics, and moments.</p>
-            <div class="project-tags">
-              <span class="tag">Python</span>
-              <span class="tag">Gemini</span>
-              <span class="tag">FastAPI</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="project-lane-label">Creative &amp; Independent Work</div>
-
-        <div class="project-featured">
-          <div class="project-featured-media">
-            <iframe src="https://www.youtube.com/embed/feCpLvn81Dk" title="nooise jam — music for feeling like it's happening" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">nooise</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-            </div>
-            <p class="project-desc">An ambient music generator for the terminal. I built the Rust synth engine and live controls because I wanted something that made the workday sound better.</p>
-            <div class="project-tags">
-              <span class="tag orange">Rust</span>
-              <span class="tag">TUI</span>
-            </div>
-            <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="resume-link">View on GitHub &rarr;</a>
-          </div>
-        </div>
-
-        <div class="projects-mini-list">
-          <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-body">
-              <span class="project-mini-name">Fido</span>
-              <span class="project-mini-desc">Discord for GitHub repos, in your terminal.</span>
-            </div>
-            <span class="project-mini-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-body">
-              <span class="project-mini-name">Dad Circles</span>
-              <span class="project-mini-desc">Location-first matching for local dads.</span>
-            </div>
-            <span class="project-mini-arrow" aria-hidden="true">↗</span>
-          </a>
-
-          <a href="wordsonyourhead.html" class="project-mini">
-            <div class="project-mini-body">
-              <span class="project-mini-name">Words On Your Head</span>
-              <span class="project-mini-desc">Custom embroidered hat e-commerce.</span>
-            </div>
-            <span class="project-mini-arrow" aria-hidden="true">↗</span>
-          </a>
-
+          </article>
         </div>
         <a href="https://github.com/ianjamesburke?tab=repositories" target="_blank" rel="noopener" class="resume-link">More projects on GitHub &rarr;</a>
       </section>
@@ -1552,6 +1635,34 @@
   </div>
 
   <script>
+    // ─── Work selector ───
+    const workSelectorButtons = document.querySelectorAll('.work-selector-button');
+    const workSelectorImage = document.getElementById('work-selector-image');
+    const workSelectorLink = document.getElementById('work-selector-link');
+
+    workSelectorButtons.forEach((button) => button.addEventListener('click', () => {
+      workSelectorButtons.forEach((item) => item.classList.toggle('active', item === button));
+      workSelectorImage.style.opacity = '0';
+      window.setTimeout(() => {
+        workSelectorImage.src = button.dataset.image;
+        workSelectorImage.alt = button.dataset.name;
+        workSelectorImage.style.opacity = '1';
+      }, 140);
+      document.getElementById('work-selector-name').textContent = button.dataset.name;
+      document.getElementById('work-selector-kind').textContent = button.dataset.kind;
+      document.getElementById('work-selector-description').textContent = button.dataset.copy;
+      document.getElementById('work-selector-meta').textContent = button.dataset.meta;
+      workSelectorLink.href = button.dataset.href;
+      workSelectorLink.textContent = `${button.dataset.action} ↗`;
+      if (button.dataset.external === 'true') {
+        workSelectorLink.target = '_blank';
+        workSelectorLink.rel = 'noopener';
+      } else {
+        workSelectorLink.removeAttribute('target');
+        workSelectorLink.removeAttribute('rel');
+      }
+    }));
+
     // ─── Scroll-triggered nav highlighting ───
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
