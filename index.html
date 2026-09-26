@@ -712,6 +712,7 @@
 
     .work-selector-button {
       width: 100%;
+      min-width: 0;
       padding: 13px 18px;
       border: 0;
       border-top: 1px solid rgba(122, 155, 184, 0.12);
@@ -733,9 +734,11 @@
 
     .work-selector-button strong {
       display: block;
+      max-width: 100%;
       font-family: var(--display);
       font-size: 15px;
       letter-spacing: 0.025em;
+      overflow-wrap: anywhere;
     }
 
     .work-selector-tags {
@@ -795,11 +798,13 @@
 
     .work-selector-copy h3 {
       margin-top: 12px;
+      max-width: 100%;
       color: var(--ink-cream);
       font-family: var(--display);
       font-size: clamp(27px, 3vw, 42px);
       line-height: 1.05;
       letter-spacing: 0.035em;
+      overflow-wrap: anywhere;
     }
 
     .work-selector-copy p {
