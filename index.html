@@ -181,7 +181,7 @@
     .main {
       flex: 1 1 0;
       min-width: 0;
-      max-width: 900px;
+      max-width: 1100px;
       margin-inline: auto;
       padding: 80px 60px 120px 60px;
       width: 100%;
@@ -1369,6 +1369,10 @@
             <span class="nav-line"></span>
             <span>About</span>
           </a>
+          <a href="#experience" class="nav-link" data-section="experience">
+            <span class="nav-line"></span>
+            <span>Recent Experience</span>
+          </a>
           <a href="#video" class="nav-link" data-section="video">
             <span class="nav-line"></span>
             <span>Video</span>
@@ -1376,10 +1380,6 @@
           <a href="#music" class="nav-link" data-section="music">
             <span class="nav-line"></span>
             <span>Music</span>
-          </a>
-          <a href="#experience" class="nav-link" data-section="experience">
-            <span class="nav-line"></span>
-            <span>Recent Experience</span>
           </a>
           <a href="#skills" class="nav-link" data-section="skills">
             <span class="nav-line"></span>
@@ -1464,6 +1464,49 @@
         </div>
       </section>
 
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-label">Recent Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Automation &amp; AI Integration Specialist</span>
+            <span class="exp-date">Current</span>
+          </div>
+          <div class="exp-company">Davenport University</div>
+          <ul class="exp-highlights">
+            <li>Built Pounce, a Google Chat agent for staff reports, donor briefings, bug/idea intake, and Google Docs in shared drives (Next.js, SQLite, Gemini, LiteLLM).</li>
+            <li>Built APIs and MCP servers for university data; configured a LiteLLM gateway with per-app keys and spending limits.</li>
+            <li>Pull-based deployments with systemd and Docker Compose for campus servers that cannot accept inbound connections, plus automated agent tool checks.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag green">LiteLLM</span>
+            <span class="tag blue">MCP</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Full Stack Developer, NarratorAI</span>
+            <span class="exp-date">2022–Present</span>
+          </div>
+          <div class="exp-company">Narrative Ads</div>
+          <ul class="exp-highlights">
+            <li>Built and maintain NarratorAI — TypeScript, Next.js, Firebase — consolidating Frame.io / ClickUp / Drive workflows into one app.</li>
+            <li>Image, video, and voiceover pipelines (Gemini, fal.ai, ElevenLabs, OpenRouter) plus chat tools for generation, review, and editing jobs.</li>
+            <li>Debugged provider failures and capacity under load; ad-performance query tools and monthly cost reconciliation across GCP, fal.ai, OpenRouter, Fly.io.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag orange">Firebase</span>
+            <span class="tag green">Gemini</span>
+          </div>
+        </div>
+      </section>
+
 <!-- VIDEO -->
       <section class="section" id="video">
         <div class="section-label">Video</div>
@@ -1511,51 +1554,6 @@
           <iframe src="https://open.spotify.com/embed/artist/7BYZeVv9LeTOUh0sFIMQo0?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </section>
-
-
-      <!-- EXPERIENCE -->
-      <section class="section" id="experience">
-        <div class="section-label">Recent Experience</div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Automation &amp; AI Integration Specialist</span>
-            <span class="exp-date">Current</span>
-          </div>
-          <div class="exp-company">Davenport University</div>
-          <ul class="exp-highlights">
-            <li>Built Pounce, a Google Chat agent for staff reports, donor briefings, bug/idea intake, and Google Docs in shared drives (Next.js, SQLite, Gemini, LiteLLM).</li>
-            <li>Built APIs and MCP servers for university data; configured a LiteLLM gateway with per-app keys and spending limits.</li>
-            <li>Pull-based deployments with systemd and Docker Compose for campus servers that cannot accept inbound connections, plus automated agent tool checks.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">Next.js</span>
-            <span class="tag green">LiteLLM</span>
-            <span class="tag blue">MCP</span>
-            <span class="tag">Docker</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Full Stack Developer, NarratorAI</span>
-            <span class="exp-date">2022–Present</span>
-          </div>
-          <div class="exp-company">Narrative Ads</div>
-          <ul class="exp-highlights">
-            <li>Built and maintain NarratorAI — TypeScript, Next.js, Firebase — consolidating Frame.io / ClickUp / Drive workflows into one app.</li>
-            <li>Image, video, and voiceover pipelines (Gemini, fal.ai, ElevenLabs, OpenRouter) plus chat tools for generation, review, and editing jobs.</li>
-            <li>Debugged provider failures and capacity under load; ad-performance query tools and monthly cost reconciliation across GCP, fal.ai, OpenRouter, Fly.io.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">Next.js</span>
-            <span class="tag orange">Firebase</span>
-            <span class="tag green">Gemini</span>
-          </div>
-        </div>
-      </section>
-
 
       <!-- SKILLS -->
       <section class="section" id="skills">
