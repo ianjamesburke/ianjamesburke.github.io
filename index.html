@@ -16,6 +16,8 @@
       --bg: #0c0c0b;
       --bg-raised: #141413;
       --bg-hover: #1a1a18;
+      --project-surface: #191d20;
+      --project-border: #364049;
       --border: #2a2a26;
       --border-hover: #3f3f36;
       --text: #f2efe6;
@@ -160,17 +162,27 @@
       flex: 0 0 min(30%, 360px);
       width: min(30%, 360px);
       max-width: 360px;
-      padding: 80px 40px 60px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      height: 100dvh;
+      padding: 28px 32px;
       border-right: 1px solid var(--border);
-      overflow: visible;
+      overflow: hidden;
     }
 
-    .identity { display: block; }
+    .identity {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      min-height: 0;
+    }
 
     .main {
       flex: 1 1 0;
       min-width: 0;
-      max-width: 900px;
+      max-width: 1100px;
+      margin-inline: auto;
       padding: 80px 60px 120px 60px;
       width: 100%;
       overflow: visible;
@@ -179,13 +191,13 @@
     /* ─── SIDEBAR CONTENT ─── */
 
     .avatar {
-      width: 120px;
-      height: 120px;
+      width: 76px;
+      height: 76px;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 20%;
       border: 2px solid var(--border);
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       display: block;
     }
 
@@ -219,7 +231,7 @@
       font-weight: 300;
       color: var(--text-dim);
       letter-spacing: 0.02em;
-      margin-bottom: 28px;
+      margin-bottom: 14px;
     }
 
     .tagline .cursor {
@@ -247,14 +259,14 @@
     /* ─── NAV ─── */
 
     .nav {
-      margin-top: 40px;
+      margin-top: 16px;
     }
 
     .nav-link {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 10px 0;
+      padding: 5px 0;
       font-family: var(--mono);
       font-size: 12px;
       font-weight: 400;
@@ -286,8 +298,8 @@
     /* ─── SIDEBAR FOOTER ─── */
 
     .sidebar-footer {
-      margin-top: 28px;
-      padding-top: 28px;
+      margin-top: auto;
+      padding-top: 14px;
     }
 
     .sidebar-contact-label {
@@ -319,8 +331,8 @@
     .socials {
       display: flex;
       gap: 16px;
-      margin-top: 14px;
-      margin-bottom: 14px;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
 
     .social-link {
@@ -533,9 +545,9 @@
       display: grid;
       grid-template-columns: 1.1fr 1fr;
       gap: 24px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--project-border);
       border-radius: 14px;
-      background: var(--bg-raised);
+      background: var(--project-surface);
       overflow: hidden;
       margin-bottom: 20px;
       transition: border-color 0.25s ease;
@@ -547,8 +559,10 @@
 
     .project-featured-media {
       position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
+      aspect-ratio: 16 / 9;
+      align-self: start;
+      padding-bottom: 0;
+      height: auto;
       background: var(--bg);
     }
 
@@ -587,54 +601,61 @@
     .project-featured-body .project-desc { margin-bottom: 12px; }
     .project-featured-body .project-tags { margin-bottom: 4px; }
 
+    @media (min-width: 769px) {
+      .project-featured-media {
+        align-self: stretch;
+        aspect-ratio: auto;
+        height: 100%;
+      }
+    }
+
     @media (max-width: 768px) {
       .project-featured { grid-template-columns: 1fr; }
       .project-featured-body { padding: 4px 20px 24px; }
     }
 
-    /* ─── PROJECT MINI LIST ─── */
+    .project-lane-label {
+      margin: 48px 0 20px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    /* ─── PROJECT INDEX ─── */
 
     .projects-mini-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0;
       margin-bottom: 20px;
+      border-top: 1px solid var(--border);
     }
 
     .project-mini {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1px solid transparent;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 100px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
       transition: all 0.2s ease;
     }
 
+    .project-mini { padding-right: 20px; }
+    .project-mini + .project-mini { padding-left: 20px; border-left: 1px solid var(--border); }
+
     .project-mini:hover {
-      background: var(--bg-hover);
-      border-color: var(--border);
-    }
-
-    .project-mini-thumb {
-      flex-shrink: 0;
-      width: 52px;
-      height: 52px;
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--bg);
-    }
-
-    .project-mini-thumb img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      color: var(--brass);
     }
 
     .project-mini-body {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
       min-width: 0;
     }
 
@@ -647,9 +668,225 @@
     .project-mini-desc {
       font-size: 12.5px;
       color: var(--text-dim);
-      white-space: nowrap;
+      line-height: 1.5;
+    }
+
+    .project-mini-arrow {
+      color: var(--text-dim);
+      font-size: 18px;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .project-mini:hover .project-mini-arrow { color: var(--brass); transform: translate(3px, -3px); }
+
+    @media (max-width: 600px) {
+      .projects-mini-list { grid-template-columns: 1fr; }
+      .project-mini, .project-mini + .project-mini { padding-left: 0; padding-right: 0; border-left: 0; }
+    }
+
+    /* ─── WORK SELECTOR ─── */
+
+    .work-selector {
+      display: grid;
+      grid-template-columns: minmax(205px, 0.36fr) minmax(0, 1fr);
+      border: 1px solid var(--project-border);
+      background: var(--project-surface);
+    }
+
+    .work-selector-nav {
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--project-border);
+      background: #141817;
+    }
+
+    .work-selector-label {
+      padding: 18px 18px 14px;
+      color: var(--text-dim);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .work-selector-button {
+      width: 100%;
+      min-width: 0;
+      padding: 13px 18px;
+      border: 0;
+      border-top: 1px solid rgba(122, 155, 184, 0.12);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .work-selector-button:hover,
+    .work-selector-button.active {
+      background: var(--accent-dim);
+      color: var(--ink-cream);
+    }
+
+    .work-selector-button.active { box-shadow: inset 3px 0 0 var(--brass); }
+
+    .work-selector-button strong {
+      display: block;
+      max-width: 100%;
+      font-family: var(--display);
+      font-size: 15px;
+      letter-spacing: 0.025em;
+      overflow-wrap: anywhere;
+    }
+
+    .work-selector-tags {
+      display: flex;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .work-selector-tags small {
+      color: var(--brass-dim);
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.03em;
+    }
+
+    .work-selector-stage {
+      min-height: 430px;
+    }
+
+    .work-selector-media {
+      position: relative;
+      min-height: 100%;
       overflow: hidden;
-      text-overflow: ellipsis;
+      background: var(--bg);
+    }
+
+    .work-selector-media img {
+      position: absolute;
+      inset: 0;
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--preview-position, center);
+      transform: scale(var(--preview-zoom, 1));
+      filter: brightness(0.78) saturate(0.82);
+      transition: opacity 0.16s ease, transform 0.5s ease, filter 0.4s ease;
+    }
+
+    .work-selector-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 9, 9, 0.72) 0%, rgba(7, 9, 9, 0.46) 34%, rgba(7, 9, 9, 0.16) 62%, transparent 82%);
+      pointer-events: none;
+    }
+
+    .work-selector-title {
+      position: absolute;
+      z-index: 1;
+      right: 34px;
+      bottom: 28px;
+      left: 28px;
+      pointer-events: none;
+    }
+
+    .work-selector-title .work-selector-kicker { display: block; }
+
+    .work-selector-title h3 {
+      max-width: 100%;
+      margin-top: 8px;
+      color: var(--ink-cream);
+      font-family: var(--display);
+      font-size: clamp(28px, 3vw, 43px);
+      line-height: 1.04;
+      letter-spacing: 0.035em;
+      overflow-wrap: anywhere;
+      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+    }
+
+    .work-selector-title.is-entering {
+      animation: selector-title-enter 0.36s cubic-bezier(0.22, 0.74, 0.25, 1) both;
+    }
+
+    @keyframes selector-title-enter {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .work-selector-stage:hover .work-selector-media img {
+      transform: scale(calc(var(--preview-zoom, 1) + 0.025));
+      filter: brightness(0.92) saturate(0.95);
+    }
+
+    .work-selector-copy {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 640px;
+      margin-top: 14px;
+      pointer-events: auto;
+    }
+
+    .work-selector-kicker {
+      color: var(--brass);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .work-selector-copy p {
+      margin-top: 0;
+      color: var(--ink-cream);
+      font-size: 13.5px;
+      line-height: 1.6;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .work-selector-meta {
+      margin-top: 14px;
+      color: var(--accent-bright);
+      font-family: var(--mono);
+      font-size: 10px;
+      line-height: 1.6;
+      letter-spacing: 0.03em;
+    }
+
+    .work-selector-action {
+      min-height: 40px;
+      margin-top: 16px;
+      padding: 9px 13px;
+      border: 1px solid var(--brass-dim);
+      background: var(--accent-dim);
+      color: var(--brass-bright);
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .work-selector-action:hover { background: var(--brass); color: var(--bg); }
+
+    @media (max-width: 768px) {
+      .work-selector { grid-template-columns: 1fr; }
+      .work-selector-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-right: 0; border-bottom: 1px solid var(--project-border); }
+      .work-selector-label { grid-column: 1 / -1; }
+      .work-selector-button { min-height: 68px; }
+      .work-selector-stage { min-height: 0; }
+      .work-selector-media { min-height: 490px; }
+      .work-selector-title { right: 22px; bottom: 22px; left: 22px; }
+      .work-selector-title h3 { font-size: clamp(27px, 9vw, 38px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .work-selector-title.is-entering { animation: none; }
     }
 
     /* ─── SKILLS ─── */
@@ -1014,7 +1251,7 @@
     /* ─── RESPONSIVE ─── */
 
     @media (max-width: 1024px) {
-      .sidebar { flex-basis: 28%; width: 28%; padding: 60px 28px 40px; }
+      .sidebar { flex-basis: 28%; width: 28%; padding: 24px 20px; }
       .main { padding: 60px 40px 100px 40px; }
     }
 
@@ -1024,6 +1261,9 @@
         flex-basis: auto;
         width: 100%;
         max-width: none;
+        position: static;
+        height: auto;
+        overflow: visible;
         padding: 48px 28px 40px;
       }
       .sidebar { border-right: 0; }
@@ -1098,7 +1338,7 @@
     }
     .section-label::after { display: none; }
     .name { letter-spacing: 0.12em; text-transform: uppercase; font-size: 40px; }
-    .sidebar { padding: 64px 36px 48px; }
+    .sidebar { padding: 28px 32px; }
     .main { padding: 64px 48px 100px 48px; }
     .section { margin-bottom: 72px; }
     .about p { font-size: 14.5px; letter-spacing: 0.01em; }
@@ -1108,6 +1348,36 @@
     .avatar { border-radius: 4px; border-color: var(--brass-dim); }
     .tagline { letter-spacing: 0.08em; }
     .status-line { letter-spacing: 0.14em; text-transform: uppercase; }
+
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .sidebar { padding: 24px 20px; }
+      .name { font-size: 32px; letter-spacing: 0.06em; }
+      .socials { gap: 6px; }
+      .social-link { width: 32px; height: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { padding: 36px 28px 32px; }
+    }
+
+    @media (max-width: 480px) {
+      .sidebar { padding: 28px 20px 24px; }
+    }
+
+    @media (min-width: 769px) and (max-height: 760px) {
+      .sidebar { padding-top: 20px; padding-bottom: 20px; }
+      .avatar { width: 60px; height: 60px; }
+      .tagline { display: none; }
+      .nav-link { padding-top: 4px; padding-bottom: 4px; }
+    }
+
+    @media (min-width: 769px) and (max-height: 650px) {
+      .bio { display: none; }
+    }
+
+    @media (min-width: 769px) and (max-height: 620px) {
+      .avatar { display: none; }
+    }
 
   </style>
 </head>
@@ -1138,6 +1408,10 @@
             <span class="nav-line"></span>
             <span>About</span>
           </a>
+          <a href="#experience" class="nav-link" data-section="experience">
+            <span class="nav-line"></span>
+            <span>Recent Experience</span>
+          </a>
           <a href="#video" class="nav-link" data-section="video">
             <span class="nav-line"></span>
             <span>Video</span>
@@ -1145,10 +1419,6 @@
           <a href="#music" class="nav-link" data-section="music">
             <span class="nav-line"></span>
             <span>Music</span>
-          </a>
-          <a href="#experience" class="nav-link" data-section="experience">
-            <span class="nav-line"></span>
-            <span>Recent Experience</span>
           </a>
           <a href="#skills" class="nav-link" data-section="skills">
             <span class="nav-line"></span>
@@ -1194,85 +1464,32 @@
 
       <!-- FEATURED PROJECTS -->
       <section class="section visible" id="projects">
-        <div class="section-label">Recent Work</div>
-
-        <div class="project-featured">
-          <div class="project-featured-media">
-            <iframe src="https://www.youtube.com/embed/feCpLvn81Dk" title="nooise jam — music for feeling like it's happening" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" loading="lazy"></iframe>
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">nooise</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+        <div class="section-label">Selected Work</div>
+        <div class="work-selector">
+          <nav class="work-selector-nav" aria-label="Projects">
+            <div class="work-selector-label">Select a project</div>
+            <button class="work-selector-button active" type="button" data-name="Plexi" data-kind="Open-source product" data-image="/images/plexi.png" data-copy="My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime." data-meta="Rust · Terminal workspace · macOS pre-release" data-href="https://github.com/ianjamesburke/PLEXI" data-action="View on GitHub" data-external="true"><strong>Plexi</strong><span class="work-selector-tags"><small>Rust</small><small>Desktop</small></span></button>
+            <button class="work-selector-button" type="button" data-name="NarratorAI" data-kind="Internal product" data-image="/images/narrator-ai-7.png" data-copy="AI media tools and ad analytics for Narrative Ads. Generation workflows, provider integrations, cloud capacity, and the reporting needed to keep production moving." data-meta="TypeScript · Firebase · AI media" data-href="narrator-ai.html" data-action="Read case study"><strong>NarratorAI</strong><span class="work-selector-tags"><small>TypeScript</small><small>Firebase</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Kill Tony Archive" data-kind="Public application" data-image="/images/kill-tony-archive.png" data-copy="A searchable archive built from 1,422 stand-up sets across 110 episodes. I built the audio-to-data pipeline and web app for finding sets, comics, and moments." data-meta="Python · Gemini · FastAPI" data-href="https://killtonyarchive.com/" data-action="Visit archive" data-external="true"><strong>Kill Tony</strong><span class="work-selector-tags"><small>Python</small><small>Search</small></span></button>
+            <button class="work-selector-button" type="button" data-name="nooise" data-kind="Creative tool" data-image="/images/nooise.png" data-copy="An ambient music generator for the terminal, built around a live Rust synthesis engine and expressive, playable controls." data-meta="Rust · Synthesis · Terminal instrument" data-href="https://github.com/ianjamesburke/nooise" data-action="View on GitHub" data-external="true"><strong>nooise</strong><span class="work-selector-tags"><small>Rust</small><small>Audio</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Fido" data-kind="Developer tool" data-image="/images/fido.png" data-copy="A terminal-native space for repository work, team discussion, and the information that usually gets lost between GitHub and chat." data-meta="Rust · Terminal · GitHub" data-href="https://fido-web-production.up.railway.app/" data-action="Open Fido" data-external="true"><strong>Fido</strong><span class="work-selector-tags"><small>Rust</small><small>GitHub</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Dad Circles" data-kind="Independent product" data-image="/images/dad-circles.png" data-copy="A location-first matching product that helps dads find nearby community at the same stage of fatherhood." data-meta="React · Matching · Community" data-href="https://dadcircles.com/" data-action="Visit site" data-external="true"><strong>Dad Circles</strong><span class="work-selector-tags"><small>React</small><small>Community</small></span></button>
+            <button class="work-selector-button" type="button" data-name="Words On Your Head" data-kind="E-commerce project" data-image="/images/wordsonyourhead-1.png" data-copy="A custom embroidered-hat store built around playful product discovery and a simple, characterful shopping experience." data-meta="Commerce · Design · Product" data-href="wordsonyourhead.html" data-action="Read case study"><strong>Words On Your Head</strong><span class="work-selector-tags"><small>Commerce</small><small>Design</small></span></button>
+          </nav>
+          <article class="work-selector-stage">
+            <div class="work-selector-media">
+              <img id="work-selector-image" src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="eager">
+              <div class="work-selector-title is-entering" id="work-selector-title">
+                <span class="work-selector-kicker" id="work-selector-kind">Open-source product</span>
+                <h3 id="work-selector-name">Plexi</h3>
+                <div class="work-selector-copy">
+                  <p id="work-selector-description">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
+                  <div class="work-selector-meta" id="work-selector-meta">Rust · Terminal workspace · macOS pre-release</div>
+                  <a class="work-selector-action" id="work-selector-link" href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener">View on GitHub ↗</a>
+                </div>
+              </div>
             </div>
-            <p class="project-desc">Ambient music generator for the terminal. Rust synth engine with live controls — I wanted an excuse to build a synth and something to put on during flow. The clip above is a jam rendered straight out of it.</p>
-            <div class="project-tags">
-              <span class="tag orange">Rust</span>
-              <span class="tag">TUI</span>
-            </div>
-            <a href="https://github.com/ianjamesburke/nooise" target="_blank" rel="noopener" class="resume-link">View on GitHub &rarr;</a>
-          </div>
-        </div>
-
-        <a href="https://github.com/ianjamesburke/PLEXI" target="_blank" rel="noopener" class="project-featured">
-          <div class="project-featured-media project-featured-media--img">
-            <img src="/images/plexi.png" alt="Plexi — terminal multiplexer" loading="lazy">
-          </div>
-          <div class="project-featured-body">
-            <div class="project-header">
-              <span class="project-name">Plexi</span>
-              <span class="project-link-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-            </div>
-            <p class="project-desc">My Rust desktop workspace for coding agents: terminal panes, project contexts, notes, and apps in one place. Includes an agent-accessible CLI and a WASM app runtime.</p>
-            <p class="project-note">Open source &middot; macOS pre-release</p>
-            <div class="project-tags">
-              <span class="tag orange">Rust</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="projects-mini-list">
-
-          <a href="narrator-ai.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/narrator-ai-7.png" alt="NarratorAI" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">NarratorAI</span>
-              <span class="project-mini-desc">AI media tools and ad analytics for Narrative Ads.</span>
-            </div>
-          </a>
-
-          <a href="https://killtonyarchive.com" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/kill-tony-archive.png" alt="Kill Tony Archive" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">Kill Tony Archive</span>
-              <span class="project-mini-desc">Audio-to-data pipeline and web app for exploring stand-up sets.</span>
-            </div>
-          </a>
-
-          <a href="https://fido-web-production.up.railway.app/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/fido.png" alt="Fido" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">Fido</span>
-              <span class="project-mini-desc">Discord for GitHub repos, in your terminal.</span>
-            </div>
-          </a>
-
-          <a href="https://dadcircles.com/" target="_blank" rel="noopener" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/dad-circles.png" alt="Dad Circles" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">Dad Circles</span>
-              <span class="project-mini-desc">Location-first matching for local dads.</span>
-            </div>
-          </a>
-
-          <a href="wordsonyourhead.html" class="project-mini">
-            <div class="project-mini-thumb"><img src="/images/wordsonyourhead-1.png" alt="Words On Your Head" loading="lazy"></div>
-            <div class="project-mini-body">
-              <span class="project-mini-name">Words On Your Head</span>
-              <span class="project-mini-desc">Custom embroidered hat e-commerce.</span>
-            </div>
-          </a>
-
+          </article>
         </div>
         <a href="https://github.com/ianjamesburke?tab=repositories" target="_blank" rel="noopener" class="resume-link">More projects on GitHub &rarr;</a>
       </section>
@@ -1287,6 +1504,49 @@
           <p>
             Today I build and maintain AI tools for <strong>Narrative Ads</strong>, turn long recordings into structured data with <strong>Python</strong>, and build <strong>PLEXI</strong> in Rust. I work across the interface, backend, and provider integrations, including the debugging and reporting needed to keep a product running.
           </p>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section class="section" id="experience">
+        <div class="section-label">Recent Experience</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Automation &amp; AI Integration Specialist</span>
+            <span class="exp-date">Current</span>
+          </div>
+          <div class="exp-company">Davenport University</div>
+          <ul class="exp-highlights">
+            <li>Built Pounce, a Google Chat agent for staff reports, donor briefings, bug/idea intake, and Google Docs in shared drives (Next.js, SQLite, Gemini, LiteLLM).</li>
+            <li>Built APIs and MCP servers for university data; configured a LiteLLM gateway with per-app keys and spending limits.</li>
+            <li>Pull-based deployments with systemd and Docker Compose for campus servers that cannot accept inbound connections, plus automated agent tool checks.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag green">LiteLLM</span>
+            <span class="tag blue">MCP</span>
+            <span class="tag">Docker</span>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <span class="exp-role">Full Stack Developer, NarratorAI</span>
+            <span class="exp-date">2022–Present</span>
+          </div>
+          <div class="exp-company">Narrative Ads</div>
+          <ul class="exp-highlights">
+            <li>Built and maintain NarratorAI — TypeScript, Next.js, Firebase — consolidating Frame.io / ClickUp / Drive workflows into one app.</li>
+            <li>Image, video, and voiceover pipelines (Gemini, fal.ai, ElevenLabs, OpenRouter) plus chat tools for generation, review, and editing jobs.</li>
+            <li>Debugged provider failures and capacity under load; ad-performance query tools and monthly cost reconciliation across GCP, fal.ai, OpenRouter, Fly.io.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">Next.js</span>
+            <span class="tag orange">Firebase</span>
+            <span class="tag green">Gemini</span>
+          </div>
         </div>
       </section>
 
@@ -1337,51 +1597,6 @@
           <iframe src="https://open.spotify.com/embed/artist/7BYZeVv9LeTOUh0sFIMQo0?utm_source=generator" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
       </section>
-
-
-      <!-- EXPERIENCE -->
-      <section class="section" id="experience">
-        <div class="section-label">Recent Experience</div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Automation &amp; AI Integration Specialist</span>
-            <span class="exp-date">Current</span>
-          </div>
-          <div class="exp-company">Davenport University</div>
-          <ul class="exp-highlights">
-            <li>Built Pounce, a Google Chat agent for staff reports, donor briefings, bug/idea intake, and Google Docs in shared drives (Next.js, SQLite, Gemini, LiteLLM).</li>
-            <li>Built APIs and MCP servers for university data; configured a LiteLLM gateway with per-app keys and spending limits.</li>
-            <li>Pull-based deployments with systemd and Docker Compose for campus servers that cannot accept inbound connections, plus automated agent tool checks.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">Next.js</span>
-            <span class="tag green">LiteLLM</span>
-            <span class="tag blue">MCP</span>
-            <span class="tag">Docker</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <span class="exp-role">Full Stack Developer, NarratorAI</span>
-            <span class="exp-date">2022–Present</span>
-          </div>
-          <div class="exp-company">Narrative Ads</div>
-          <ul class="exp-highlights">
-            <li>Built and maintain NarratorAI — TypeScript, Next.js, Firebase — consolidating Frame.io / ClickUp / Drive workflows into one app.</li>
-            <li>Image, video, and voiceover pipelines (Gemini, fal.ai, ElevenLabs, OpenRouter) plus chat tools for generation, review, and editing jobs.</li>
-            <li>Debugged provider failures and capacity under load; ad-performance query tools and monthly cost reconciliation across GCP, fal.ai, OpenRouter, Fly.io.</li>
-          </ul>
-          <div class="exp-tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">Next.js</span>
-            <span class="tag orange">Firebase</span>
-            <span class="tag green">Gemini</span>
-          </div>
-        </div>
-      </section>
-
 
       <!-- SKILLS -->
       <section class="section" id="skills">
@@ -1466,25 +1681,79 @@
   </div>
 
   <script>
+    // ─── Work selector ───
+    const workSelectorButtons = document.querySelectorAll('.work-selector-button');
+    const workSelectorImage = document.getElementById('work-selector-image');
+    const workSelectorLink = document.getElementById('work-selector-link');
+    const workSelectorTitle = document.getElementById('work-selector-title');
+    const workPreviewFraming = {
+      Plexi: { zoom: '1.05', position: 'center' },
+      NarratorAI: { zoom: '1.03', position: 'center' },
+      'Kill Tony Archive': { zoom: '1.08', position: 'center' },
+      nooise: { zoom: '1.25', position: 'center 42%' },
+      Fido: { zoom: '1.14', position: '30% center' },
+      'Dad Circles': { zoom: '1.12', position: 'center 55%' },
+      'Words On Your Head': { zoom: '1.03', position: 'center' },
+    };
+
+    function frameWorkPreview(name) {
+      const frame = workPreviewFraming[name];
+      workSelectorImage.style.setProperty('--preview-zoom', frame.zoom);
+      workSelectorImage.style.setProperty('--preview-position', frame.position);
+    }
+
+    frameWorkPreview('Plexi');
+
+    workSelectorButtons.forEach((button) => button.addEventListener('click', () => {
+      workSelectorButtons.forEach((item) => item.classList.toggle('active', item === button));
+      workSelectorImage.style.opacity = '0';
+      frameWorkPreview(button.dataset.name);
+      window.setTimeout(() => {
+        workSelectorImage.src = button.dataset.image;
+        workSelectorImage.alt = button.dataset.name;
+        workSelectorImage.style.opacity = '1';
+      }, 140);
+      document.getElementById('work-selector-name').textContent = button.dataset.name;
+      document.getElementById('work-selector-kind').textContent = button.dataset.kind;
+      document.getElementById('work-selector-description').textContent = button.dataset.copy;
+      document.getElementById('work-selector-meta').textContent = button.dataset.meta;
+      workSelectorTitle.classList.remove('is-entering');
+      void workSelectorTitle.offsetWidth;
+      workSelectorTitle.classList.add('is-entering');
+      workSelectorLink.href = button.dataset.href;
+      workSelectorLink.textContent = `${button.dataset.action} ↗`;
+      if (button.dataset.external === 'true') {
+        workSelectorLink.target = '_blank';
+        workSelectorLink.rel = 'noopener';
+      } else {
+        workSelectorLink.removeAttribute('target');
+        workSelectorLink.removeAttribute('rel');
+      }
+    }));
+
     // ─── Scroll-triggered nav highlighting ───
     const sections = document.querySelectorAll('.section');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-            navLinks.forEach((link) => {
-              link.classList.toggle('active', link.dataset.section === id);
-            });
+    function updateActiveNav() {
+      let active = sections[0]?.id;
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        active = sections[sections.length - 1]?.id;
+      } else {
+        sections.forEach((section) => {
+          if (section.getBoundingClientRect().top <= 1) {
+            active = section.id;
           }
         });
-      },
-      { rootMargin: '-20% 0px -60% 0px', threshold: 0 }
-    );
+      }
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.dataset.section === active);
+      });
+    }
 
-    sections.forEach((s) => observer.observe(s));
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    window.addEventListener('resize', updateActiveNav);
+    updateActiveNav();
 
     // ─── Section fade-in on scroll ───
     const reveal = new IntersectionObserver(
